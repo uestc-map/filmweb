@@ -1,0 +1,150 @@
+@import url(../css/section.css);
+@import url(../960-Grid-System-master/code/css/reset.css);
+@import url(../960-Grid-System-master/code/css/960.css);
+@import url(../960-Grid-System-master/code/css/text.css);
+@import url(footer.css);
+html,body{height:100%}
+nav{
+			position: relative;
+			top: 0;
+			left: 0;
+			z-index:999;
+			width: 100%; 
+			height: 60px;
+			font-size: 15px;
+			background: white;
+
+		}
+		nav ul{
+            position: absolute;
+            top: 0;
+            left: 50px;
+			width: 980px;
+			height: 60px;
+			margin: 0 auto;
+            line-height: 60px;
+		}
+		nav ul li {
+            display: inline-block;
+			float: left;
+			list-style: none;
+            margin-left: 0;
+			
+		}
+		nav a{
+			display: inline-block;
+			width: 80px;
+			height: 35px;
+			color: black;
+			line-height: 35px;
+			margin: 5px 10px;
+			text-align: center;
+			text-decoration:none;
+			font-weight: bold;
+			font-family: "微软雅黑";
+			font-size: 16px;
+		}
+		nav a:hover{
+			text-decoration: none;
+			background:white;
+			color:#2C67CE; 
+			transition:  color .10s linear;
+		}
+        nav ul  .site-name-font{
+            width: 180px;
+            height: 60px;
+            line-height: 60px;
+            display: inline-block;
+            font-weight: bold;
+            font-size: 22px;
+            letter-spacing: 1px;
+            color: #256EEE;
+        }
+        .site-name{
+            display: inline-block;
+            float: left;
+            width: 180px;
+            height: 60px;
+            line-height: 60px;
+            margin-top: 0;
+            text-decoration: none;
+        }
+	#logo{
+      display: inline-block;
+      float: left;
+      width: 70px;
+      height: 40px;
+      margin-right: 0;
+      margin-top: 10px;
+    }
+    #signin{
+ 		/*position: absolute;
+ 		top: 10px;
+ 		right: 150px;*/
+    	display: inline-block;
+        float: right;
+    	width: 80px;
+    	height: 35px;
+    	line-height: 35px;
+    	color: #fff;
+    	border-radius: 5px;
+    	background: #256EEE;
+    	font-family: "微软雅黑";
+        margin-top: 10px;
+    }
+    #signin:hover{
+    	opacity: 0.9;
+    	transition:opacity .10s linear;
+    }
+    #signup{
+ 		/*position: absolute;
+ 		top: 10px;
+ 		right: 60px;*/
+    	display: inline-block;
+        float: right;
+    	width: 80px;
+    	height: 35px;
+    	line-height: 35px;
+    	color: #fff;
+    	border-radius: 5px;
+    	background: #EE25BB;
+    	font-family: "微软雅黑";
+        margin-top: 10px;
+    }
+    #signup:hover{
+    	opacity: 0.9;
+    	transition:opacity .10s linear;
+    } 
+
+
+/*select*/
+  .sc{
+        display: inline-block;
+    	position:relative;
+        float: right;
+        width: 300px;
+    	height: 36px;
+        margin-top: 10px;
+        background-color: black;
+    }
+    .search{
+    	
+        width: 240px;
+    	height: 40px;
+    	display: relative;
+        float: left;
+    	border: 2px solid #D2CCCC;
+    	padding-left: 5px;
+    	outline: none;
+    }
+    .search.searchIcon{
+        width: 60px;
+        height: 36px;
+        border:2px solid red;
+        display: relative;
+        float: right;
+    }
+    .searchIcon:hover{
+    	opacity: 0.8;
+    }
+
