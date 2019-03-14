@@ -12,6 +12,21 @@
 <link rel="stylesheet" href="{%  static 'film/css/font-awesome.css' %}">
 
 <body>
+
+{% if errmsg %}
+        <li>
+
+            {% for err in errmsg %}
+             <p style="color: red;">
+                {{err}}
+             </p>
+              {% endfor %}
+        </li>
+    {% endif %}
+
+
+
+
 	<nav >
 		<ul>
 			<a href="index.html" class="site-name" ><span class="site-name-font">肥宅<span style="color: black;">电影</span></span></a>
@@ -21,33 +36,45 @@
 			<li> <a href="myinf.html">个性推荐</a></li>
 		</ul>
 		<a href="register.html" id="signup">注册</a>
-		<a href="logIn.html" id="signin">登录</a>
+		<a href="{% templates 'film/logIn.html'%}" id="signin">登录</a>
 		<div class="sc">
 			<input type="text" class="search" placeholder="Search for video">
 			<li class="searchIcon" ></li>
 		</div>
 	</nav>
+	<form action="" method="post"> {% csrf_token %} <!--form表单/-->
 	<div id="login">
 		<div><h1 id="h1">注册</h1></div>
 		<div id="user">
 			<span id="span1" ></span>
-			<input type="text" class="input" placeholder="用户名-邮箱注册" autofocus id="userId" maxlength="20">
+			<input type="text" class="input" name="username" placeholder="输入用户名" autofocus id="id" maxlength="20">
 			<li class="cha" id="del1"></li>
 		</div>
+       <div id="email">
+			<span id="span1" ></span>
+			<input type="text" class="input" name="userId" placeholder="输入邮箱" autofocus id="em" maxlength="20">
+			<li class="cha" id="del1"></li>
+		</div>
+
 		<div id="pw">
 			<span id="span2">	</span>
-			<input type="password" class="input" placeholder="密码：含数字、字母至少6位" id="password" maxlength="20" >
+			<input type="password" class="input" name="password" placeholder="密码：含数字、字母至少6位" id="password" maxlength="20" >
 			<li class="cha" id="del2"></li>
 		</div>
-		<a id="a1">注册</a>
+		<input type="submit" value="注册"  id="a1">
+		<!--<a id="a1">注册</a>-->
 		<!--<a href="index.html" id="butt">登录</a>-->
-		<!-- <button type=summit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注&nbsp;册&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>-->  
+		<!-- <button type=summit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注&nbsp;册&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>-->
+
+       </form>
+
+
 
 		<a href="#" id="a3">忘记密码？</a>
 		<a href="#" id="callMe" >和我联系</a>
 	</div>
 	<script>
-	
+
 		var oA1 = document.getElementById('a1');
 		var oText = document.getElementById('id');/*邮箱*/
 		var oPw = document.getElementById('password');/*密码*/
@@ -57,12 +84,12 @@
 		oA1.onclick = function(){
 			if (oText.value == '' || oPw.value == '') {
 				alert('用户名（邮箱）和密码不能为空');
-				
+
 			}
 			else if(oPw.value.length<6){
 				alert("密码长度不得低于六位");
-           
-           
+
+
 				else {
 					 window.location.href='index.html';
 				}
@@ -75,9 +102,9 @@
 		oDel2.onclick = function(){
 			oPw.value = '';
 		};
-	
+
 	</script>
 
-	<script src="js/canvas-nest.min.js" color="255,255,255"></script> 
+	<script src="{% static 'js/canvas-nest.min.js' %}" color="255,255,255"></script>
 </body>
 </html>
