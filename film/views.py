@@ -117,14 +117,19 @@ class HomeView(View): #主页
         return  render(request,"home.html")
 
 
-class FilmList(View):
+class showFilmList(View):
     def get(self,request):
         now = datetime.datetime.now().date()
         film_list = film.objects.filter(showDate__lte=now).order_by('filmScore')
         context = {'film_list': film_list}
         return render(request,'home.html',context)
 
-
+class notshowFilmList(View):
+    def get(self,request):
+        now = datetime.datetime.now().date()
+        notshowfilm_list = film.objects.filter(showDate__gt=now).order_by('-showDate')
+        context = {'film_list': notshowfilm_list}
+        return render(request,'home.html',context)
 
 
 
