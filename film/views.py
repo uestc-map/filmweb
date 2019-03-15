@@ -11,6 +11,7 @@ from django.shortcuts import redirect
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.views.generic.base import View
+from django.db import models
 
 def register_User(request):
     if request.method== "POST":
@@ -117,19 +118,22 @@ class HomeView(View): #主页
         return  render(request,"home.html")
 
 
-class showFilmList(View):
+class show_FilmList(View):
     def get(self,request):
         now = datetime.datetime.now().date()
-        film_list = film.objects.filter(showDate__lte=now).order_by('filmScore')
-        context = {'film_list': film_list}
-        return render(request,'home.html',context)
-
-class notshowFilmList(View):
-    def get(self,request):
-        now = datetime.datetime.now().date()
-        notshowfilm_list = film.objects.filter(showDate__gt=now).order_by('-showDate')
-        context = {'film_list': notshowfilm_list}
+        filmlist = film.objects.filter(showDate__lte=now).order_by('filmScore')
+        context = {'film_list': filmlist}
         return render(request,'home.html',context)
 
 
+class notshow_FilmList(View):
+    def get(self,request):
+        now = datetime.datetime.now().date()
+        notshow_filmlist = film.objects.filter(showDate__gt=now).order_by('-showDate')
+        context = {'film_list': notshow_filmlist}
+        return render(request,'home.html',context)
 
+
+def autodelete(): #删除过期电影
+    now = datetime.datetime.now().date()
+    models.film.objects.filter(deleteDate__lt=now).delete()
