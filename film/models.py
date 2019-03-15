@@ -1,3 +1,9 @@
+
+from django.db import models
+from django.contrib.auth.models import User
+# Create your models here.
+
+
 class order(models.Model):
     orderId = models.IntegerField(max_length=20, primary_key=True, blank=False)
     filmName = models.CharField(max_length=20, blank=False)

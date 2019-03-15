@@ -1,41 +1,16 @@
 from __future__ import unicode_literals
-from .models import  order, film, filmscence, user
+from .models import  order, film, filmscence
 from django.shortcuts import render
 import random
 import re
+from django.utils import timezone
+import datetime
+from django.views.generic import ListView
 from django.views import generic
 from django.shortcuts import redirect
 from django.contrib import auth
 from django.contrib.auth.models import User
-"""def register_user(request):
-    if request.method== "POST":
-        user_insert=user()
-        user_insert.userId= request.POST.get("userId",None)
-        user_insert.userName=request.POST.get("userName",None)
-        user_insert.password=request.POST.get("password",None)
-        if not all([ user_insert.userId,user_insert.userName,user_insert.password]):
-            return render(request, 'film/register.html')
-        if not re.match(r'^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$', user_insert.userId):
-            return render(request, 'film/register.html', {'errmsg': '邮箱不符合规范'})
-
-        try:
-            user_Id=user.objects.get(userId=user_insert.userId)
-            print(user_Id)
-
-        except Exception as e:
-            user_Id=None
-        if user_Id:
-            return render(request, 'film/register.html',{'errmsg':'邮箱已被使用'})
-
-        pass_len=len(str(user_insert.password))
-        if not (re.match(r'([0-9]+(\W+|\_+|[A-Za-z]+))+|([A-Za-z]+(\W+|\_+|\d+))+|((\W+|\_+)+(\d+|\w+))+',user_insert.password)) or (pass_len<6):
-            return render(request, 'film/register.html',{'errmsg':'密码长度小于6位！'})
-        user_insert.Value = 0
-        user_insert.save()
-        return redirect('/film/login/')
-    else:
-        return render(request, 'film/register.html')"""
-
+from django.views.generic.base import View
 
 def register_User(request):
     if request.method== "POST":
@@ -132,3 +107,24 @@ def insert_filmscence(request):
         if datetime_exist:
             return render(request, 'insert.html', {'errmsg': '该场次已有电影'})
         return render(request, 'insert.html')
+
+class HomeView(View): #主页
+
+    def get(self,request):
+        return render(request,"home.html")
+
+    def post(self,request):
+        return  render(request,"home.html")
+
+
+class FilmList(View):
+    def get(self,request):
+        now = datetime.datetime.now().date()
+        film_list = film.objects.filter(showDate__lte=now).order_by('filmScore')
+        context = {'film_list': film_list}
+        return render(request,'home.html',context)
+
+
+
+
+
