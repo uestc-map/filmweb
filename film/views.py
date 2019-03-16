@@ -83,7 +83,7 @@ def insert_film(request):
         film_insert=film()
         film_insert.filmName= request.POST.get("filmName",None)
         film_insert.filmDName=request.POST.get("filmDName",None)
-        film_insert.Route=request.POST.get("ROUTE",None)
+        film_insert.image=request.POST.get("ROUTE",None)  #暂时还不会写
         film_insert.category=request.POSY.get("category",None)
         if not all([ film_insert.filmName, film_insert.filmDName, film_insert.Route, film_insert.category]):
             return render(request, 'insert.html')
@@ -109,31 +109,24 @@ def insert_filmscence(request):
             return render(request, 'insert.html', {'errmsg': '该场次已有电影'})
         return render(request, 'insert.html')
 
-class HomeView(View): #主页
 
-    def get(self,request):
-        return render(request,"home.html")
-
-    def post(self,request):
-        return  render(request,"home.html")
-
-
-class show_FilmList(View):
-    def get(self,request):
-        now = datetime.datetime.now().date()
+def home_page(request): #主页
+    now = datetime.datetime.now().date()
+    if request.method== "get":
         filmlist = film.objects.filter(showDate__lte=now).order_by('filmScore')
-        context = {'film_list': filmlist}
-        return render(request,'home.html',context)
-
-
-class notshow_FilmList(View):
-    def get(self,request):
-        now = datetime.datetime.now().date()
         notshow_filmlist = film.objects.filter(showDate__gt=now).order_by('-showDate')
-        context = {'film_list': notshow_filmlist}
+        context = {'film_list': filmlist,
+                   'noshow_filmlist':notshow_filmlist
+                   }
         return render(request,'home.html',context)
 
+    else:
+        category=request.POST.get('category')
+        if category:
+            category_list = film.objects.filter(category=category , showDate__lte=now).order_by('filmScore')
+            return render(request,"category.html",category_list)
 
-def autodelete(): #删除过期电影
+
+def autodelete():  #删除过期电影
     now = datetime.datetime.now().date()
     models.film.objects.filter(deleteDate__lt=now).delete()
