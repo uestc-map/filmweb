@@ -16,7 +16,7 @@ from django.db import models
 def register_User(request):
     if request.method== "POST":
         user_insert=User()
-        user_insert.email= request.POST.get("userId",None)
+        user_insert.email= request.POST.get("userEmail",None)
         user_insert.username=request.POST.get("userName",None)
         user_insert.password=request.POST.get("password",None)
         if not all([ user_insert.email,user_insert.username,user_insert.password]):
@@ -47,10 +47,10 @@ def register_User(request):
 
 def login(request):
     if request.method == "POST":
-        userId_login= request.POST.get("userId",None)
+        useremail_login= request.POST.get("useremail",None)
         password_login=request.POST.get("password",None)
 
-        user_login = auth.authenticate(email=userId_login, password=password_login)
+        user_login = auth.authenticate(email=useremail_login, password=password_login)
         if user_login is None:
             return render(request,"film/login.html",{"errmsg":"用户名或密码错误"})
         auth.login(request, user_login)
