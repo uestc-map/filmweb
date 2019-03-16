@@ -113,8 +113,8 @@ def insert_filmscence(request):
 def home_page(request): #主页
     now = datetime.datetime.now().date()
     if request.method== "get":
-        filmlist = film.objects.filter(showDate__lte=now).order_by('filmScore')
-        notshow_filmlist = film.objects.filter(showDate__gt=now).order_by('-showDate')
+        filmlist = film.objects.filter(showDate__lte=now)
+        notshow_filmlist = film.objects.filter(showDate__gt=now)
         context = {'film_list': filmlist,
                    'noshow_filmlist':notshow_filmlist
                    }
@@ -123,7 +123,7 @@ def home_page(request): #主页
     else:
         category=request.POST.get('category')
         if category:
-            category_list = film.objects.filter(category=category , showDate__lte=now).order_by('filmScore')
+            category_list = film.objects.filter(category=category , showDate__lte=now)
             return render(request,"category.html",category_list)
 
 
