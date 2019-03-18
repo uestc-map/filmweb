@@ -81,11 +81,21 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'filmweb',
         'USER': 'root',
-        'PASSWORD': '2016060103',
+        'PASSWORD': 'xh980421',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'filmweb',
+#         'USER': 'root',
+#         'PASSWORD': '2016060103',
+#         'HOST': '127.0.0.1',
+#         'PORT': '3306',
+#     }
+# }
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 

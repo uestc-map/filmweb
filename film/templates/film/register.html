@@ -23,51 +23,61 @@
               {% endfor %}
         </li>
 {% endif %}
-	<nav >
+{#    导航条#}
+	<nav>
 		<ul>
-			<a href="../index/" class="site-name" ><span class="site-name-font">肥宅<span style="color: black;">电影</span></span></a>
+			<a href="../index/" class="site-name" >
+                <span class="site-name-font">肥宅<span style="color: black;">电影</span>
+                </span>
+            </a>
 			<img id="logo" src="{%  static 'film/img/logo.jpg' %}" alt="">
-			<li> <a href="../index/" name="a1">首页</a></li>
-			<li> <a href="../li/" name="a1">购票</a></li>
-			<li> <a href="../myinf/">个性推荐</a></li>
+			<li>
+                <a href="../index/" name="a1">首页</a>
+            </li>
+			<li>
+                <a href="../li/" name="a1">购票</a>
+            </li>
+			<li>
+                <a href="../myinf/">个性推荐</a>
+            </li>
 		</ul>
-		<a href="#" id="signup">注册</a>
+		<a href="" id="signup">注册</a>
 		<a href="../login/" id="signin">登录</a>
 		<div class="sc">
 			<input type="text" class="search" placeholder="Search for video">
 			<li class="searchIcon" ></li>
 		</div>
 	</nav>
-	<form action="" method="post"> {% csrf_token %} <!--form表单/-->
-	<div id="login">
-		<div><h1 id="h1">注册</h1></div>
-		<div id="user">
-			<span id="span1" ></span>
-			<input type="text" class="input" name="userName" placeholder="输入用户名" autofocus id="id" maxlength="20">
-			<li class="cha" id="del1"></li>
-		</div>
-       <div id="email">
-			<span id="span1" ></span>
-			<input type="text" class="input" name="userEmail" placeholder="输入邮箱" autofocus id="em" maxlength="20">
-			<li class="cha" id="del1"></li>
-		</div>
-
-		<div id="pw">
-			<span id="span2">	</span>
-			<input type="password" class="input" name="password" placeholder="密码：含数字、字母至少6位" id="password" maxlength="20" >
-			<li class="cha" id="del2"></li>
-		</div>
-		<input type="submit" value="注册"  id="a1">
-		<!--<a id="a1">注册</a>-->
-		<!--<a href="index.html" id="butt">登录</a>-->
-		<!-- <button type=summit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注&nbsp;册&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>-->
-
-
-		<a href="#" id="a3">忘记密码？</a>
-		<a href="#" id="callMe" >和我联系</a>
-	</div>
+{#    注册模块#}
+	<form action="" method="post">
+        {% csrf_token %} <!--form表单/-->
+        <div id="login">
+            <div>
+                <h1 id="h1">注册</h1>
+            </div>
+            <div id="user">
+                <span id="span1" ></span>
+                <input type="text" class="input" name="userName" placeholder="输入用户名" autofocus id="id" maxlength="20">
+                <li class="cha" id="del1"></li>
+            </div>
+            <div id="email">
+                <span id="span1" ></span>
+                <input type="text" class="input" name="userEmail" placeholder="输入邮箱" autofocus id="em" maxlength="20">
+                <li class="cha" id="del1"></li>
+            </div>
+            <div id="pw">
+                <span id="span2">	</span>
+                <input type="password" class="input" name="password" placeholder="密码：含数字、字母至少6位" id="password" maxlength="20" >
+                <li class="cha" id="del2"></li>
+            </div>
+            <input type="submit" value="注册"  id="a1">
+            <!--<a id="a1">注册</a>-->
+            <!--<a href="index.html" id="butt">登录</a>-->
+            <!-- <button type=summit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注&nbsp;册&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>-->
+            <a href="#" id="a3">忘记密码？</a>
+            <a href="#" id="callMe" >和我联系</a>
+        </div>
 	</form>
-
 <!--	<script>
 
 		var oA1 = document.getElementById('a1');
