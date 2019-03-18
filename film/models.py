@@ -28,5 +28,6 @@ class film(models.Model):
     evaluateNum=models.IntegerField(max_length=10,default=0)
     showDate=models.DateField(blank=False,default='1999-01-01')
     deleteDate=models.DateField(blank=False,default='1999-01-01')
+    filmSum=models.CharField(max_length=10000,default=' ')
     class Meta:
         ordering=['-filmScore','showDate']
