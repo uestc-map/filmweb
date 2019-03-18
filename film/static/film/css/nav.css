@@ -116,8 +116,50 @@ nav{
     	transition:opacity .10s linear;
     } 
 
+ #scbox{
+    display: inline-block;
+    position: relative;
+    vertical-align:middle;
+    float: right;
+    width: 325px;
+    height: 36px;
+    margin-top: 10px;
+    background-color:#256EEE;
+    border: 2px solid #256EEE;
+    }
+    #select1{
+    display:inline-block;
+    position: relative;
+    vertical-align:middle;
+    float: left;
+    width: 56px;
+    height: 36px;
+    font-family: "微软雅黑";
+    font-size: 11px;
+    }
 
-/*select*/
+    #input1{
+    display: inline-block;
+    position: relative;
+    vertical-align:middle;
+    width: 229px;
+    height: 34px;
+    border-bottom: 2px solid #256EEE;
+    background-color: #fff;
+    }
+
+    #input2{
+    display: inline-block;
+    position: relative;
+    float: right;
+    width: 36px;
+    height: 36px;
+    background-color:#256EEE;
+    }
+
+
+
+/*select
   .sc{
         display: inline-block;
     	position:relative;
@@ -147,4 +189,4 @@ nav{
     .searchIcon:hover{
     	opacity: 0.8;
     }
-
+*/

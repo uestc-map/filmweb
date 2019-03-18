@@ -53,23 +53,37 @@ Stylesheet for slidorion
 
 
 #rightBan{
-	width: 300px;			/* Set to accordion width */
-	height: 460px;	
-	float: left;
+	width: 290px;			/* Set to accordion width */
+	height: 460px;
+	float: right;
+	border:1px solid green;
 	background-color: yellow;
 }
-#rightBan.header{
+#Listhead{
 	width: 290px;
-	height: 20px;
-	margin-top: 5px;
-	float: right;
+	height: 35px;
+	margin-top: 12px;
+	border-bottom: 1px solid green;
 }
 
-#rightBan.header li{
+#Listhead li{
+	font-size: 18px;
+	text-align: center;
+	font-family: "微软雅黑";
+	font-weight: bold;
+}
+
+#Listitem{
+	width: 290px;
+	height: 35px;
+	margin-top:5px;
+	border-bottom: 1px solid green;
+}
+#Listitem ul{
 	font-size: 16px;
-	float: center;
+	text-align: left;
+	font-family: "微软雅黑";
 }
-
 
 #rightBan.conts{
 	width: 290px;
@@ -98,6 +112,7 @@ Stylesheet for slidorion
 	-webkit-box-shadow: 0 0 34px #bbb;
 	-moz-box-shadow: 0 0 34px #bbb;
 }
+
 
 #slider {
 	width: 588px;			/* Set to slider width */

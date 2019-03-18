@@ -1,49 +1,58 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>登录界面</title>
-	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="shortcut icon" href="{%  static 'film/img/favicon.ico' %}">
 </head>
-<link rel="stylesheet" href="./css/style.css" />
-<link rel="stylesheet" href="css/nav.css">
-<link rel="stylesheet" href="css/login.css">
-<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="{%  static 'film/css/style.css' %}" />
+<link rel="stylesheet" href="{%  static 'film/css/nav.css' %}">
+<link rel="stylesheet" href="{%  static 'film/css/login.css' %}">
+<link rel="stylesheet" href="{%  static 'film/css/font-awesome.css' %}">
 
 <body>
 	<nav >
 		<ul>
-			<a href="index.html" class="site-name" ><span class="site-name-font">肥宅<span style="color: black;">电影</span></span></a>
+			<a href="../index/" class="site-name" ><span class="site-name-font">肥宅<span style="color: black;">电影</span></span></a>
 			<img id="logo" src="img/logo.jpg" alt="">
-			<li> <a href="index.html" name="a1">首页</a></li>
-			<li> <a href="li.html" name="a1">购票</a></li>
-			<li> <a href="myinf.html">个性推荐</a></li>
+			<li> <a href="../index/" name="a1">首页</a></li>
+			<li> <a href="../li/" name="a1">购票</a></li>
+			<li> <a href="../myinf/">个性推荐</a></li>
 		</ul>
-		<a href="register.html" id="signup">注册</a>
-		<a href="logIn.html" id="signin">登录</a>
+		<a href="../register/" id="signup">注册</a>
+		<a href="#" id="signin">登录</a>
 		<div class="sc">
 			<input type="text" class="search" placeholder="Search for video">
 			<li class="searchIcon" ></li>
 		</div>
 	</nav>
 	<div id="login">
-		<div><h1 id="h1">登录</h1></div>
+        <div><h1 id="h1">登录</h1></div>
 		<div id="user">
 			<span id="span1" ></span>
-			<input type="text" class="input" placeholder="用户名或邮箱" autofocus id="id" maxlength="20">
+			<input type="text" class="input" name="userName" placeholder="输入用户名" autofocus id="id" maxlength="20">
 			<li class="cha" id="del1"></li>
 		</div>
+       <div id="email">
+			<span id="span1" ></span>
+			<input type="text" class="input" name="userEmail" placeholder="输入邮箱" autofocus id="em" maxlength="20">
+			<li class="cha" id="del1"></li>
+		</div>
+
 		<div id="pw">
 			<span id="span2">	</span>
-			<input type="password" class="input" placeholder="密码" id="password" maxlength="20" >
+			<input type="password" class="input" name="password" placeholder="输入密码" id="password" maxlength="20" >
 			<li class="cha" id="del2"></li>
 		</div>
-		<a  id="a1">登录</a>
+		<input type="submit" value="登录"  id="a1">
 		<!--<a href="register.html" id="a2">注册</a>-->
 		<a href="#" id="a3">忘记密码？</a>
 		<a href="#" id="callMe" >和我联系</a>
 	</div>
-	<script type="text/javascript">
+
+
+<!--	<script type="text/javascript">
 	
 		var oA1 = document.getElementById('a1');
 		var oText = document.getElementById('id');/*邮箱*/
@@ -79,6 +88,6 @@
 	
 	</script>
 
-	<script src="js/canvas-nest.min.js" color="255,255,255"></script> 
+	<script src="js/canvas-nest.min.js" color="255,255,255"></script> -->
 </body>
 </html>
