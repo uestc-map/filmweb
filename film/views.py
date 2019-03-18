@@ -28,13 +28,19 @@ def register_User(request):
             return render(request, 'film/register.html', {'errmsg': '邮箱不符合规范'})
 
         try:
-            user_Id=User.objects.get(email =user_insert.email)
-            print(user_Id)
-
+            user_email = User.objects.get(email__exact=user_insert.email)
         except Exception as e:
-            user_Id=None
-        if user_Id:
+            user_email = None
+        if user_email:
             return render(request, 'film/register.html',{'errmsg':'邮箱已被使用'})
+
+        try:
+            user_name=User.objects.get(username__exact=user_insert.username)
+        except Exception as e:
+            user_name=None
+        if user_name:
+            return render(request, 'film/register.html',{'errmsg':'用户名已被使用'})
+
 
         pass_len=len(str(user_insert.password))
         if not (re.match(r'([0-9]+(\W+|\_+|[A-Za-z]+))+|([A-Za-z]+(\W+|\_+|\d+))+|((\W+|\_+)+(\d+|\w+))+',user_insert.password)) or (pass_len<6):
@@ -43,21 +49,23 @@ def register_User(request):
         user_insert.is_staff=False
         user_insert.is_superuser=False
         user_insert.save()
-        return redirect('/film/login/')
-    else:
+        return render(request, 'film/login.html')
+    elif request.method == "GET":
         return render(request, 'film/register.html')
 
 
 def login(request):
     if request.method == "POST":
-        useremail_login= request.POST.get("useremail",None)
+        userename_login= request.POST.get("username",None)
         password_login=request.POST.get("password",None)
 
-        user_login = auth.authenticate(email=useremail_login, password=password_login)
+        user_login = auth.authenticate(username=userename_login, password=password_login)
         if user_login is None:
             return render(request,"film/login.html",{"errmsg":"用户名或密码错误"})
-        auth.login(request, user_login)
-        return redirect("/film/home/")
+        else:
+            auth.login(request, user_login)
+            return redirect("/film/home/")
+
     else:
         return render(request,'film/login.html')
 
@@ -77,7 +85,7 @@ def insert_order(request):
         order_insert.filmName=request.POST.get("filmName",None)
         order_insert.seat=request.POST.get("seat",None)
         order_insert.datetime=request.POST.get("datetime",None)
-        order_insert.userId_id=user.objects.get(userId="userId")
+        order_insert.userId_id=User.objects.get(userId="userId")
         order_insert.save()
     return render(request, 'insert.html')
 
@@ -116,22 +124,28 @@ def insert_filmscence(request):
 
 def home_page(request): #主页
     now = datetime.datetime.now().date()
-    filmlist = film.objects.filter(showDate__lte=now)
-    notshow_filmlist = film.objects.filter(showDate__gt=now)
-    t1 = loader.get_template('film/home.html')
-    context = {'film_list': filmlist,
-               'noshow_filmlist': notshow_filmlist
-               }
-    return HttpResponse(t1.render(context))
-    """if request.method== "get":
 
+    if request.method== "get":
+        return  render(request,'film/home.html')
 
-    else:
-        category=request.POST.get('category')
+    elif request.method=='post':
+        category=request.POST.get('category')    #如果用户点击的是电影分类
         if category:
-            category_list = film.objects.filter(category=category , showDate__lte=now)
-            return render(request,"category.html",category_list)
-"""
+            category_list = film.objects.filter(category__exact=category , showDate__lte=now)
+            return render(request,"film/category.html",category_list)
+        filmName=request.POST.get('filmName')
+        if filmName:        #如果用户点击某电影详情
+            film_detail=film.objects.filter(filmName__exact=filmName)
+            return render(request,'film/detail.html')
+    else:
+        filmlist = film.objects.filter(showDate__lte=now)   #正在热映电影排行榜
+        notshow_filmlist = film.objects.filter(showDate__gt=now) #即将上映榜单
+        t1 = loader.get_template('film/home.html')
+        context = {'film_list': filmlist,
+                   'noshow_filmlist': notshow_filmlist
+                   }
+        return HttpResponse(t1.render(context))
+
 
 def autodelete():  #删除过期电影
     now = datetime.datetime.now().date()
