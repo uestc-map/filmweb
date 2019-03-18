@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2eb7e9f3-c8d1-420c-b2b5-a0c76e54df83" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/film/templates/film/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/film/templates/film/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/film/templates/film/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/film/templates/film/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/film/templates/film/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/film/templates/film/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/film/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/film/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/film/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/film/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/filmweb/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/filmweb/settings.py" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/venv/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,6 +16,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/filmweb/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="19">
+              <caret line="74" lean-forward="true" selection-start-line="74" selection-end-line="74" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/film/urls.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -43,12 +46,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/film/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-382">
-              <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+            <state relative-caret-position="284">
+              <caret line="73" column="19" lean-forward="true" selection-start-line="73" selection-start-column="19" selection-end-line="73" selection-end-column="19" />
               <folding>
+                <element signature="e#0#39#0" expanded="true" />
                 <element signature="e#3424#3451#0" />
               </folding>
             </state>
@@ -198,12 +202,20 @@
       <updated>1552652905737</updated>
       <workItem from="1552652907189" duration="49000" />
       <workItem from="1552652956836" duration="2334000" />
-      <workItem from="1552911797011" duration="2658000" />
+      <workItem from="1552911797011" duration="2986000" />
     </task>
+    <task id="LOCAL-00001" summary="登入修改，代码优化">
+      <created>1552914867666</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1552914867666</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5716000" />
+    <option name="totallyTimeSpent" value="6044000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="811" extended-state="0" />
@@ -237,6 +249,10 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="登入修改，代码优化" />
+    <option name="LAST_COMMIT_MESSAGE" value="登入修改，代码优化" />
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/templates/film/js/plusone.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -249,13 +265,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/film/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/filmweb/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="79" column="16" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/film/templates/film/index.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -316,11 +325,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/film/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-382">
-          <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+        <state relative-caret-position="284">
+          <caret line="73" column="19" lean-forward="true" selection-start-line="73" selection-start-column="19" selection-end-line="73" selection-end-column="19" />
           <folding>
+            <element signature="e#0#39#0" expanded="true" />
             <element signature="e#3424#3451#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filmweb/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="74" lean-forward="true" selection-start-line="74" selection-end-line="74" />
         </state>
       </provider>
     </entry>
