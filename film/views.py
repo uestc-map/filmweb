@@ -18,37 +18,35 @@ from django.template import RequestContext, loader
 
 def register_User(request):
     if request.method== "POST":
-        user_insert=User()
-        user_insert.email= request.POST.get("userEmail",None)
-        user_insert.username=request.POST.get("userName",None)
-        user_insert.password=request.POST.get("password",None)
-        if not all([ user_insert.email,user_insert.username,user_insert.password]):
+        userEmail= request.POST.get("userEmail",None)
+        userName=request.POST.get("userName",None)
+        password=request.POST.get("password",None)
+        if not all([ userEmail,userName,password]):
             return render(request, 'film/register.html')
-        if not re.match(r'^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$', user_insert.email):
+        if not re.match(r'^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$', userEmail):
             return render(request, 'film/register.html', {'errmsg': '邮箱不符合规范'})
 
         try:
-            user_email = User.objects.get(email__exact=user_insert.email)
+            user_email = User.objects.get(email__exact=userEmail)
         except Exception as e:
             user_email = None
         if user_email:
             return render(request, 'film/register.html',{'errmsg':'邮箱已被使用'})
 
         try:
-            user_name=User.objects.get(username__exact=user_insert.username)
+            user_name=User.objects.get(username__exact=userName)
         except Exception as e:
             user_name=None
         if user_name:
             return render(request, 'film/register.html',{'errmsg':'用户名已被使用'})
 
 
-        pass_len=len(str(user_insert.password))
-        if not (re.match(r'([0-9]+(\W+|\_+|[A-Za-z]+))+|([A-Za-z]+(\W+|\_+|\d+))+|((\W+|\_+)+(\d+|\w+))+',user_insert.password)) or (pass_len<6):
+        pass_len=len(str(password))
+        if not (re.match(r'([0-9]+(\W+|\_+|[A-Za-z]+))+|([A-Za-z]+(\W+|\_+|\d+))+|((\W+|\_+)+(\d+|\w+))+',password)) or (pass_len<6):
             return render(request, 'film/register.html',{'errmsg':'密码长度小于6位！'})
-        user_insert.is_active =True
-        user_insert.is_staff=False
-        user_insert.is_superuser=False
-        user_insert.save()
+
+        user = User.objects.create_user(username=userName,password=password,email=userEmail)
+        user.save()
         return render(request, 'film/login.html')
     elif request.method == "GET":
         return render(request, 'film/register.html')
