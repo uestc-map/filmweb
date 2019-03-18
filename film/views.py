@@ -54,11 +54,7 @@ def register_User(request):
 
 def login(request):
     if request.method == "POST":
-<<<<<<< HEAD
         userName_login= request.POST.get("userName",None)
-=======
-        userename_login= request.POST.get("userName",None)
->>>>>>> 70b725a3a6f3187cbd21444d5e2e7f29ce0a3c10
         password_login=request.POST.get("password",None)
         if not all([userName_login,password_login]):
             return render(request, "film/login.html", {"errmsg": "账号信息不全"})
@@ -127,6 +123,8 @@ def insert_order(request):
 
 def index_page(request): #主页
     now = datetime.datetime.now().date()
+
+
 
     if request.method== "get":
         return  render(request,'film/index.html')
