@@ -12,6 +12,9 @@ from django.contrib import auth
 from django.contrib.auth.models import User
 from django.views.generic.base import View
 from django.db import models
+from django.http import HttpResponse
+from django.template import RequestContext, loader
+
 
 def register_User(request):
     if request.method== "POST":
@@ -57,6 +60,7 @@ def login(request):
         return redirect("/film/home/")
     else:
         return render(request,'film/login.html')
+
 
 def insert_order(request):
     if request.method== "POST":
@@ -112,20 +116,22 @@ def insert_filmscence(request):
 
 def home_page(request): #主页
     now = datetime.datetime.now().date()
-    if request.method== "get":
-        filmlist = film.objects.filter(showDate__lte=now)
-        notshow_filmlist = film.objects.filter(showDate__gt=now)
-        context = {'film_list': filmlist,
-                   'noshow_filmlist':notshow_filmlist
-                   }
-        return render(request,'home.html',context)
+    filmlist = film.objects.filter(showDate__lte=now)
+    notshow_filmlist = film.objects.filter(showDate__gt=now)
+    t1 = loader.get_template('film/home.html')
+    context = {'film_list': filmlist,
+               'noshow_filmlist': notshow_filmlist
+               }
+    return HttpResponse(t1.render(context))
+    """if request.method== "get":
+
 
     else:
         category=request.POST.get('category')
         if category:
             category_list = film.objects.filter(category=category , showDate__lte=now)
             return render(request,"category.html",category_list)
-
+"""
 
 def autodelete():  #删除过期电影
     now = datetime.datetime.now().date()
