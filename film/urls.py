@@ -7,5 +7,5 @@ app_name = 'film'
 urlpatterns = [
     url(r"^film/register/$", views.register_User),
     url(r"^film/login/$", views.login),
-    url(r"^film/home/$", views.home_page),
+    url(r"^film/index/$", views.home_page),
 ]

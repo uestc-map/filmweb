@@ -47,14 +47,14 @@ def register_User(request):
 
         user = User.objects.create_user(username=userName,password=password,email=userEmail)
         user.save()
-        return render(request, 'film/login.html')
+        return redirect("/film/login/")
     elif request.method == "GET":
         return render(request, 'film/register.html')
 
 
 def login(request):
     if request.method == "POST":
-        userename_login= request.POST.get("username",None)
+        userename_login= request.POST.get("userName",None)
         password_login=request.POST.get("password",None)
 
         user_login = auth.authenticate(username=userename_login, password=password_login)
