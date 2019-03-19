@@ -54,11 +54,8 @@ def register_User(request):
 
 def login(request):
     if request.method == "POST":
-<<<<<<< HEAD
         userName_login= request.POST.get("userName",None)
-=======
         userename_login= request.POST.get("userName",None)
->>>>>>> 70b725a3a6f3187cbd21444d5e2e7f29ce0a3c10
         password_login=request.POST.get("password",None)
         if not all([userName_login,password_login]):
             return render(request, "film/login.html", {"errmsg": "账号信息不全"})
@@ -144,8 +141,13 @@ def index_page(request): #主页
         filmlist = film.objects.filter(showDate__lte=now)   #正在热映电影排行榜
         notshow_filmlist = film.objects.filter(showDate__gt=now) #即将上映榜单
         t1 = loader.get_template('film/index.html')
+        if request.user.is_authenticated():
+            user_active=1
+        else:
+            user_active=0
         context = {'film_list': filmlist,
-                   'noshow_filmlist': notshow_filmlist
+                   'noshow_filmlist': notshow_filmlist,
+                   'user_active':user_active     #用户是否登录
                    }
         return HttpResponse(t1.render(context))
 
