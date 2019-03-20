@@ -115,24 +115,43 @@ nav{
     	opacity: 0.9;
     	transition:opacity .10s linear;
     } 
-
+#my{
+       display: inline-block;
+        float: right;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        color: #333;
+        border-radius: 5px;
+        /*background: #EE25BB;*/
+        background: url(../img/my.jpg);
+        background-size:40px 40px;
+        background-repeat: no-repeat;
+        font-family: "微软雅黑";
+        margin-top: 10px;
+     }
+   #my:hover{
+        opacity: 0.9;
+        transition:opacity .10s linear;
+    }
  #scbox{
     display: inline-block;
     position: relative;
     vertical-align:middle;
-    float: right;
-    width: 325px;
+   /* float: right;*/
+     margin-left: 60%;
+    width: 335px;
     height: 36px;
     margin-top: 10px;
-    background-color:#256EEE;
-    border: 2px solid #256EEE;
+    background-color:#333333;
+    border: 2px solid #333333;
     }
     #select1{
     display:inline-block;
     position: relative;
     vertical-align:middle;
     float: left;
-    width: 56px;
+    width: 58px;
     height: 36px;
     font-family: "微软雅黑";
     font-size: 11px;
@@ -142,9 +161,9 @@ nav{
     display: inline-block;
     position: relative;
     vertical-align:middle;
-    width: 229px;
+    width: 235px;
     height: 34px;
-    border-bottom: 2px solid #256EEE;
+    border-bottom: 2px solid #333;
     background-color: #fff;
     }
 
@@ -152,9 +171,9 @@ nav{
     display: inline-block;
     position: relative;
     float: right;
-    width: 36px;
-    height: 36px;
-    background-color:#256EEE;
+    width: 37px;
+    height: 33px;
+    background-color:#B3A5A5;
     }
 
 

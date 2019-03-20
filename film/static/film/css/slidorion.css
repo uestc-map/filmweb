@@ -15,6 +15,58 @@ Stylesheet for slidorion
 	-moz-box-shadow: 0 0 34px #bbb;
 }
 
+/*个人中心*/
+#myset{
+    width: 888px;			/* Set to slidorion width. Is equal to #slider + #accordion width */
+	height: 550px;
+	position: relative;
+	margin: 40px auto;
+	padding: 10px;
+	background: #cbcbcb;
+	border: 2px solid #bbb;
+	-webkit-box-shadow: 0 0 50px #bbb;
+	-moz-box-shadow: 0 0 50px #bbb;
+}
+
+#myleft{
+	width:400px;
+	height: 530px;
+	position: relative;
+	float: left;
+	background-color: #fff;
+}
+
+#mycharacter{
+	width: 303px;
+	height: 303px;
+	position: relative;
+	vertical-align: middle;
+	margin-top:50px;
+	margin-left: 30px;
+	border:5px solid #333;
+	background-size: 300px 300px;
+	background-image:url(../img/character.jpg);
+	background-repeat: no-repeat;
+}
+#myname{
+	width: 400px;
+	height: 50px;
+	text-align: center;
+	position: relative;
+	margin-top: 30px;
+}
+#myname li{
+    font-family: "微软雅黑";
+    font-size: 20px;}
+#myright{
+    width:450px;
+	height: 530px;
+	position: relative;
+	float: right;
+	background-color: #fff;
+
+}
+/*主页*/
 #sleft {
 	width: 588px;			/* Set to slider width */
 	height: 460px;			/* Set to slider height */

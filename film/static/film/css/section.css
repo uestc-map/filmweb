@@ -11,12 +11,19 @@ body,html{
         padding-top: 60px;
         background-color: green;/*----*/
       }
- 
     #slidorion{
       position: absolute;
       margin: 100px auto;
       background-color: red;/*-----*/
     }
+   #mymain{/*MY 页*/
+     width: 1080px;
+     height: 800px;
+     margin: 0 auto;
+    padding-top: 60px;
+    background-color: green;
+
+  }
 
 .morecontainer{
 

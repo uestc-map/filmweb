@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>电影详情介绍</title>
+	<link rel="shortcut icon" href="{% static 'film/img/favicon.ico' %}">
+</head>
+
+<link rel="stylesheet" href="http://demo.htmleaf.com/1605/201605301540/starability-minified/starability-all.min.css"/>
+<link rel="stylesheet" href="{% static 'film/css/nav.css' %}" />
+<link rel="stylesheet" href="{% static 'film/css/video.css' %}"/>
+
+<body>
+	<nav >
+		<ul>
+			<a href="../index/" class="site-name" ><span class="site-name-font">电影<span style="color: black;">详情</span></span></a>
+			<img id="logo" src="img/logo.jpg" alt="">
+			<li> <a href="../index/" name="a1">首页</a></li>
+			<li> <a href="../li/" name="a1">购票</a></li>
+			<li> <a href="../myinf/">个性推荐</a></li>
+		</ul>
+		<a href="../logIn/" id="signup">登录</a>
+		<a href="../register/" id="signin">注册</a>
+	</nav>
+<div id="container" >
+	<div id="main" >
+		<span id="header">银河护卫队2 </span>
+				<div id="inf">
+					<div id="inf_left">
+                        <img src="http://demo.htmleaf.com/1410/201410071644/img/kung-fu-panda.jpg" width="488" height="360" />
+                     </div>
+                    <div id="inf_right">
+                    	<h3><center>电影详情</center></h3>
+						<div class="inf_cont">
+							<span class="inf_type">导演:</span>
+							<span class="inf_right">詹姆斯·古恩</span>
+						</div>
+						<div class="inf_cont">
+							<span class="inf_type">编剧:</span>
+							<span class="inf_right">詹姆斯·古恩 / 丹·阿布内特 / 安迪·兰宁</span>
+						</div>
+						<div class="inf_cont">
+							<span class="inf_type">主演:</span>
+							<span class="inf_right">克里斯·普拉特 / 佐伊·索尔达娜 / 戴夫·巴蒂斯塔 / 范·迪塞尔 / 布莱德利·库珀...</span>
+						</div>
+						<div class="inf_cont">
+							<span class="inf_type">类型:</span>
+							<span class="inf_right">动作 / 科幻 / 冒险</span>
+						</div>
+						<div class="inf_cont">
+							<span class="inf_type">制片国家:</span>
+							<span class="inf_right">美国</span>
+						</div>
+						<div class="inf_cont">
+							<span class="inf_type">上映日期:</span>
+							<span class="inf_right"> 2017-05-05</span>
+						</div>
+                    <div id="scored">
+					<form action="#" method="get">
+			              <input type="text" class="input" placeholder="sshushu" name="num" maxlength="5">
+
+			             <input id='certain' type="submit" name="评分" value="确认评分">
+
+				      </form>
+				    </div>
+
+				</div>
+
+		   </div>
+			   <div id="de">
+				<span>剧情简介</span> </br>
+				<p>《银河护卫队2》是《银河护卫队》系列第二部电影，是由美国漫威影业公司制作、华特·迪士尼电影工作室出品的科幻动作片，nnnnnnnnnnnnn</p>
+			    </div>
+
+
+	<div id="time">
+       上映时间场次-
+	</div>
+
+
+	<div class="footer">
+		<address class="address">
+			<span>肥宅部落： <a href="#">三三</a><br></span>
+			<span>部落地址：电子科技大学 </span>
+		</address>
+	</div>
+</div>
+    <!--
+<script>
+		var oWc = document.getElementById("wechat");
+		var oZfb = document.getElementById("zhifubao");
+		oWc.onclick = function(){
+			oWc.className = "on";
+			oZfb.className = "off";
+			document.getElementById("img1").style.display = "block";
+			document.getElementById("img2").style.display = "none";
+			oZfb.style.background = "#B2AEAE";
+		};
+		oZfb.onclick = function(){
+			oZfb.className = "on";
+			oWc.className = "off";
+			document.getElementById("img1").style.display = "none";
+			document.getElementById("img2").style.display = "block";
+			document.getElementById("img2").style.borderColor = "#32A5E7";
+			oZfb.style.background = "#32A5E7";
+
+		};
+	</script>-->
+</body>
+</html>
