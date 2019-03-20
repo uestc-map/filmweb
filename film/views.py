@@ -14,7 +14,7 @@ from django.views.generic.base import View
 from django.db import models
 from django.http import HttpResponse
 from django.template import RequestContext, loader
-
+from django.http import HttpResponse, HttpResponseRedirect
 
 def register_User(request):
     if request.method== "POST":
@@ -55,6 +55,7 @@ def register_User(request):
 def login(request):
     if request.method == "POST":
         userName_login= request.POST.get("userName",None)
+        userename_login= request.POST.get("userName",None)
         password_login=request.POST.get("password",None)
         if not all([userName_login,password_login]):
             return render(request, "film/login.html", {"errmsg": "账号信息不全"})
@@ -123,30 +124,73 @@ def insert_order(request):
 
 def index_page(request): #主页
     now = datetime.datetime.now().date()
-
-
-
     if request.method== "get":
         return  render(request,'film/index.html')
 
     elif request.method=='post':
-        category=request.POST.get('category')    #如果用户点击的是电影分类
+        category=request.POST.get('category')    #如果用户点击的是电影分类，前端传参名为category，值为分类名
         if category:
-            category_list = film.objects.filter(category__exact=category , showDate__lte=now)
-            return render(request,"film/category.html",category_list)
+            request.session['category_name']=category  #写入session中
+            return redirect("film/category.html")
         filmName=request.POST.get('filmName')
-        if filmName:        #如果用户点击某电影详情
-            film_detail=film.objects.filter(filmName__exact=filmName)
-            return render(request,'film/detail.html')
+        if filmName:        #如果用户点击某电影详情，前端传参名为filmName,值为电影名
+            request.session['film_detail_name']=filmName  #写入session中
+            return redirect('film/detail.html')
     else:
         filmlist = film.objects.filter(showDate__lte=now)   #正在热映电影排行榜
         notshow_filmlist = film.objects.filter(showDate__gt=now) #即将上映榜单
         t1 = loader.get_template('film/index.html')
+        if request.user.is_authenticated():
+            user_active=1
+        else:
+            user_active=0
         context = {'film_list': filmlist,
-                   'noshow_filmlist': notshow_filmlist
+                   'noshow_filmlist': notshow_filmlist,
+                   'user_active':user_active     #用户是否登录
                    }
         return HttpResponse(t1.render(context))
 
+
+def category(request):    #电影分类页
+    now = datetime.datetime.now().date()
+    if request.method == "get":
+        return render(request, 'film/category.html')
+    elif request.method == 'post':
+        filmName = request.POST.get('filmName')
+        if filmName:  # 如果用户点击某电影详情
+            request.session['film_detail_name'] = filmName
+            return redirect('film/detail.html')
+    else:
+        category = request.session['category_name'] #从session获得当前分类名
+        category_list = film.objects.filter(category__exact=category, showDate__lte=now)
+        t1 = loader.get_template('film/category.html')
+        if request.user.is_authenticated():
+            user_active = 1
+        else:
+            user_active = 0
+        context = {'category_list': category_list,
+                   'user_active': user_active  # 用户是否登录
+                   }
+        return HttpResponse(t1.render(context))
+
+
+def film_Detail(request):    #电影详情页，应包含买票功能，暂时还没写好
+    if request.method == "get":
+        return render(request, 'film/detail.html')
+    elif request.method == 'post':    #电影买票功能还未完善
+        return render(request, 'film/detail.html')
+    else:
+        filmName = request.session['film_detail_name']#从session获得当前电影名
+        film_detail=film.objects.filter(filmName__exact=filmName)
+        t1 = loader.get_template('film/detail.html')
+        if request.user.is_authenticated():
+            user_active = 1
+        else:
+            user_active = 0
+        context = {'category_list': film_detail,
+                   'user_active': user_active  # 用户是否登录
+                   }
+        return HttpResponse(t1.render(context))
 
 def autodelete():  #删除过期电影
     now = datetime.datetime.now().date()
