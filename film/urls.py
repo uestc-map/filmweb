@@ -9,7 +9,8 @@ urlpatterns = [
     url(r"^film/login/$", views.login),
 
     url(r"^film/index/$", views.index_page),
+    url(r"^film/category/$", views.category),
+    url(r"^film/detail/$", views.film_Detail),
 
-    url(r"^film/index/$", views.index_page),
 
 ]
