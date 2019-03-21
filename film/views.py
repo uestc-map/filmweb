@@ -140,7 +140,8 @@ def index_page(request): #主页
         filmlist = film.objects.filter(showDate__lte=now)   #正在热映电影排行榜
         notshow_filmlist = film.objects.filter(showDate__gt=now) #即将上映榜单
         t1 = loader.get_template('film/index.html')
-        if request.user.is_authenticated():
+    # 出错
+        if request.user.is_authenticated:
             user_active=1
         else:
             user_active=0

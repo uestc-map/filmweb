@@ -102,22 +102,31 @@ Stylesheet for slidorion
 	}
 
 }
-
+#leftBan{
+	width: 350px;			/* Set to accordion width */
+	height: 560px;
+	margin-top: -15px;
+	margin-left: 50px;
+	float: left;
+	border:1px solid green;
+	background-color: yellow;
+}
 
 #rightBan{
-	width: 290px;			/* Set to accordion width */
-	height: 460px;
+	width: 350px;			/* Set to accordion width */
+	height: 560px;
+	margin-top: -15px;
+	margin-right: 50px;
 	float: right;
 	border:1px solid green;
 	background-color: yellow;
 }
 #Listhead{
-	width: 290px;
-	height: 35px;
+	width: 350px;
+	height: 45px;
 	margin-top: 12px;
 	border-bottom: 1px solid green;
 }
-
 #Listhead li{
 	font-size: 18px;
 	text-align: center;
@@ -126,8 +135,8 @@ Stylesheet for slidorion
 }
 
 #Listitem{
-	width: 290px;
-	height: 35px;
+	width: 350px;
+	height: 45px;
 	margin-top:5px;
 	border-bottom: 1px solid green;
 }
@@ -138,8 +147,8 @@ Stylesheet for slidorion
 }
 
 #rightBan.conts{
-	width: 290px;
-	height: 440px;
+	width: 350px;
+	height: 510px;
 	margin-top: 5px;
 	float: auto;
 }

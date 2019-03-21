@@ -134,12 +134,12 @@ nav{
         opacity: 0.9;
         transition:opacity .10s linear;
     }
- #scbox{
+    #scbox{
     display: inline-block;
     position: relative;
     vertical-align:middle;
    /* float: right;*/
-     margin-left: 60%;
+     margin-left: 50%;
     width: 335px;
     height: 36px;
     margin-top: 10px;
