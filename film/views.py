@@ -54,40 +54,40 @@ def register_User(request):
 
 def login(request):
     if request.method == "POST":
-        userName_login= request.POST.get("userName",None)
-        userename_login= request.POST.get("userName",None)
-        password_login=request.POST.get("password",None)
-        if not all([userName_login,password_login]):
+        userName_login= request.POST.get("userName", None)
+        password_login=request.POST.get("password", None)
+        if not all([userName_login, password_login]):
             return render(request, "film/login.html", {"errmsg": "账号信息不全"})
         user_login = auth.authenticate(username=userName_login, password=password_login)
         if user_login is None:
             return render(request, "film/login.html", {"errmsg": "用户名或密码错误"})
         else:
             auth.login(request, user_login)
+
             return redirect("/film/index/")
 
     else:
         return render(request, 'film/login.html')
 
 
-def insert_order(request):
-    if request.method== "POST":
-        while True:
-            orderId_test=random(0, 1000000000)
-            try:
-                orderId_exist=order.objects.get(orderId=orderId_test)
-            except Exception as e:
-                orderId_exist = None
-            if not orderId_exist:
-                break
-        order_insert=order()
-        order_insert.orderId=orderId_test
-        order_insert.filmName=request.POST.get("filmName",None)
-        order_insert.seat=request.POST.get("seat",None)
-        order_insert.datetime=request.POST.get("datetime",None)
-        order_insert.userId_id=User.objects.get(userId="userId")
-        order_insert.save()
-    return render(request, 'insert.html')
+# def insert_order(request):
+#     if request.method== "POST":
+#         while True:
+#             orderId_test=random(0, 1000000000)
+#             try:
+#                 orderId_exist=order.objects.get(orderId=orderId_test)
+#             except Exception as e:
+#                 orderId_exist = None
+#             if not orderId_exist:
+#                 break
+#         order_insert=order()
+#         order_insert.orderId=orderId_test
+#         order_insert.filmName=request.POST.get("filmName",None)
+#         order_insert.seat=request.POST.get("seat",None)
+#         order_insert.datetime=request.POST.get("datetime",None)
+#         order_insert.userId_id=User.objects.get(userId="userId")
+#         order_insert.save()
+#     return render(request, 'insert.html')
 
 
 # def insert_film(request):
@@ -124,10 +124,10 @@ def insert_order(request):
 
 def index_page(request): #主页
     now = datetime.datetime.now().date()
-    if request.method== "get":
-        return  render(request,'film/index.html')
-
-    elif request.method=='post':
+    if request.method == "get":
+        return render(request, 'film/index.html')
+    # elif request.method == 'POST':
+    else:
         category=request.POST.get('category')    #如果用户点击的是电影分类，前端传参名为category，值为分类名
         if category:
             request.session['category_name']=category  #写入session中
@@ -136,7 +136,7 @@ def index_page(request): #主页
         if filmName:        #如果用户点击某电影详情，前端传参名为filmName,值为电影名
             request.session['film_detail_name']=filmName  #写入session中
             return redirect('film/detail.html')
-    else:
+        return render(request, 'film/index.html')
         filmlist = film.objects.filter(showDate__lte=now)   #正在热映电影排行榜
         notshow_filmlist = film.objects.filter(showDate__gt=now) #即将上映榜单
         t1 = loader.get_template('film/index.html')
@@ -150,6 +150,7 @@ def index_page(request): #主页
                    'user_active':user_active     #用户是否登录
                    }
         return HttpResponse(t1.render(context))
+        return render(request, "film/index.html")
 
 
 def category(request):    #电影分类页
