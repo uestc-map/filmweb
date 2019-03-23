@@ -4,7 +4,7 @@ Stylesheet for slidorion
 
  */
 #baner{
-	width: 888px;			/* Set to slidorion width. Is equal to #slider + #accordion width */
+	width: 888px;			/*前期广告栏 */
 	height: 460px;	
 	position: relative;
 	margin: 0 auto;
@@ -13,6 +13,133 @@ Stylesheet for slidorion
 	border: 1px solid #bbb;
 	-webkit-box-shadow: 0 0 34px #bbb;
 	-moz-box-shadow: 0 0 34px #bbb;
+}
+
+ .catecontainer{
+   width: 970px;
+   margin: 20px auto;
+   border: 3px solid #333;
+   text-align: center;
+ }
+#cate{
+	display: inline-block;
+	width: 70px;
+	height: 40px;
+	background-color: gray;
+	margin-top: -60px;
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-bottom: 25px;
+	font-family: "微软雅黑";
+	font-size: 16px;
+	font-color:#333;
+}
+
+/*Grid=177,290  10个*/
+#filmContainer{
+    background: #fff;
+	width: 1078px;
+	height: 550px;
+	position: relative;
+	margin: 0 auto;
+	display: grid;
+	border-top: 5px solid #fff;
+	border-left: 3px solid #fff;
+	 grid-template-columns:[first]174px [y1]174px [y2]174px  [y3]174px [y4]174px[y5] 174px[end];
+	 grid-template-rows: [x-start]270px[x1] 270px[x-end];
+	 grid-column-gap: 5px;
+	 grid-row-gap: 5px;
+	 align-items: stretch;
+	 /*justify-items:stretch;*/
+
+}
+#item-11{
+	grid-column-start:first;
+	grid-column-end: y1;
+     grid-row-start: x-start;
+     grid-row-end:x1;
+     background-color:black;
+	/*justify:stretch;*/
+}
+
+#item-12{
+	grid-column-start:y1;
+	grid-column-end: y2;
+     grid-row-start: x-start;
+     grid-row-end:x1;
+     background-color:black;
+}
+#item-13{
+	grid-column-start:y2;
+	grid-column-end: y3;
+     grid-row-start: x-start;
+     grid-row-end:x1;
+     background-color:black;
+}
+#item-14{
+	grid-column-start:y3;
+	grid-column-end: y4;
+     grid-row-start: x-start;
+     grid-row-end:x1;
+     background-color:black;
+}
+#item-15{
+	grid-column-start:y4;
+	grid-column-end: y5;
+     grid-row-start: x-start;
+     grid-row-end:x1;
+     background-color:black;
+}
+
+#item-16{
+	grid-column-start:y5;
+	grid-column-end: end;
+     grid-row-start: x-start;
+     grid-row-end:x1;
+     background-color:black;
+}
+
+#item-21{
+	grid-column-start:first;
+	grid-column-end: y1;
+     grid-row-start: x1;
+     grid-row-end:x-end;
+     background-color:black;
+}
+#item-22{
+	grid-column-start:y1;
+	grid-column-end: y2;
+     grid-row-start: x1;
+     grid-row-end:x-end;
+     background-color:black;
+}
+#item-23{
+	grid-column-start:y2;
+	grid-column-end: y3;
+     grid-row-start: x1;
+     grid-row-end:x-end;
+     background-color:black;
+}
+#item-24{
+	grid-column-start:y3;
+	grid-column-end: y4;
+     grid-row-start: x1;
+     grid-row-end:x-end;
+     background-color:black;
+}
+#item-25{
+	grid-column-start:y4;
+	grid-column-end: y5;
+     grid-row-start: x1;
+     grid-row-end:x-end;
+     background-color:black;
+}
+#item-26{
+	grid-column-start:y5;
+	grid-column-end: end;
+     grid-row-start: x1;
+     grid-row-end:x-end;
+     background-color:black;
 }
 
 /*个人中心*/
@@ -102,29 +229,88 @@ Stylesheet for slidorion
 	}
 
 }
-#leftBan{
-	width: 350px;			/* Set to accordion width */
-	height: 560px;
-	margin-top: -15px;
-	margin-left: 50px;
-	float: left;
-	border:1px solid green;
-	background-color: yellow;
+
+#ZContainer{
+    background-color: #fff;
+	width: 620px;
+	height: 520px;
+	border:0px solid #fff;
+	position: relative;
+	padding-left: 60px;
+	 float: left;
+	 display: grid;
+	 grid-template-columns:[m0]165px [m1]40px [m2]165px  [m3]40px [m4]165px[m5] ;
+	 grid-template-rows: [o]230px[n1] 45px[n2] 230px[p];
+	 align-items: stretch;
+	 /*justify-items:stretch;*/
+}
+#item-1{
+	grid-column-start:m0;
+	grid-column-end: m1;
+     grid-row-start: o;
+     grid-row-end:n1;
+     background-color:black;
 }
 
-#rightBan{
-	width: 350px;			/* Set to accordion width */
-	height: 560px;
-	margin-top: -15px;
-	margin-right: 50px;
+
+#item-2{
+	grid-column-start:m2;
+	grid-column-end: m3;
+     grid-row-start:o;
+     grid-row-end:n1;
+     background-color:black;
+}
+#item-3{
+	grid-column-start:m4;
+	grid-column-end: m5;
+     grid-row-start:o;
+     grid-row-end:n1;
+     background-color:black;
+}
+#item-4{
+	grid-column-start:m0;
+	grid-column-end: m1;
+     grid-row-start:n2;
+     grid-row-end:p;
+     background-color:black;
+}
+
+#item-5{
+	grid-column-start:m2;
+	grid-column-end: m3;
+     grid-row-start:n2;
+     grid-row-end:p;
+     background-color:black;
+}
+#item-6{
+	grid-column-start:m4;
+	grid-column-end: m5;
+     grid-row-start:n2;
+     grid-row-end:p;
+     background-color:black;
+}
+
+
+#leftBan{
+	width: 280px;			/* 正在热门榜单 */
+	padding-top:30px;
 	float: right;
 	border:1px solid green;
-	background-color: yellow;
+	background-color: #fff;
+}
+
+
+#rightBan{
+	width: 280px;
+	padding-top:30px; 			/* 即将上演*/
+	float: right;
+	border:1px solid green;
+	background-color: #fff;
 }
 #Listhead{
-	width: 350px;
-	height: 45px;
-	margin-top: 12px;
+	width: 280px;
+	height: 40px;
+	margin-top: 0px;
 	border-bottom: 1px solid green;
 }
 #Listhead li{
@@ -135,8 +321,8 @@ Stylesheet for slidorion
 }
 
 #Listitem{
-	width: 350px;
-	height: 45px;
+	width: 280px;
+	height: 50px;
 	margin-top:5px;
 	border-bottom: 1px solid green;
 }
@@ -147,7 +333,7 @@ Stylesheet for slidorion
 }
 
 #rightBan.conts{
-	width: 350px;
+	width: 280px;
 	height: 510px;
 	margin-top: 5px;
 	float: auto;
@@ -158,8 +344,6 @@ Stylesheet for slidorion
 	border-color: #333;
 	padding: 3px;
 }
-
-
 
 
 #slidorion {
