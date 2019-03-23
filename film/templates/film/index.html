@@ -34,8 +34,6 @@
 			<li> <a href="../li/" name="a1">购票</a></li>
 			<li> <a href="../myinf/">个性推荐</a></li>
 		</ul>
-		<a href="../register/" id="signup">注册</a>
-		<a href="../logIn/" id="signin">登录</a>
 
         <form action="" method="post">
 		<div id="scbox">
@@ -47,7 +45,7 @@
               <a href="../login/" id="signin">登录</a><span> /</span>
               <a href="../register/" id="signup">注册</a>
             {% else %}
-              <a href="../my/" id="my"></a>
+              <a href="../logout/" id="my"></a>
             {% endif %}
 
 			<input type="text"  name="searchCont" id="input1" placeholder="输入搜索内容" >
@@ -63,27 +61,27 @@
          <div id="item-11"></div> <！--选中图片 到相应的详情页-->
          <div id="item-12"></div>
          <div id="item-13"></div>
-          <div id="item-14"></div>
-           <div id="item-15"></div>
-            <div id="item-16"></div>
-            <div id="item-21"></div>
-             <div id="item-22"></div>
-             <div id="item-23"></div>
-             <div id="item-24"></div>
-             <div id="item-25"></div>
-             <div id="item-26"></div>
+         <div id="item-14"></div>
+         <div id="item-15"></div>
+         <div id="item-16"></div>
+         <div id="item-21"></div>
+         <div id="item-22"></div>
+         <div id="item-23"></div>
+         <div id="item-24"></div>
+         <div id="item-25"></div>
+         <div id="item-26"></div>
 	</div><!--电影图片完-->
 
     {# 电影分类 #}
 	 <div class="catecontainer">
          <div class="head"><div class="guide">电影分类</div></div>
           <form  action="#" method="get"  name="category">
-              <input type="submit" name="喜剧"  value="喜剧" id="cate">
-              <input type="submit" name="爱情" value="爱情" id="cate">
-              <input type="submit" name="动作" value="动作" id="cate" >
-               <input type="submit" name="恐怖" value="恐怖" id="cate">
-               <input type="submit" name="科幻"  value="科幻" id="cate">
-               <input type="submit" name="动画"  value="动画" id="cate">
+                <input type="submit" name="喜剧"  value="喜剧" id="cate">
+                <input type="submit" name="爱情" value="爱情" id="cate">
+                <input type="submit" name="动作" value="动作" id="cate" >
+                <input type="submit" name="恐怖" value="恐怖" id="cate">
+                <input type="submit" name="科幻"  value="科幻" id="cate">
+                <input type="submit" name="动画"  value="动画" id="cate">
           </form>
 	</div><!--分类完-->
 
@@ -101,23 +99,29 @@
         </div>
         {# 正在热映榜单 5个 #}
         <div id="leftBan">
-        	<div id="Listhead"><li>正在上映榜</li></div>
-        	<div id="Listitem"><ul>第一</ul></div>
-        	<div id="Listitem"><ul>第一</ul></div>
-         	<div id="Listitem"><ul>第一</ul></div>
-        	<div id="Listitem"><ul>第二</ul></div>
-      	    <div id="Listitem"><ul>第三</ul></div>
-      	    <div id="Listitem"><ul>第四</ul></div>
-         	<div id="Listitem"><ul>第五</ul></div>
-        	<div id="Listitem"><ul> <a href="seeing.html" >更多></a></ul></div>
+            <ul id="Listhead">
+                <li>正在上映榜</li>
+                {%  if film_list %}
+                    {% for each in film_list %}
+                        {%if forloop.counter <= 2 %}
+                            <li>{{ each.filmName }}</li>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                <li>
+                    <a href="seeing.html" >更多></a>
+                </li>
+            </ul>
        </div>
-	 </div><!--热映container完结-->
+	 </div>
+{#    <!--热映container完结-->#}
 
 
-    {# 即将上瘾 #}
+{#     即将上映 #}
     <div class="container">
 		<div class="head"><div class="guide">即将上映</div></div>
-        <div id="ZContainer">	 <!--即将上映电影图片 6个-->
+        <div id="ZContainer">
+{#            <!--即将上映电影图片 6个-->#}
     	    <div id="item-1"></div>
     	    <div id="item-2"></div>
     	    <div id="item-3"></div>
@@ -126,17 +130,20 @@
     	    <div id="item-6"></div>
         </div>
         <div id="rightBan">
-        	<div id="Listhead"><li>即将上映榜</li></div>
-          <div id="Listitem"><ul>第一</ul></div>
-          <div id="Listitem"><ul>第一</ul></div>
-      	  <div id="Listitem"><ul>第一</ul></div>
-      	  <div id="Listitem"><ul>第二</ul></div>
-      	  <div id="Listitem"><ul>第三</ul></div>
-      	  <div id="Listitem"><ul>第四</ul></div>
-      	  <div id="Listitem"><ul>第五</ul></div>
-      	  <div id="Listitem"><ul>    <a href="seeing.html" >更多></a></ul></div>
-         </div>
-    </div><!--即将上映完结-->
+        	 <ul id="Listhead">
+                <li>即将上映</li>
+                {%  if noshow_filmlist %}
+                    {% for each in noshow_filmlist %}
+                        {%if forloop.counter <= 2 %}
+                            <li>{{ each.filmName }}</li>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                <li>
+                    <a href="seeing.html" >更多></a>
+                </li>
+            </ul>
+        </div><!--即将上映完结-->
 </div><!--main 完-->
 
 <div class="footer">

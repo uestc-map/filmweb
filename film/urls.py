@@ -12,5 +12,6 @@ urlpatterns = [
     url(r"^film/index/$", views.index_page),
     url(r"^film/category/$", views.category),
     url(r"^film/detail/$", views.film_Detail),
+    url(r"^film/logout/$",views.log_out),
 ]
 

@@ -1,5 +1,5 @@
 from __future__ import unicode_literals
-from .models import  order, film, filmscence
+from .models import order, film, filmscence
 from django.shortcuts import render
 import random
 import re
@@ -15,6 +15,7 @@ from django.db import models
 from django.http import HttpResponse
 from django.template import RequestContext, loader
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth import logout
 
 
 def register_User(request):
@@ -70,42 +71,12 @@ def login(request):
     else:
         return render(request, 'film/login.html')
 
-# def insert_film(request):
-#     if request.method== "POST":
-#         film_insert=film()
-#         film_insert.filmName= request.POST.get("filmName",None)
-#         film_insert.filmDName=request.POST.get("filmDName",None)
-#         film_insert.image=request.POST.get("ROUTE",None)  #暂时还不会写
-#         film_insert.category=request.POSY.get("category",None)
-#         if not all([ film_insert.filmName, film_insert.filmDName, film_insert.Route, film_insert.category]):
-#             return render(request, 'insert.html')
-#
-#         try:
-#            film_exist = film.objects.get(filmName=film_insert.filmName)
-#         except Exception as e:
-#             film_exist = None
-#         if film_exist:
-#             return render(request, 'insert.html', {'errmsg': '电影已存在'})
-#         return render(request, 'insert.html')
-#
-# def insert_filmscence(request):
-#     if request.method== "POST":
-#         filmscence_insert=filmscence()
-#         filmscence_insert.datetime= request.POST.get("datetime",None)
-#         filmscence_insert.filmName_id=film.objects.get(filmName="filmName")
-#         try:
-#            datetime_exist = filmscence.objects.get(datetime=filmscence_insert.datetime)
-#         except Exception as e:
-#             datetime_exist = None
-#         if datetime_exist:
-#             return render(request, 'insert.html', {'errmsg': '该场次已有电影'})
-#         return render(request, 'insert.html')
-#
+
 
 def index_page(request): #主页
     now = datetime.datetime.now().date()
-    if request.method== "get":
-        return  render(request,'film/index.html')
+    if request.method == "get":
+        return render(request, 'film/index.html')
 
     elif request.method=='post':
         category=request.POST.get('category')    #如果用户点击的是电影分类，前端传参名为category，值为分类名
@@ -130,12 +101,12 @@ def index_page(request): #主页
         t1 = loader.get_template('film/index.html')
     # 出错
         if request.user.is_authenticated:
-            user_active=1
+            user_active= 1
         else:
-            user_active=0
+            user_active= 0
         context = {'film_list': filmlist,
                    'noshow_filmlist': notshow_filmlist,
-                   'user_active':user_active     #用户是否登录
+                   'user_active': user_active     #用户是否登录
                    }
         return HttpResponse(t1.render(context))
 
@@ -184,9 +155,9 @@ def film_Detail(request):    #电影详情页
                    'user_active': user_active  # 用户是否登录
                    }
         return HttpResponse(t1.render(context))
-
-
-@login  #只有登录才可进入
+#
+# 只有登录才可进入
+# @login
 def buy(request):#电影购票页面
     filmeName=request.session['film_detail_name']   #从session中获得电影名与场次信息
     dateTime= request.session['film_dateTime']
@@ -309,4 +280,38 @@ def notshow_filmlist_more(request):#点击即将上映更多
 def autodelete():  #删除过期电影
     now = datetime.datetime.now().date()
     models.film.objects.filter(deleteDate__lt=now).delete()
+def log_out(request):
+    logout(request)
+    return redirect('../login')
 
+# def insert_film(request):
+#     if request.method== "POST":
+#         film_insert=film()
+#         film_insert.filmName= request.POST.get("filmName",None)
+#         film_insert.filmDName=request.POST.get("filmDName",None)
+#         film_insert.image=request.POST.get("ROUTE",None)  #暂时还不会写
+#         film_insert.category=request.POSY.get("category",None)
+#         if not all([ film_insert.filmName, film_insert.filmDName, film_insert.Route, film_insert.category]):
+#             return render(request, 'insert.html')
+#
+#         try:
+#            film_exist = film.objects.get(filmName=film_insert.filmName)
+#         except Exception as e:
+#             film_exist = None
+#         if film_exist:
+#             return render(request, 'insert.html', {'errmsg': '电影已存在'})
+#         return render(request, 'insert.html')
+#
+# def insert_filmscence(request):
+#     if request.method== "POST":
+#         filmscence_insert=filmscence()
+#         filmscence_insert.datetime= request.POST.get("datetime",None)
+#         filmscence_insert.filmName_id=film.objects.get(filmName="filmName")
+#         try:
+#            datetime_exist = filmscence.objects.get(datetime=filmscence_insert.datetime)
+#         except Exception as e:
+#             datetime_exist = None
+#         if datetime_exist:
+#             return render(request, 'insert.html', {'errmsg': '该场次已有电影'})
+#         return render(request, 'insert.html')
+#
