@@ -56,79 +56,89 @@
        </form>
 
 	</nav>
-{#    主菜单#}
+
 <div id="main">
-    <div id="baner">
-        <div id="sleft">
-{#            展示电影#}
-            <div id="photo">
-                <img src="http://demo.htmleaf.com/1410/201410071644/img/kung-fu-panda.jpg" width="588" height="460" />
+    {#    许多电影图  较大#}
+    <div id="filmContainer"><!--上方电影图-->
+         <div id="item-11"></div> <！--选中图片 到相应的详情页-->
+         <div id="item-12"></div>
+         <div id="item-13"></div>
+          <div id="item-14"></div>
+           <div id="item-15"></div>
+            <div id="item-16"></div>
+            <div id="item-21"></div>
+             <div id="item-22"></div>
+             <div id="item-23"></div>
+             <div id="item-24"></div>
+             <div id="item-25"></div>
+             <div id="item-26"></div>
+	</div><!--电影图片完-->
 
-                <img src="http://demo.htmleaf.com/1410/201410071644/img/the-dark-knight.jpg" width="588" height="460" />
+    {# 电影分类 #}
+	 <div class="catecontainer">
+         <div class="head"><div class="guide">电影分类</div></div>
+          <form  action="#" method="get"  name="category">
+              <input type="submit" name="喜剧"  value="喜剧" id="cate">
+              <input type="submit" name="爱情" value="爱情" id="cate">
+              <input type="submit" name="动作" value="动作" id="cate" >
+               <input type="submit" name="恐怖" value="恐怖" id="cate">
+               <input type="submit" name="科幻"  value="科幻" id="cate">
+               <input type="submit" name="动画"  value="动画" id="cate">
+          </form>
+	</div><!--分类完-->
 
-                <img src="http://demo.htmleaf.com/1410/201410071644/img/hot-fuzz.jpg" width="588" height="460" />
-            </div>
-        </div>
-    </div>
-
-{ #   电影榜单#}
+{ #   正在热映电影图6个+热映榜单#}
     <div class="container">
-		<div class="head">
-            <div class="guide">热门榜单</div>
-		</div>
-		<div class="cont_main">
-        {# 热门榜单 #}
-	        <div id="leftBan">
-                 	<div id="Listhead"><li>最热榜单</li></div>
-                {{ filmlist}}
-            </div>
-         <!--<div id="Listhead"><li>个性榜单</li></div>
-      	<div id="Listitem"><ul>第一</ul></div>
-      	<div id="Listitem"><ul>第一</ul></div>
-      	<div id="Listitem"><ul>第一</ul></div>
-      	<div id="Listitem"><ul>第一</ul></div>
-      	<div id="Listitem"><ul>第一</ul></div>
-      	<div id="Listitem"><ul>第一</ul></div>
-      	<div id="Listitem"><ul>第一</ul></div>
-      	<div id="Listitem"><ul>第一</ul></div>
-      	<div id="Listitem"><ul>第一</ul></div>	-
-      <a href="seeing.html" >更多></a>-->
-
-        {# 热门榜单 #}
-        <div id="rightBan">
-            <div id="Listhead"><li>最近上映</li></div>
-            {{ noshow_filmlist }}
+		<div class="head"><div class="guide">正在热映榜单</div></div>
+		{# 正在热映电影图 6个#}
+        <div id="ZContainer">
+    	    <div id="item-1"></div><！--点击图片到本电影页-->
+    	    <div id="item-2"></div>
+    	    <div id="item-3"></div>
+    	    <div id="item-4"></div>
+            <div id="item-5"></div>
+    	    <div id="item-6"></div>
         </div>
-           <!-- <div id="Listhead"><li>最热榜单</li></div>
-            <div id="Listitem"><ul>第一</ul></div>
-            <div id="Listitem"><ul>第一</ul></div>
-            <div id="Listitem"><ul>第一</ul></div>
-            <div id="Listitem"><ul>第一</ul></div>
-            <div id="Listitem"><ul>第一</ul></div>
-            <div id="Listitem"><ul>第一</ul></div>
-            <div id="Listitem"><ul>第一</ul></div>
-            <div id="Listitem"><ul>第一</ul></div>
-            <div id="Listitem"><ul>第一</ul></div>
-            <div id="Listitem"><ul>第一</ul></div>-->
-    </div>
-{#    正在上映电影#}
-	<div class="container">
-		<div class="head">
-				<nav class="guide">电影分类</nav>
-				<a href="seeing.html" class="seemore">更多</a>
-		</div>
-		<div class="cont_main">
-           <form  action="#" method="post"  name="category">
-                     	<input type="submit" name="喜剧片"  value="喜剧片">  </br></br></br>
-                     	<input type="submit" name="文艺片" value="文艺片"></form></br></br></br>
-                     	<input type="submit" name="音乐片" value="音乐片"></br></br>
-                     	<input type="button" name="科幻片"  value="科幻片"></br></br>
-                     	</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
-            </form>
+        {# 正在热映榜单 5个 #}
+        <div id="leftBan">
+        	<div id="Listhead"><li>正在上映榜</li></div>
+        	<div id="Listitem"><ul>第一</ul></div>
+        	<div id="Listitem"><ul>第一</ul></div>
+         	<div id="Listitem"><ul>第一</ul></div>
+        	<div id="Listitem"><ul>第二</ul></div>
+      	    <div id="Listitem"><ul>第三</ul></div>
+      	    <div id="Listitem"><ul>第四</ul></div>
+         	<div id="Listitem"><ul>第五</ul></div>
+        	<div id="Listitem"><ul> <a href="seeing.html" >更多></a></ul></div>
+       </div>
+	 </div><!--热映container完结-->
 
-		</div>
-	</div>
-</div>
+
+    {# 即将上瘾 #}
+    <div class="container">
+		<div class="head"><div class="guide">即将上映</div></div>
+        <div id="ZContainer">	 <!--即将上映电影图片 6个-->
+    	    <div id="item-1"></div>
+    	    <div id="item-2"></div>
+    	    <div id="item-3"></div>
+    	    <div id="item-4"></div>
+            <div id="item-5"></div>
+    	    <div id="item-6"></div>
+        </div>
+        <div id="rightBan">
+        	<div id="Listhead"><li>即将上映榜</li></div>
+          <div id="Listitem"><ul>第一</ul></div>
+          <div id="Listitem"><ul>第一</ul></div>
+      	  <div id="Listitem"><ul>第一</ul></div>
+      	  <div id="Listitem"><ul>第二</ul></div>
+      	  <div id="Listitem"><ul>第三</ul></div>
+      	  <div id="Listitem"><ul>第四</ul></div>
+      	  <div id="Listitem"><ul>第五</ul></div>
+      	  <div id="Listitem"><ul>    <a href="seeing.html" >更多></a></ul></div>
+         </div>
+    </div><!--即将上映完结-->
+</div><!--main 完-->
+
 <div class="footer">
 		<address class="address">
 			<span>肥宅部落： <a href="#">三三</a><br></span>
