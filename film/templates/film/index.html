@@ -13,7 +13,9 @@
 	<script src="{%  static 'film/js/jquery.min.js' %}"></script>
 	<script src="{%  static 'film/js/jquery.easing.js' %}"></script>
 	<script src="{%  static 'film/js/jquery.slidorion.js' %}"></script>
+
 <body>
+
 
 {% if errmsg %}
         <li>
@@ -39,7 +41,7 @@
 		<div id="scbox">
 			<select name="selectOne"  id="select1">
 				<option value="0">电影名	</option>
-				<option value="1"> 导演名</option>
+				<option value="1">导演名</option>
 			</select>
             {% if user_active == 0 %}
               <a href="../login/" id="signin">登录</a><span> /</span>
@@ -84,8 +86,8 @@
                 <input type="submit" name="动画"  value="动画" id="cate">
           </form>
 	</div><!--分类完-->
-
-{ #   正在热映电影图6个+热映榜单#}
+{##}
+{#{ #   正在热映电影图6个+热映榜单#}
     <div class="container">
 		<div class="head"><div class="guide">正在热映榜单</div></div>
 		{# 正在热映电影图 6个#}
@@ -99,12 +101,12 @@
         </div>
         {# 正在热映榜单 5个 #}
         <div id="leftBan">
-            <ul id="Listhead">
+            <ul class="Listhead">
                 <li>正在上映榜</li>
                 {%  if film_list %}
                     {% for each in film_list %}
                         {%if forloop.counter <= 2 %}
-                            <li>{{ each.filmName }}</li>
+                            <li> {{ each.filmName }}</li>
                         {% endif %}
                     {% endfor %}
                 {% endif %}
@@ -142,16 +144,16 @@
                 <li>
                     <a href="seeing.html" >更多></a>
                 </li>
-            </ul>
+             </ul>
         </div><!--即将上映完结-->
-</div><!--main 完-->
+    </div><!--main 完-->
 
 <div class="footer">
 		<address class="address">
 			<span>肥宅部落： <a href="#">三三</a><br></span>
 			<span>部落地址：电子科技大学 </span>	
 		</address>
-	</div>
+</div>
 <script>
 	$(document).ready(function(){
 	    $('#slidorion').slidorion({
@@ -161,6 +163,19 @@
 	        effect: 'overRight',
 	    });
 	});
+</script>
+<script>
+   $(".Listhead li ").click(function(){
+       var tem =$(this).html();
+       $.ajax({
+           type:'post',
+           url:"",
+           data:{"filmName":tem},
+           success:window.location.href="../detail/",
+       })
+
+   })
+
 </script>
 </body>
 </html>
