@@ -26,11 +26,9 @@ body,html{
   }
 
 .morecontainer{
-
   margin: 30px auto;
   width: 910px;
-  height: 1100px;
-  margin-bottom: 50px;
+  height: 1620px;
   box-shadow:0 5px 15px black;
   
  }
@@ -45,6 +43,61 @@ body,html{
   width: 100%;
   height: 100%;
  }
+
+/*seemore*/
+.filmbox{
+  width: 910px;
+  height:250px;
+  margin: 20px auto;
+  background-color: #fff;
+  border-bottom: 1px dashed #333;
+}
+.filmbox img{
+  width:178px;
+  height: 250px;
+  float:left;
+}
+.filmtext{
+  display: inline-block;
+  width: 710px;
+  height: 250px;
+  float: right;
+}
+.film-z{
+  width: 500px;
+  margin-top: 60px;
+  float: left;
+  text-indent: 10px;
+}
+.film-name{
+   font-size:32px;
+   font-family: "微软雅黑";
+   font-weight: bold;
+   letter-spacing: 3px;
+}
+.film-line{
+  font-size:24px;
+  font-family: "微软雅黑";
+}
+.film-l{
+  float: left;
+  font-color:gray;
+}
+.film-r{
+}
+
+.film-y{
+  width: 210px;
+  margin-top: 100px;
+  float: right;
+  text-indent: 10px;
+}
+
+
+
+
+
+
 .catbtn{
   width: 50px;
   height: 40px;

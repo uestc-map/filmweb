@@ -23,9 +23,9 @@ a:hover{
 
 .cont{     /*大中心*/
 	width: 1000px;
-	height: 80%;
+	height: 1720px;
 	margin: 0 auto;
-	padding-top: 20px;
+	padding-top: 10px;
 	background-color: green;
 }
 
@@ -131,7 +131,7 @@ a:hover{
 .next li{
 	display: block;
 	margin-left: 5px;
-	width: 40px;
+	width: 50px;
 	height: 40px;
 	line-height: 40px;
 	text-align: center;
@@ -140,7 +140,7 @@ a:hover{
 }
 .next li a{
 	display: block;
-	width: 40px;
+	width: 50px;
 	height: 40px;
 	border: 1px solid black;
 	color: black;
