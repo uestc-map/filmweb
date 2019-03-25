@@ -77,16 +77,16 @@ def index_page(request): #主页
     now = datetime.datetime.now().date()
     if request.method == "get":
         return render(request, 'film/index.html')
-
-    elif request.method=='post':
+    else:
         category=request.POST.get('category')    #如果用户点击的是电影分类，前端传参名为category，值为分类名
         if category:
             request.session['category_name']=category  #写入session中
             return redirect("film/category.html")
         filmName=request.POST.get('filmName')
         if filmName:        #如果用户点击某电影详情，前端传参名为filmName,值为电影名
-            request.session['film_detail_name']=filmName  #写入session中
-            return redirect('film/detail.html')
+            filmName.replace(' ','')
+            request.session['film_detail_name'] = filmName #写入session中
+            return redirect('/film/detail/')
         filmName_search=request.POST.get('filmName_search')
         if filmName_search: #如果用户是搜索电影名
             request.session['filmName_search']=filmName_search
@@ -95,11 +95,9 @@ def index_page(request): #主页
         if filmDName_search: #如果用户是搜索导演名
             request.session['filmDName_search']=filmDName_search
             return redirect('film/Dnamesearch')
-    else:
         filmlist = film.objects.filter(showDate__lte=now)   #正在热映电影排行榜
         notshow_filmlist = film.objects.filter(showDate__gt=now) #即将上映榜单
-        t1 = loader.get_template('film/index.html')
-    # 出错
+        t1 = loader.get_template('film/home.html')
         if request.user.is_authenticated:
             user_active= 1
         else:
@@ -121,7 +119,7 @@ def category(request):    #电影分类页
             request.session['film_detail_name'] = filmName
             return redirect('film/detail.html')
     else:
-        category = request.session['category_name'] #从session获得当前分类名
+        category = request.session.get('category_name') #从session获得当前分类名
         category_list = film.objects.filter(category__exact=category, showDate__lte=now)
         t1 = loader.get_template('film/category.html')
         if request.user.is_authenticated():
@@ -144,10 +142,11 @@ def film_Detail(request):    #电影详情页
             redirect('film/login')   #如果用户未登录，则重定向到登录页
         return redirect('film/buy') #重定向到买票页面
     else:
-        filmName = request.session['film_detail_name']#从session获得当前电影名
+        filmName = request.session.get('film_detail_name')#从session获得当前电影名
+        filmName=filmName.replace(' ','')
         film_detail=film.objects.filter(filmName__exact=filmName)
         t1 = loader.get_template('film/detail.html')
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             user_active = 1
         else:
             user_active = 0
@@ -159,8 +158,8 @@ def film_Detail(request):    #电影详情页
 # 只有登录才可进入
 # @login
 def buy(request):#电影购票页面
-    filmeName=request.session['film_detail_name']   #从session中获得电影名与场次信息
-    dateTime= request.session['film_dateTime']
+    filmeName=request.session.get('film_detail_name')   #从session中获得电影名与场次信息
+    dateTime= request.session.get('film_dateTime')
     seat=request.POST.get("seat")
     if not seat:  #页面初始化，而非返回买票信息
         t=loader.get_template('film/buy.html')
@@ -199,7 +198,7 @@ def namesearch(request):   #电影名称搜索
             request.session['film_detail_name'] = filmName
             return redirect('film/detail.html')
     else:
-        filmName_search = request.session['filmName_search']  # 从session获得当当前电影搜索名
+        filmName_search = request.session.get('filmName_search')  # 从session获得当当前电影搜索名
         filmName_searchlist = film.objects.filter(filmName=filmName_search)
         t1 = loader.get_template('film/namesearch.html')
         if request.user.is_authenticated():
@@ -221,7 +220,7 @@ def Dnamesearch(request):  #导演名称搜索
             request.session['film_detail_name'] = filmName
             return redirect('film/detail.html')
     else:
-        filmDName_search = request.session['filmDName_search']  # 从session获得当当前电影搜索名
+        filmDName_search = request.session.get('filmDName_search')  # 从session获得当当前电影搜索名
         filmDName_searchlist = film.objects.filter(filmName=filmDName_search)
         t1 = loader.get_template('film/Dnamesearch.html')
         if request.user.is_authenticated():
