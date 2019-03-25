@@ -37,7 +37,7 @@
 			<li> <a href="../myinf/">个性推荐</a></li>
 		</ul>
 
-        <form action="" method="post">
+        <form action="../search" method="post">
 		<div id="scbox">
 			<select name="selectOne"  id="select1">
 				<option value="0">电影名	</option>
@@ -132,7 +132,7 @@
     	    <div id="item-6"></div>
         </div>
         <div id="rightBan">
-        	 <ul id="Listhead">
+        	 <ul class="Listhead">
                 <li>即将上映</li>
                 {%  if noshow_filmlist %}
                     {% for each in noshow_filmlist %}

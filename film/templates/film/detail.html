@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +23,12 @@
 		<a href="../logIn/" id="signup">登录</a>
 		<a href="../register/" id="signin">注册</a>
 	</nav>
+    {% if  category_list %}
+        <p>123</p>
+        {% for each in category_list %}
+           <p style="color:red">{{category_list }}</p>
+        {% endfor %}
+    {% endif %}
 <div id="container" >
 	<div id="main" >
 		<span id="header">银河护卫队2 </span>
@@ -85,6 +92,8 @@
 		</address>
 	</div>
 </div>
+
+
     <!--
 <script>
 		var oWc = document.getElementById("wechat");
