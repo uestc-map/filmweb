@@ -11,7 +11,6 @@ body, html{
 #main{
 	margin: 0 auto;
 	width: 1100px;
-	height: 1300px;
 	padding-top: 0;
 
 }
@@ -94,24 +93,28 @@ body, html{
 	height: 140px;
 }
 #inf{
-	width: 590px;
-	height: 270px;
-	float: right;
+	width: 920px;
+	height: 370px;
+	float: center;
+	margin-left: 100px;
+	background-color: #333;
 }
 #inf_left{
 	float: left;
-	width: 300px;
-	height:270px;
+	width: 350px;
+	height: 370px;
+	background-repeat: no-repeat;
 }
 #inf_right{
 	float: right;
-	width: 250px;
-	height: 270px;
-	background-image: url(http://i2.muimg.com/1949/8ca69ba656aa79a5.png);
-	background-repeat: no-repeat;
+	width: 500px;
+	height:370px;
+	background-color: #fff;   /简介目
 }
 .inf_cont{
+	margin-left: 8px;
 	width: 100%;
+	height: 40px;
 }
 .inf_type{
 	float: left;
@@ -126,6 +129,103 @@ body, html{
 }
 .inf_right a:visited{color: #205FD8}
 .inf_right a:hover{text-decoration: underline;}
+
+.score{
+	height: 30px;
+	margin-left: 8px;
+
+}
+
+.score_input{
+	    width: 70px;
+	    height: 25px;
+        border:2px solid green ;
+	}
+.score_certain{
+	    height: 29px;
+}
+
+
+#de{
+	width: 920px;
+	float: center;
+	margin-left: 100px;
+	margin-right: 100px;
+	margin-top:10px;
+	background-color: #fff;
+}
+.de span{
+	color: rgb(31,110,238);
+	font-size: 1.2em;
+}
+.de p{
+	font-size: 12px;
+}
+
+
+#time{
+	width: 920px;
+	height: 100%
+    vertical-align: middle;
+    margin-left: 100px;
+	margin-top: 10px;
+    background-color: #fff;
+}
+
+#dates{
+	height: 60px;
+	margin-top:10px;
+    border-radius-bottom:1px solid red;
+}
+
+#dt{
+	margin-left: 5px;
+    margin-top: 50%;
+}
+
+#dates_rigth{
+	 background-color: green;
+}
+
+table{
+	width: 100%;
+	border-collapse:collapse;
+}
+table,th,td{
+	border-bottom:1px solid gray;
+}
+th{
+	width: 184px;
+    height: 60px;
+    text-align: center;
+    vertical-align: center;
+}
+td
+{
+width: 184px;
+height:50px;
+text-align:center;
+vertical-align: center;
+}
+
+.button{
+	margin:0 auto;
+	width: 85px;
+	height: 25px;
+	border-radius: 15px;
+    background-color: red;
+    color: white;
+    border:none;
+    text-align: center;
+     -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+.button:hover{
+   background-color: green;
+   color: white;
+}
+
+
 #plot span{
 	color: rgb(31,110,238);
 	font-size: 1.2em;
