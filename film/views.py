@@ -135,7 +135,15 @@ def category(request):    #电影分类页
 def film_Detail(request):    #电影详情页
     if request.method == "get":
         return render(request, 'film/detail.html')
-    elif request.method == 'post':
+    elif request.method == 'POST':
+        filmName = request.session.get('film_detail_name')
+        filmName = filmName.replace(' ', '')
+        Score = request.POST.get("filmScore")
+        film_c = film.objects.get(filmName=filmName)
+        film_c.Score = (film_c.filmScore * film_c.evaluateNum + Score) / (film_c.evaluateNum + 1)
+        film.objects.filter(filmName=filmName).update(filmScore=film_c.Score)
+
+
         dateTime=request.POST.get("dateTime")    #如果用户点击买票按钮，则将其选择的场次写入session中
         request.session['film_dateTime']=dateTime
         if not request.user.is_authenticated():
@@ -203,10 +211,15 @@ def film_search(request):
             'film_search': film_search,
             # 'user_active': user_active,
         }
-        t1 =loader.get_template('film/search.html')
+        t1 = loader.get_template('film/search.html')
         return HttpResponse(t1.render(context))
     else:
-        return render(request, 'film/search.html')
+        film_search = film.objects.all()
+        context ={
+            "film_search": film_search,
+        }
+        t1 = loader.get_template('film/search.html')
+        return HttpResponse(t1.render(context))
 
 def filmlist_more(request):#点击热榜更多
     now = datetime.datetime.now().date()

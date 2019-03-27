@@ -17,7 +17,7 @@
 			<!--<img id="logo" src="img/logo.jpg" alt="">-->
 			<li> <a href="../home/" name="a1">首页</a></li>
 		</ul>
-		<a href="../logIn/" id="signup">登录</a>
+		<a href="../login/" id="signup">登录</a>
 		<a href="../register/" id="signin">注册</a>
 	</nav>
     {% if  category_list %}
@@ -26,7 +26,7 @@
 		<span id="header">{{ each.filmName }} </span>
 				<div id="inf">
 					<div id="inf_left">
-                        <img src="http://demo.htmleaf.com/1410/201410071644/img/kung-fu-panda.jpg" width="400" height="370" />
+                        <img src="../../media/{{ each.image }}" width="400" height="370" />
                      </div>
                     <div id="inf_right">
                     	<h3><center>电影详情</center></h3></br>
@@ -63,9 +63,7 @@
 
             <div id="de">
 				<h3><span>剧情简介</span><h3>
-				<p>《《功夫熊猫》是一部以中国功夫为主题的美国动作喜剧电影， 影片以中国古代为背景，其景观、布景、
-                    服装以至食物均充满中国元素。故事讲述了一只笨拙的熊猫立志成为武林高手的故事。该片由约翰·斯蒂芬森和马克·奥斯本执导，
-                    梅丽·莎科布制片。 刘玉玲、塞斯·罗根、大卫·克罗素和伊恩·麦西恩等配音。影片于2008年6月6日在美国上映。</p>
+				<p>{{ each.filmSum }}</p>
             </div>
         {% endfor %}
     {% endif %}
@@ -84,27 +82,6 @@
 	    	 <tr>
 	    	 	<td>4月3日</td><td>10:20</td><td>30</td><td>  <button type="button" class="button">选座购票</button></td>
 	    	 </tr>
-	    	  <tr>
-	    	 	<td>4月3日</td><td>10:20</td><td>30</td><td> <button type="button" class="button">选座购票</button></td>
-	    	 </tr>
-	    	  <tr>
-	    	 	<td>4月3日</td><td>10:20</td><td>30</td><td> <button type="button" class="button">选座购票</button></td>
-	    	 </tr>
-	    	  <tr>
-	    	 	<td>4月4日</td><td>10:20</td><td>30</td><td> <button type="button" class="button">选座购票</button></td>
-	    	 </tr>
-	    	  <tr>
-	    	 	<td>4月4日</td><td>10:20</td><td>30</td><td> <button type="button" class="button">选座购票</button></td>
-	    	 </tr>
-	    	  <tr>
-	    	 	<td>4月4日</td><td>10:20</td><td>30</td><td> <button type="button" class="button">选座购票</button></td>
-	    	 </tr>
-	    	 <tr>
-	    	 	<td>4月5日</td><td>10:20</td><td>30</td><td> <button type="button" class="button">选座购票</button></td>
-	    	 </tr>
-	    	  <tr>
-	    	 	<td>4月5日</td><td>10:20</td><td>30</td><td> <button type="button" class="button">选座购票</button></td>
-	    	 </tr>
 	    </table>
      </div><!--table-->
  </div><!--main-->
@@ -112,7 +89,7 @@
 
 	<div class="footer">
 		<address class="address">
-			<span>肥宅部落： <a href="#">三三</a><br></span>
+			<span>肥宅部落：1 <a href="#">三三</a><br></span>
 			<span>部落地址：电子科技大学 </span>
 		</address>
 	</div>
