@@ -187,51 +187,26 @@ def buy(request):#电影购票页面
         order_insert.orderId = orderId_test
         order_insert.save()
         return redirect('film/home')  #买票成功，返回主页
-
-
-def namesearch(request):   #电影名称搜索
-    if request.method == "get":
-        return render(request, 'film/namesearch.html')
-    elif request.method == 'post':
-        filmName = request.POST.get('filmName')
-        if filmName:  # 如果用户点击某电影详情
-            request.session['film_detail_name'] = filmName
-            return redirect('film/detail.html')
-    else:
-        filmName_search = request.session.get('filmName_search')  # 从session获得当当前电影搜索名
-        filmName_searchlist = film.objects.filter(filmName=filmName_search)
-        t1 = loader.get_template('film/namesearch.html')
-        if request.user.is_authenticated():
-            user_active = 1
+def film_search(request):
+    if request.method == "POST":
+        selectOne = request.POST.get("selectOne")
+        searchCont = request.POST.get("searchCont")
+        if selectOne == '0':
+            film_search= film.objects.filter(filmName__contains=searchCont)
         else:
-            user_active = 0
-        context = {'filmName_searchlist': filmName_searchlist,
-                   'user_active': user_active  # 用户是否登录
-                   }
+            film_search = film.objects.filter(filmDName__contains=searchCont)
+        # if request.user.is_authenticated():
+        #     user_active = 1
+        # else:
+        #     user_active = 0
+        context = {
+            'film_search': film_search,
+            # 'user_active': user_active,
+        }
+        t1 =loader.get_template('film/search.html')
         return HttpResponse(t1.render(context))
-
-
-def Dnamesearch(request):  #导演名称搜索
-    if request.method == "get":
-        return render(request, 'film/Dnamesearch.html')
-    elif request.method == 'post':
-        filmName = request.POST.get('filmName')
-        if filmName:  # 如果用户点击某电影详情
-            request.session['film_detail_name'] = filmName
-            return redirect('film/detail.html')
     else:
-        filmDName_search = request.session.get('filmDName_search')  # 从session获得当当前电影搜索名
-        filmDName_searchlist = film.objects.filter(filmName=filmDName_search)
-        t1 = loader.get_template('film/Dnamesearch.html')
-        if request.user.is_authenticated():
-            user_active = 1
-        else:
-            user_active = 0
-        context = {'filmDName_searchlist': filmDName_searchlist,
-                   'user_active': user_active  # 用户是否登录
-                   }
-        return HttpResponse(t1.render(context))
-
+        return render(request, 'film/search.html')
 
 def filmlist_more(request):#点击热榜更多
     now = datetime.datetime.now().date()

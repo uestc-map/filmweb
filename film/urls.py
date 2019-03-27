@@ -8,10 +8,10 @@ urlpatterns = [
     url(r"^film/register/$", views.register_User),
     url(r"^film/login/$", views.login),
 
-
+    url(r"^film/search/$", views.film_search),
     url(r"^film/home/$", views.home_page),
     url(r"^film/category/$", views.category),
     url(r"^film/detail/$", views.film_Detail),
-    url(r"^film/logout/$",views.log_out),
+    url(r"^film/logout/$", views.log_out),
 ]
 
