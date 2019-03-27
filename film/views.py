@@ -16,6 +16,7 @@ from django.http import HttpResponse
 from django.template import RequestContext, loader
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 
 
 def register_User(request):
@@ -98,7 +99,7 @@ def home_page(request): #主页
         filmlist = film.objects.filter(showDate__lte=now)   #正在热映电影排行榜
         notshow_filmlist = film.objects.filter(showDate__gt=now) #即将上映榜单
         t1 = loader.get_template('film/home.html')
-        if request.user.is_authenticated:
+        if (request.user.is_authenticated==True):
             user_active= 1
         else:
             user_active= 0
@@ -122,7 +123,7 @@ def category(request):    #电影分类页
         category = request.session.get('category_name') #从session获得当前分类名
         category_list = film.objects.filter(category__exact=category, showDate__lte=now)
         t1 = loader.get_template('film/category.html')
-        if request.user.is_authenticated():
+        if (request.user.is_authenticated==True):
             user_active = 1
         else:
             user_active = 0
@@ -146,7 +147,7 @@ def film_Detail(request):    #电影详情页
 
         dateTime=request.POST.get("dateTime")    #如果用户点击买票按钮，则将其选择的场次写入session中
         request.session['film_dateTime']=dateTime
-        if not request.user.is_authenticated():
+        if (request.user.is_authenticated==True):
             redirect('film/login')   #如果用户未登录，则重定向到登录页
         return redirect('film/buy') #重定向到买票页面
     else:
@@ -154,7 +155,7 @@ def film_Detail(request):    #电影详情页
         filmName=filmName.replace(' ' , '')
         film_detail=film.objects.filter(filmName__exact=filmName)
         t1 = loader.get_template('film/detail.html')
-        if request.user.is_authenticated:
+        if (request.user.is_authenticated==True):
             user_active = 1
         else:
             user_active = 0
@@ -164,7 +165,7 @@ def film_Detail(request):    #电影详情页
         return HttpResponse(t1.render(context))
 #
 # 只有登录才可进入
-# @login
+@login_required
 def buy(request):#电影购票页面
     filmeName=request.session.get('film_detail_name')   #从session中获得电影名与场次信息
     dateTime= request.session.get('film_dateTime')
@@ -203,13 +204,13 @@ def film_search(request):
             film_search= film.objects.filter(filmName__contains=searchCont)
         else:
             film_search = film.objects.filter(filmDName__contains=searchCont)
-        # if request.user.is_authenticated():
-        #     user_active = 1
-        # else:
-        #     user_active = 0
+        if (request.user.is_authenticated==True):
+            user_active = 1
+        else:
+            user_active = 0
         context = {
             'film_search': film_search,
-            # 'user_active': user_active,
+            'user_active': user_active,
         }
         t1 = loader.get_template('film/search.html')
         return HttpResponse(t1.render(context))
@@ -233,7 +234,7 @@ def filmlist_more(request):#点击热榜更多
     else:
         filmlist_more = film.objects.filter(showDate__lte=now) #所有已经上映的电影
         t1 = loader.get_template('film/filmlist.html')
-        if request.user.is_authenticated():
+        if (request.user.is_authenticated==True):
             user_active = 1
         else:
             user_active = 0
@@ -255,7 +256,7 @@ def notshow_filmlist_more(request):#点击即将上映更多
     else:
         nofilmlist_more = film.objects.filter(showDate__gt=now) #所有未上映的电影
         t1 = loader.get_template('film/nofilmlist.html')
-        if request.user.is_authenticated():
+        if (request.user.is_authenticated==True):
             user_active = 1
         else:
             user_active = 0
