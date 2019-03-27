@@ -57,6 +57,7 @@ def register_User(request):
 def login(request):
     if request.method == "POST":
         userName_login= request.POST.get("userName",None)
+        userename_login= request.POST.get("userName",None)
         password_login=request.POST.get("password",None)
         if not all([userName_login,password_login]):
             return render(request, "film/login.html", {"errmsg": "账号信息不全"})
@@ -64,7 +65,7 @@ def login(request):
         if user_login is None:
             return render(request, "film/login.html", {"errmsg": "用户名或密码错误"})
         else:
-            auth.login(request,user_login)
+            auth.login(request, user_login)
             return redirect("/film/home/")
 
     else:
@@ -97,11 +98,10 @@ def home_page(request): #主页
         filmlist = film.objects.filter(showDate__lte=now)   #正在热映电影排行榜
         notshow_filmlist = film.objects.filter(showDate__gt=now) #即将上映榜单
         t1 = loader.get_template('film/home.html')
-        if (request.user.is_authenticated==True):
+        if request.user.is_authenticated:
             user_active= 1
         else:
             user_active= 0
-
         context = {'film_list': filmlist,
                    'noshow_filmlist': notshow_filmlist,
                    'user_active': user_active     #用户是否登录
@@ -122,7 +122,7 @@ def category(request):    #电影分类页
         category = request.session.get('category_name') #从session获得当前分类名
         category_list = film.objects.filter(category__exact=category, showDate__lte=now)
         t1 = loader.get_template('film/category.html')
-        if (request.user.is_authenticated==True):
+        if request.user.is_authenticated():
             user_active = 1
         else:
             user_active = 0
@@ -138,7 +138,7 @@ def film_Detail(request):    #电影详情页
     elif request.method == 'post':
         dateTime=request.POST.get("dateTime")    #如果用户点击买票按钮，则将其选择的场次写入session中
         request.session['film_dateTime']=dateTime
-        if (request.user.is_authenticated==False):
+        if not request.user.is_authenticated():
             redirect('film/login')   #如果用户未登录，则重定向到登录页
         return redirect('film/buy') #重定向到买票页面
     else:
@@ -146,7 +146,7 @@ def film_Detail(request):    #电影详情页
         filmName=filmName.replace(' ' , '')
         film_detail=film.objects.filter(filmName__exact=filmName)
         t1 = loader.get_template('film/detail.html')
-        if (request.user.is_authenticated==True):
+        if request.user.is_authenticated:
             user_active = 1
         else:
             user_active = 0
@@ -195,10 +195,10 @@ def film_search(request):
             film_search= film.objects.filter(filmName__contains=searchCont)
         else:
             film_search = film.objects.filter(filmDName__contains=searchCont)
-        if (request.user.is_authenticated==True):
-            user_active = 1
-        else:
-            user_active = 0
+        # if request.user.is_authenticated():
+        #     user_active = 1
+        # else:
+        #     user_active = 0
         context = {
             'film_search': film_search,
             # 'user_active': user_active,
@@ -220,7 +220,7 @@ def filmlist_more(request):#点击热榜更多
     else:
         filmlist_more = film.objects.filter(showDate__lte=now) #所有已经上映的电影
         t1 = loader.get_template('film/filmlist.html')
-        if (request.user.is_authenticated==True):
+        if request.user.is_authenticated():
             user_active = 1
         else:
             user_active = 0
@@ -242,7 +242,7 @@ def notshow_filmlist_more(request):#点击即将上映更多
     else:
         nofilmlist_more = film.objects.filter(showDate__gt=now) #所有未上映的电影
         t1 = loader.get_template('film/nofilmlist.html')
-        if (request.user.is_authenticated==True):
+        if request.user.is_authenticated():
             user_active = 1
         else:
             user_active = 0
