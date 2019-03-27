@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>电影详情介绍</title>
+	<title>详情介绍</title>
 	<link rel="shortcut icon" href="{% static 'film/img/favicon.ico' %}">
 </head>
 
@@ -14,26 +14,23 @@
 <body>
 	<nav >
 		<ul>
-			<a href="../index/" class="site-name" ><span class="site-name-font">电影<span style="color: black;">详情</span></span></a>
-			<img id="logo" src="img/logo.jpg" alt="">
-			<li> <a href="../index/" name="a1">首页</a></li>
-			<li> <a href="../li/" name="a1">购票</a></li>
-			<li> <a href="../myinf/">个性推荐</a></li>
+			<a href="../detail/" class="site-name" ><span class="site-name-font">电影<span style="color: black;">详情</span></span></a>
+			<!--<img id="logo" src="img/logo.jpg" alt="">-->
+			<li> <a href="../home/" name="a1">首页</a></li>
 		</ul>
 		<a href="../logIn/" id="signup">登录</a>
 		<a href="../register/" id="signin">注册</a>
 	</nav>
     {% if  category_list %}
         {% for each in category_list %}
-<div id="container" >
-	<div id="main" >
+	<div id="main" ><!--video.css 11-->
 		<span id="header">{{ each.filmName }} </span>
 				<div id="inf">
 					<div id="inf_left">
-                        <img src="http://demo.htmleaf.com/1410/201410071644/img/kung-fu-panda.jpg" width="488" height="360" />
+                        <img src="http://demo.htmleaf.com/1410/201410071644/img/kung-fu-panda.jpg" width="400" height="370" />
                      </div>
                     <div id="inf_right">
-                    	<h3><center>电影详情</center></h3>
+                    	<h3><center>电影详情</center></h3></br>
 						<div class="inf_cont">
 							<span class="inf_type">导演:</span>
 							<span class="inf_right">{{ each.filmDName }}</span>
@@ -46,32 +43,72 @@
 							<span class="inf_type">类型:</span>
 							<span class="inf_right">{{ each.category }}</span>
 						</div>
+                        <div class="inf_cont">
+							<span class="inf_type">时长:</span>
+							<span class="inf_right">120分钟</span>
+						</div>
 						<div class="inf_cont">
 							<span class="inf_type">上映日期:</span>
 							<span class="inf_right"> {{ each.showDate }}</span>
 						</div>
-                    <div id="scored">
-					<form action="#" method="get">
-			              <input type="text" class="input" placeholder="sshushu" name="num" maxlength="5">
 
-			             <input id='certain' type="submit" name="评分" value="确认评分">
+                     <div class="score">
+							<span class="inf_type">打分:</span>
+							 <form action="#" method="post">
+			                  <input type="text" class="score_input" placeholder="评分0~10" name="num" maxlength="5">
+			                  <input type="submit" name="评分" value="确认" class="score_certain" >
+				            </form>
+                     </div>
+				</div><!--inf_right-->
+		   </div><!--inf-->
 
-				      </form>
-				    </div>
-
-				</div>
-
-		   </div>
-			   <div id="de">
-				<span>剧情简介</span> </br>
-				<p>《银河护卫队2》是《银河护卫队》系列第二部电影，是由美国漫威影业公司制作、华特·迪士尼电影工作室出品的科幻动作片，nnnnnnnnnnnnn</p>
-			    </div>
+            <div id="de">
+				<h3><span>剧情简介</span><h3>
+				<p>《《功夫熊猫》是一部以中国功夫为主题的美国动作喜剧电影， 影片以中国古代为背景，其景观、布景、
+                    服装以至食物均充满中国元素。故事讲述了一只笨拙的熊猫立志成为武林高手的故事。该片由约翰·斯蒂芬森和马克·奥斯本执导，
+                    梅丽·莎科布制片。 刘玉玲、塞斯·罗根、大卫·克罗素和伊恩·麦西恩等配音。影片于2008年6月6日在美国上映。</p>
+            </div>
         {% endfor %}
     {% endif %}
 
-	<div id="time">
-       上映时间场次-
-	</div>
+	<div id="time"><h3>上映安排：</h3>
+       <!--<div id="dates">
+          	 <div class="dt">
+          	    <span class="inf_type">观影日期:</span>
+          	    <span class="dates_right">3月2日</span>
+            </div>
+	    </div>-->
+	    <table>
+	    	 <tr>
+                <th>上映日期</th><th>上映时间</th><th>售价（元）</th><th>选座购票</th>
+	    	 </tr>
+	    	 <tr>
+	    	 	<td>4月3日</td><td>10:20</td><td>30</td><td>  <button type="button" class="button">选座购票</button></td>
+	    	 </tr>
+	    	  <tr>
+	    	 	<td>4月3日</td><td>10:20</td><td>30</td><td> <button type="button" class="button">选座购票</button></td>
+	    	 </tr>
+	    	  <tr>
+	    	 	<td>4月3日</td><td>10:20</td><td>30</td><td> <button type="button" class="button">选座购票</button></td>
+	    	 </tr>
+	    	  <tr>
+	    	 	<td>4月4日</td><td>10:20</td><td>30</td><td> <button type="button" class="button">选座购票</button></td>
+	    	 </tr>
+	    	  <tr>
+	    	 	<td>4月4日</td><td>10:20</td><td>30</td><td> <button type="button" class="button">选座购票</button></td>
+	    	 </tr>
+	    	  <tr>
+	    	 	<td>4月4日</td><td>10:20</td><td>30</td><td> <button type="button" class="button">选座购票</button></td>
+	    	 </tr>
+	    	 <tr>
+	    	 	<td>4月5日</td><td>10:20</td><td>30</td><td> <button type="button" class="button">选座购票</button></td>
+	    	 </tr>
+	    	  <tr>
+	    	 	<td>4月5日</td><td>10:20</td><td>30</td><td> <button type="button" class="button">选座购票</button></td>
+	    	 </tr>
+	    </table>
+     </div><!--table-->
+ </div><!--main-->
 
 
 	<div class="footer">
