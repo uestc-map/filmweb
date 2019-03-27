@@ -12,7 +12,6 @@ body, html{
 	margin: 0 auto;
 	width: 1100px;
 	padding-top: 0;
-
 }
 #header{
 	display: block;
@@ -80,22 +79,10 @@ body, html{
  #img2{
  	display: none;
  }
-#video_inf{
-	width: 700px;
-	height: 350px;
-}
-#img{
-	height: 270px;
-	float: left;
-}
-#img img{
-	width: 100px;
-	height: 140px;
-}
+
 #inf{
 	width: 920px;
 	height: 370px;
-	float: center;
 	margin-left: 100px;
 	background-color: #333;
 }
@@ -121,21 +108,20 @@ body, html{
 	clear: both;
 	color: gray;
 }
-.inf_right{
+.inf_left{
 	margin-left: 3px;
 }
-.inf_right a{
+.inf_left a{
 	text-decoration: none;
 }
-.inf_right a:visited{color: #205FD8}
-.inf_right a:hover{text-decoration: underline;}
+.inf_left a:visited{color: #205FD8}
+.inf_left a:hover{text-decoration: underline;}
 
 .score{
 	height: 30px;
 	margin-left: 8px;
 
 }
-
 .score_input{
 	    width: 70px;
 	    height: 25px;
@@ -145,10 +131,8 @@ body, html{
 	    height: 29px;
 }
 
-
 #de{
 	width: 920px;
-	float: center;
 	margin-left: 100px;
 	margin-right: 100px;
 	margin-top:10px;
