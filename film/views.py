@@ -66,25 +66,25 @@ def login(request):
             return render(request, "film/login.html", {"errmsg": "用户名或密码错误"})
         else:
             auth.login(request, user_login)
-            return redirect("/film/index/")
+            return redirect("/film/home/")
 
     else:
         return render(request, 'film/login.html')
 
 
 
-def index_page(request): #主页
+def home_page(request): #主页
     now = datetime.datetime.now().date()
     if request.method == "get":
-        return render(request, 'film/index.html')
+        return render(request, 'film/home.html')
     else:
         category=request.POST.get('category')    #如果用户点击的是电影分类，前端传参名为category，值为分类名
         if category:
-            request.session['category_name']=category  #写入session中
+            request.session['category_name'] = category  #写入session中
             return redirect("film/category.html")
         filmName=request.POST.get('filmName')
         if filmName:        #如果用户点击某电影详情，前端传参名为filmName,值为电影名
-            filmName.replace(' ','')
+            filmName.replace(' ' , '')
             request.session['film_detail_name'] = filmName #写入session中
             return redirect('/film/detail/')
         filmName_search=request.POST.get('filmName_search')
@@ -143,7 +143,7 @@ def film_Detail(request):    #电影详情页
         return redirect('film/buy') #重定向到买票页面
     else:
         filmName = request.session.get('film_detail_name')#从session获得当前电影名
-        filmName=filmName.replace(' ','')
+        filmName=filmName.replace(' ' , '')
         film_detail=film.objects.filter(filmName__exact=filmName)
         t1 = loader.get_template('film/detail.html')
         if request.user.is_authenticated:
@@ -186,7 +186,7 @@ def buy(request):#电影购票页面
                 break
         order_insert.orderId = orderId_test
         order_insert.save()
-        return redirect('film/index')  #买票成功，返回主页
+        return redirect('film/home')  #买票成功，返回主页
 
 
 def namesearch(request):   #电影名称搜索

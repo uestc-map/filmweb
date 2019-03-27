@@ -1,37 +1,10 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Home</title>
 </head>
- <script src="/static/film/js/jquery.min.js"></script>
-<script>
-    function abc(){
-        $.ajax(
-        {
-        type: "POST",
-        url:"/film/index/",
-        async: true,
-        data: {
-            "Name": "tom",
-            "Year":11
-        },
-        dataType: 'json',
-        success: function (result)
-            {
-            var call_back=JSON.parse(result)
-            if (call_back)
-                {alert("sucess");
-            }
-            else alert("false")
-                                     },
-
-        })
-}
-</script>
 <body>
-<button onclick="abc()">点击</button>
-
+hello
 </body>
 </html>
