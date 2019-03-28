@@ -15,5 +15,6 @@ urlpatterns = [
     url(r"^film/category/$", views.category),
     url(r"^film/detail/$", views.film_Detail),
     url(r"^film/logout/$", views.log_out),
+    url(r"^film/my/$", views.my),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

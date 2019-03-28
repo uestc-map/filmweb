@@ -272,6 +272,31 @@ def log_out(request):
     logout(request)
     return redirect('../login')
 
+
+# 只有登录才可进入
+@login_required
+def my(request):
+    now = datetime.datetime.now().date()
+    if request.method == "get":
+        return render(request, 'film/my.html')
+    else:
+        filmName = request.POST.get('filmName')
+        if filmName:  # 如果用户点击某电影详情，前端传参名为filmName,值为电影名
+            filmName.replace(' ', '')
+            request.session['film_detail_name'] = filmName  # 写入session中
+            return redirect('/film/detail/')
+
+        username=request.user.username
+        email=request.user.email
+        userid=request.user.id
+        orders=order.objects.filter(userId_id=userid)
+        t1 = loader.get_template('film/my.html')
+        context = {'username': username,
+                   'email': email,
+                   'orders': orders  # 用户是否登录
+                   }
+        return HttpResponse(t1.render(context))
+
 # def insert_film(request):
 #     if request.method== "POST":
 #         film_insert=film()

@@ -10,7 +10,8 @@ class order(models.Model):
     seat = models.IntegerField(max_length=2, blank=False)
     dateTime = models.DateTimeField(blank=False,default='1999-01-01')
     userId = models.ForeignKey('auth.user', on_delete=models.CASCADE)
-
+    class Meta:
+        ordering=['userId','-dateTime']
 
 class filmscence(models.Model):
     dateTime=models.DateTimeField(primary_key=True,default='1999-01-01')
