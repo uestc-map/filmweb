@@ -6,9 +6,11 @@
 	<link rel="shortcut icon" href="{% static 'film/img/favicon.ico' %}">
 	<title>个人中心</title>
 </head>
-<link rel="stylesheet" href="{% static 'film/css/nav.css' %}" />
+    <link rel="stylesheet" href="{% static 'film/css/nav.css' %}" />
 	<link rel="stylesheet" href="{%  static 'film/css/slidorion_style.css' %}">
 	<link rel="stylesheet" href="{%  static 'film/css/slidorion.css' %}">
+    <link rel="stylesheet" href="{%  static 'film/css/video.css' %}">
+     <link rel="stylesheet" href="{%  static 'film/css/footer.css' %}">
 	<!-- <link rel="stylesheet" href="css/section.css"> -->
 	<script src="{%  static 'film/js/jquery.min.js' %}"></script>
 	<script src="{%  static 'film/js/jquery.easing.js' %}"></script>
@@ -17,7 +19,6 @@
 
 {% if errmsg %}
         <li>
-
             {% for err in errmsg %}
              <p style="color: red;">
                 {{err}}
@@ -28,37 +29,97 @@
 {#    导航条#}
 	<nav>
 		<ul>
-			<a href="#" class="site-name" ><span class="site-name-font">肥宅<span style="color: black;">电影</span></span></a>
-			<img id="logo" src="slide_1.png" alt="">
-			<li> <a href="#" name="a1">首页</a></li>
-			<li> <a href="../li/" name="a1">购票</a></li>
-			<li> <a href="../myinf/">个性推荐</a></li>
+			<a href="../home/" class="site-name" ><span class="site-name-font">肥宅<span style="color: black;">电影</span></span></a>
+			<!--<img id="logo" src="slide_1.png" alt="">-->
+			<li> <a href="../home/" name="a1">首页</a></li>
 		</ul>
     </nav>
 {#    主菜单#}
-<div id="mymain">
-	    <div id="myset">
-	    	<div id="myleft">
-	    		<div id="mycharacter"></div>
-	    		<div id="myname"><li>皮卡丘</li></div>
+<div class="mymain"><!--section-->
+	    <div class="myset">
+	    	<div class="myleft">
+	    		<div class="mytou">
+	    		    <img src="img/character.jpg" alt="Norway">
+	    		    <div class="myname">
+	    		     <!-- <span class="myname-i">昵称：</span>-->
+	    		      <span  class="myname-n">皮卡丘</span>
+	    		   </div>
+	    		</div>
 	    	</div>
+            <div class="myright">
+		    	<center><h3>我的订单</h3></center>
+
+           <div class="Accordion">
+              <div class="Accordion-box">
+                 <label for="headingOne" class="panel">功夫熊猫 订单编号</label>
+                 <input type="radio" id="headingOne" name="Collapsible" checked="checked" >
+
+                  <div class="Accordion-box__content">
+        	         <div class="inf_cont">
+				         <span class="inf_type">时间场次:</span>
+				         <span class="inf_right">2019-11-1&&11：20 </span>
+			        </div>
+			         <div class="inf_cont">
+				         <span class="inf_type">座位:</span>
+				         <span class="inf_right">7排3座</span>
+			        </div>
+			        <div class="inf_cont">
+				      <span class="inf_type">取票编号:</span>
+				     <span class="inf_right">7排3座</span>
+		        	</div>
+                  </div>
+
+              <div class="Accordion-box">
+                  <label for="headingTwo" class="panel">之乎者也</label>
+                  <input type="radio" id="headingTwo" name="Collapsible" value="">
+                  <div class="Accordion-box__content">
+                    	<div class="inf_cont">
+			               	<span class="inf_type">时间场次:</span>
+		            		<span class="inf_right">2019-11-1&&11：20 </span>
+			            </div>
+			           <div class="inf_cont">
+			             	<span class="inf_type">座位:</span>
+		             		<span class="inf_right">7排3座</span>
+		              	</div>
+		               	<div class="inf_cont">
+		             		<span class="inf_type">取票编号:</span>
+		               		<span class="inf_right">7排3座</span>
+		             	</div>
+                  </div>
+               </div>
+
+               <div class="Accordion-box">
+                   <label for="headingThree" class="panel">
+                       折叠框头部--电影名
+                   </label>
+                     <input type="radio" id="headingThree" name="Collapsible">
+                    <div class="Accordion-box__content">
+                        <div class="inf_cont">
+		            		<span class="inf_type">时间场次:</span>
+			             	<span class="inf_right">2019-11-1&&11：20 </span>
+		             	</div>
+                        <div class="inf_cont">
+				            <span class="inf_type">座位:</span>
+				             <span class="inf_right">7排3座</span>
+			            </div>
+			             <div class="inf_cont">
+			              	<span class="inf_type">取票编号:</span>
+			             	<span class="inf_right">7排3座</span>
+		               	</div>
+	    	         </div>
+                </div>
+            </div>
+           </div>
         </div>
+  </div>
 </div>
+
 <div class="footer">
 		<address class="address">
 			<span>肥宅部落： <a href="#">三三</a><br></span>
 			<span>部落地址：电子科技大学 </span>
 		</address>
 	</div>
-<script>
-	$(document).ready(function(){
-	    $('#slidorion').slidorion({
-	        speed: 500,
-	        interval: 4000,
-	        first: section2,
-	        effect: 'overRight',
-	    });
-	});
-</script>
+
 </body>
 </html>

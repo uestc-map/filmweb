@@ -116,42 +116,43 @@ nav{
     	transition:opacity .10s linear;
     } 
 #my{
-       display: inline-block;
+        display: inline-block;
         float: right;
-        width: 40px;
-        height: 40px;
-        line-height: 40px;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
         color: #333;
         border-radius: 5px;
         /*background: #EE25BB;*/
-        background: url(../img/my.jpg);
+        background:url(../img/my.jpg);
         background-size:40px 40px;
         background-repeat: no-repeat;
         font-family: "微软雅黑";
         margin-top: 10px;
+       -webkit-transition-duration: 0.4s; /* Safari */
+       transition-duration: 0.4s;
      }
    #my:hover{
-        opacity: 0.9;
-        transition:opacity .10s linear;
+       background-color: #333333;
     }
-    #scbox{
+  #scbox{
     display: inline-block;
     position: relative;
     vertical-align:middle;
-   /* float: right;*/
-     margin-left: 50%;
-    width: 335px;
+    margin-left:61%;
+   /* float: middle;*/
+    width: 325px;
     height: 36px;
     margin-top: 10px;
-    background-color:#333333;
-    border: 2px solid #333333;
+    background-color:#fff;
+    border: 2px solid #333;
     }
     #select1{
     display:inline-block;
     position: relative;
     vertical-align:middle;
     float: left;
-    width: 58px;
+    width: 56px;
     height: 36px;
     font-family: "微软雅黑";
     font-size: 11px;
@@ -161,7 +162,7 @@ nav{
     display: inline-block;
     position: relative;
     vertical-align:middle;
-    width: 235px;
+    width: 229px;
     height: 34px;
     border-bottom: 2px solid #333;
     background-color: #fff;
@@ -171,11 +172,10 @@ nav{
     display: inline-block;
     position: relative;
     float: right;
-    width: 37px;
-    height: 33px;
-    background-color:#B3A5A5;
+    width: 36px;
+    height: 36px;
+    background-color:#256EEE;
     }
-
 
 
 /*select

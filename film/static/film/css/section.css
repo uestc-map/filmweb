@@ -16,14 +16,7 @@ body,html{
       margin: 100px auto;
       background-color: red;/*-----*/
     }
-   #mymain{/*MY 页*/
-     width: 1080px;
-     height: 800px;
-     margin: 0 auto;
-    padding-top: 60px;
-    background-color: green;
 
-  }
 
 .morecontainer{
   margin: 30px auto;
@@ -33,10 +26,9 @@ body,html{
   
  }
  .container {
-  margin: 30px auto;
   width: 970px;
   height: 580px;
-  margin-bottom: 50px;
+     margin: 30px auto;
   box-shadow:0 5px 15px black;
  }
  .cont_main{

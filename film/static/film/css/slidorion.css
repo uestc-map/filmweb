@@ -3,7 +3,16 @@
 Stylesheet for slidorion
 
  */
-#baner{
+
+.mymain{/*MY 页*/
+     width: 1080px;
+     height: 750px;
+     margin: 0 auto;
+    padding-top: 60px;
+    background-color: green;
+
+  }
+.baner{
 	width: 888px;			/*前期广告栏 */
 	height: 460px;	
 	position: relative;
@@ -33,6 +42,13 @@ Stylesheet for slidorion
 	font-family: "微软雅黑";
 	font-size: 16px;
 	font-color:#333;
+	 -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+#cate:hover{
+    background-color: #4CAF50; /* Green */
+    color: white;
+
 }
 
 /*Grid=177,290  10个*/
@@ -143,58 +159,73 @@ Stylesheet for slidorion
 }
 
 /*个人中心*/
-#myset{
-    width: 888px;			/* Set to slidorion width. Is equal to #slider + #accordion width */
+.myset{
+    width: 920px;			/* Set to slidorion width. Is equal to #slider + #accordion width */
 	height: 550px;
 	position: relative;
 	margin: 40px auto;
 	padding: 10px;
 	background: #cbcbcb;
 	border: 2px solid #bbb;
-	-webkit-box-shadow: 0 0 50px #bbb;
-	-moz-box-shadow: 0 0 50px #bbb;
+	-webkit-box-shadow: 10px 10px #bbb;
+	-moz-box-shadow: 10px 10px #bbb;
 }
 
-#myleft{
-	width:400px;
-	height: 530px;
-	position: relative;
+.myleft{
+	width:420px;
+	height: 550px;
 	float: left;
 	background-color: #fff;
 }
-
-#mycharacter{
-	width: 303px;
-	height: 303px;
-	position: relative;
-	vertical-align: middle;
-	margin-top:50px;
-	margin-left: 30px;
-	border:5px solid #333;
-	background-size: 300px 300px;
-	background-image:url(../img/character.jpg);
-	background-repeat: no-repeat;
-}
-#myname{
-	width: 400px;
-	height: 50px;
-	text-align: center;
-	position: relative;
-	margin-top: 30px;
-}
-#myname li{
-    font-family: "微软雅黑";
-    font-size: 20px;}
-#myright{
-    width:450px;
-	height: 530px;
+.myright{
+    width:485px;
+	height: 550px;
 	position: relative;
 	float: right;
 	background-color: #fff;
+}
 
+.mytou{
+	margin:100px 60px;
+	width: 300px;
+	height: 300px;
+	background-color: white;
+	border: 3px solid #bbb;
+}
+.mytou img{
+	    margin:10px 50px;
+        width: 200px;
+        height:200px;
+        border-radius: 50%;
+    }
+.myname{
+	text-align: center;
+	font-family: "微软雅黑";
+    font-size: 20px;
+	padding: 30px;
+	font-weight: bold;
+}
+.myname-i{
+	clear: both;
+	color: gray;
+}
+
+.myname-n{
+}
+.myitem{
+    overflow:hidden;
+    background-color:#FFCCCC;
+    width:400px;
+    height:500px;
+}
+
+#fm h1{
+    margin:3px;
+    color:#FF3333;
+    font-size:14px;
 }
 /*主页*/
-#sleft {
+.sleft {
 	width: 588px;			/* Set to slider width */
 	height: 460px;			/* Set to slider height */
 	position: relative;
@@ -252,7 +283,6 @@ Stylesheet for slidorion
      background-color:black;
 }
 
-
 #item-2{
 	grid-column-start:m2;
 	grid-column-end: m3;
@@ -298,8 +328,6 @@ Stylesheet for slidorion
 	border:1px solid green;
 	background-color: #fff;
 }
-
-
 #rightBan{
 	width: 280px;
 	padding-top:30px; 			/* 即将上演*/
@@ -307,36 +335,34 @@ Stylesheet for slidorion
 	border:1px solid green;
 	background-color: #fff;
 }
-#Listhead{
-	width: 280px;
-	height: 40px;
-	margin-top: 0px;
-	border-bottom: 1px solid green;
-}
-#Listhead li{
-	font-size: 18px;
+.Listhead{
+	width: 100%;
+	height: 35px;
+	margin:0px 5px;
+	font-size: 22px;
 	text-align: center;
 	font-family: "微软雅黑";
 	font-weight: bold;
+	border-bottom: 1px solid gray;
 }
-
-#Listitem{
-	width: 280px;
-	height: 50px;
-	margin-top:5px;
-	border-bottom: 1px solid green;
+#Listitem ol{
+	width: 100%;
+	list-style-type: decimal;
 }
-#Listitem ul{
-	font-size: 16px;
-	text-align: left;
+#Listitem li{
+	border-bottom: 1px solid gray;
+	margin:5px 5px;
+	height: 35px;
+	font-size: 22px;
+	text-align: center;
 	font-family: "微软雅黑";
+	font-weight: bold;
+    list-style-type: decimal;
 }
-
 #rightBan.conts{
 	width: 280px;
 	height: 510px;
 	margin-top: 5px;
-	float: auto;
 }
 
 #rightBan.conts a{
@@ -357,8 +383,48 @@ Stylesheet for slidorion
 	-webkit-box-shadow: 0 0 34px #bbb;
 	-moz-box-shadow: 0 0 34px #bbb;
 }
+ .Accordion{
+            margin: 10px auto auto auto;
+            width: 80%;
+        }
+        .Accordion-box{
+            margin-bottom: 10px;
+            border-radius: 4px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+            box-shadow: 0 1px 1px rgba(0,0,0,.05)
+        }
 
+        .Accordion-box > label{
+            display: block;
+            margin: 0;
+            padding: 10px 15px;
+            color: #333;
+            background-color: #f5f5f5;
+            border-color: #ddd;
+            /*border-bottom: 1px solid transparent;*/
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            font-size: 16px;
+        }
 
+        .Accordion  input{
+            display: none;
+        }
+        .Accordion-box__content{
+            opacity: 0;
+            height: 0;
+            overflow: hidden;
+            transition: opacity .8s ;
+            -webkit-transition: opacity .8s; /* Safari */
+        }
+        .Accordion-box  input[type=radio]:checked + div {
+            padding: 15px;
+            opacity: 1;
+            height: auto;
+            border-top: 1px solid #ddd;
+        }
 #slider {
 	width: 588px;			/* Set to slider width */
 	height: 460px;			/* Set to slider height */
@@ -370,100 +436,100 @@ Stylesheet for slidorion
 .slider-image {
 	position: relative;
 }
-
-#accordion {
-	width: 300px;			/* Set to accordion width */
-	height: 460px;			/* Set to image height */
-	font-family: Verdana;
-	background: #eee;
-	-webkit-box-shadow: -3px 0px 3px -1px rgba(51,51,51,0.3);
-	-moz-box-shadow: -3px 0px 3px -1px rgba(51,51,51,0.3);
-	box-shadow: -3px 0px 3px -1px rgba(51,51,51,0.3);
-	position: relative;
-	z-index:998;
-	float: left;
-}
-
-#accordion .header {
-	height: 36px;
-	color: #333;
-	background: linear-gradient(180deg,#EBEBEB, #fff);
-	background: -moz-linear-gradient(top, #ededed 59%, #dcdcdc 100%);
-	background: -webkit-linear-gradient(top, #ededed 59%,#dcdcdc 100%);
-	background: -o-linear-gradient(top, #ededed 59%,#dcdcdc 100%);
-	background: -ms-linear-gradient(top, #ededed 59%,#dcdcdc 100%);
-	background: linear-gradient(top, #ededed 59%,#dcdcdc 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#dcdcdc',GradientType=0 );
-	border: none;
-	border-top: 1px solid #ccc;
-}
-
-#accordion .header a {
-	background: none;
-	padding: 8px 14px;
-	text-decoration: none;
-	font-weight: bold;
-	font-size: 12px;
-	display: block;
-}
-
-#accordion .header a:hover {
-	background: #ededed;
-	cursor: pointer;
-}
-
-#accordion .header a.active {
-	border-bottom: none;
-	background-color: #676767 !important;
-	color: #fff;
-}
-
-#accordion .content {
-	height: 257px;			/* This height needs to be changed as it depends on the accordion height and number of tabs */
-	font-weight: bold;
-	font-size: 12px;
-	margin: 0;
-	padding: 16px;
-	border: none;
-	background: #d6d6d6;
-	background: -moz-linear-gradient(top, #d6d6d6 0%, #ffffff 10%);
-	background: -webkit-linear-gradient(top, #d6d6d6 0%,#ffffff 10%);
-	background: -o-linear-gradient(top, #d6d6d6 0%,#ffffff 10%);
-	background: -ms-linear-gradient(top, #d6d6d6 0%,#ffffff 10%);
-	background: linear-gradient(top, #d6d6d6 0%,#ffffff 10%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6d6d6', endColorstr='#ffffff',GradientType=0 );
-	overflow:auto;
-}
-
- #accordion.rightBang{
-    height: 280px;
-    font-weight: bold;
-    font-size: 14px;
-    margin-top:5px;
-    padding: 16px;
-    border: none;
-    background-color: red;    
-     overflow: auto;
- }
-
- #accordion.rightBang ul{
- 	counter-reset: section;
- }
-
- #accordion.rightBang li{
- 	 float: left;
-			width: 260px;
-			border-bottom: 1px solid #b8c2cc;
-			line-height: 46px;
-			height: 46px;
-			overflow: hidden;
-			color: #525C66;
-			font-size: 14px;
- }
-
 .slider-image img{
 	opacity: 1;
 }
 .content p{
 	text-indent: 15px;
 }
+
+/*#accordion {*/
+	/*width: 300px;			!* Set to accordion width *!*/
+	/*height: 460px;			!* Set to image height *!*/
+	/*font-family: Verdana;*/
+	/*background: #eee;*/
+	/*-webkit-box-shadow: -3px 0px 3px -1px rgba(51,51,51,0.3);*/
+	/*-moz-box-shadow: -3px 0px 3px -1px rgba(51,51,51,0.3);*/
+	/*box-shadow: -3px 0px 3px -1px rgba(51,51,51,0.3);*/
+	/*position: relative;*/
+	/*z-index:998;*/
+	/*float: left;*/
+/*}*/
+
+/*#accordion .header {*/
+	/*height: 36px;*/
+	/*color: #333;*/
+	/*background: linear-gradient(180deg,#EBEBEB, #fff);*/
+	/*background: -moz-linear-gradient(top, #ededed 59%, #dcdcdc 100%);*/
+	/*background: -webkit-linear-gradient(top, #ededed 59%,#dcdcdc 100%);*/
+	/*background: -o-linear-gradient(top, #ededed 59%,#dcdcdc 100%);*/
+	/*background: -ms-linear-gradient(top, #ededed 59%,#dcdcdc 100%);*/
+	/*background: linear-gradient(top, #ededed 59%,#dcdcdc 100%);*/
+	/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#dcdcdc',GradientType=0 );*/
+	/*border: none;*/
+	/*border-top: 1px solid #ccc;*/
+/*}*/
+
+/*#accordion .header a {*/
+	/*background: none;*/
+	/*padding: 8px 14px;*/
+	/*text-decoration: none;*/
+	/*font-weight: bold;*/
+	/*font-size: 12px;*/
+	/*display: block;*/
+/*}*/
+
+/*#accordion .header a:hover {*/
+	/*background: #ededed;*/
+	/*cursor: pointer;*/
+/*}*/
+
+/*#accordion .header a.active {*/
+	/*border-bottom: none;*/
+	/*background-color: #676767 !important;*/
+	/*color: #fff;*/
+/*}*/
+
+/*#accordion .content {*/
+	/*height: 257px;			!* This height needs to be changed as it depends on the accordion height and number of tabs *!*/
+	/*font-weight: bold;*/
+	/*font-size: 12px;*/
+	/*margin: 0;*/
+	/*padding: 16px;*/
+	/*border: none;*/
+	/*background: #d6d6d6;*/
+	/*background: -moz-linear-gradient(top, #d6d6d6 0%, #ffffff 10%);*/
+	/*background: -webkit-linear-gradient(top, #d6d6d6 0%,#ffffff 10%);*/
+	/*background: -o-linear-gradient(top, #d6d6d6 0%,#ffffff 10%);*/
+	/*background: -ms-linear-gradient(top, #d6d6d6 0%,#ffffff 10%);*/
+	/*background: linear-gradient(top, #d6d6d6 0%,#ffffff 10%);*/
+	/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6d6d6', endColorstr='#ffffff',GradientType=0 );*/
+	/*overflow:auto;*/
+/*}*/
+
+ /*#accordion.rightBang{*/
+    /*height: 280px;*/
+    /*font-weight: bold;*/
+    /*font-size: 14px;*/
+    /*margin-top:5px;*/
+    /*padding: 16px;*/
+    /*border: none;*/
+    /*background-color: red;    */
+     /*overflow: auto;*/
+ /*}*/
+
+ /*#accordion.rightBang ul{*/
+ 	/*counter-reset: section;*/
+ /*}*/
+
+ /*#accordion.rightBang li{*/
+ 	 /*float: left;*/
+			/*width: 260px;*/
+			/*border-bottom: 1px solid #b8c2cc;*/
+			/*line-height: 46px;*/
+			/*height: 46px;*/
+			/*overflow: hidden;*/
+			/*color: #525C66;*/
+			/*font-size: 14px;*/
+ /*}*/
+
