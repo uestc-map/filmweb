@@ -16,7 +16,7 @@
 	<script src="{%  static 'film/js/jquery.min.js' %}"></script>
 	<script src="{%  static 'film/js/jquery.easing.js' %}"></script>
 	<script src="{%  static 'film/js/jquery.slidorion.js' %}"></script>
-
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"> </script>
 <body>
 
 
@@ -37,15 +37,15 @@
 			<!--<img id="logo" src="slide_1.png" alt="">-->
 			<li> <a href="#" name="a1">首页</a></li>
 		</ul>
-
-        <form action="../search/" method="POST">
-
-            {% if user_active == 0 %}
+        {% if user_active == 0 %}
               <a href="../login/" id="signin">登录</a><span> /</span>
               <a href="../register/" id="signup">注册</a>
             {% else %}
-              <a href="../my/" id="my"></a>
+                <a href="../my/" id="my"></a>
+                <a href="../logout/">退出</a>
             {% endif %}
+        <form action="../search/" method="POST">
+
           <div id="scbox">
 			<select name="selectOne"  id="select1">
 				<option value="0">电影名	</option>
@@ -61,7 +61,7 @@
 <div id="main">
     {#    许多电影图  较大#}
     <div id="filmContainer"><!--上方电影图-->
-         <div id="item-11"></div> <！--选中图片 到相应的详情页-->
+         <div id="item-11"></div>
          <div id="item-12"></div>
          <div id="item-13"></div>
          <div id="item-14"></div>
@@ -92,25 +92,31 @@
     <div class="container">
 		<div class="head"><div class="guide">正在热映榜单</div></div>
 		{# 正在热映电影图 6个#}
+
         <div id="ZContainer">
-    	    <div id="item-1"></div><！--点击图片到本电影页-->
-    	    <div id="item-2"></div>
-    	    <div id="item-3"></div>
-    	    <div id="item-4"></div>
-            <div id="item-5"></div>
-    	    <div id="item-6"></div>
+            {% if film_list %}
+                {% for each in film_list %}
+                    {% if forloop.counter <= 3 %}
+                        <div id="item" ><img src="../../media/{{ each.image }} " width="200" height="100" /></div>
+                        {% else %}
+                         <div id="item1" ><img src="../../media/{{ each.image }} " width="200" height="100" /></div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
         </div>
         {# 正在热映榜单 5个 #}
         <div id="leftBan">
             <div class="Listhead">正在上映榜</div>
                 {%  if film_list %}
+                    <ol id="Listitem">
                     {% for each in film_list %}
-                        {%if forloop.counter <= 2 %}
-                            <ol id="Listitem"><li>{{ each.filmName }}</li> </ol>
+                        {%if forloop.counter <= 4 %}
+                            <li>{{ each.filmName }}</li>
                         {% endif %}
                     {% endfor %}
                 {% endif %}
-            <ol id="Listitem"><li><a href="../search/" >更多></a></li></ol>
+                            <li><a href="../search/" >更多></a></li>
+                    </ol>
         </div>
     </div>
 {#    <!--热映container完结-->#}
@@ -159,15 +165,15 @@
 	});
 </script>
 <script>
-   $(".Listhead li ").click(function(){
-       var tem =$(this).html();
-       $.ajax({
-           type:'post',
-           url:"",
-           data:{"filmName":tem},
-       })
-
-   })
+    $("#Listitem li").click(function(){
+        var tem =$(this).html();
+        $.ajax({
+            type:'POST',
+            url:"",
+            data:{"filmName":tem},
+            success:window.location.href="../detail/"
+        })
+    })
 
 </script>
 </body>
