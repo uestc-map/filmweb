@@ -7,7 +7,7 @@ from django.conf import settings
 class order(models.Model):
     orderId = models.IntegerField(max_length=20, primary_key=True, blank=False)
     filmName = models.CharField(max_length=20, blank=False)
-    seat = models.IntegerField(max_length=2, blank=False)
+    seat = models.CharField(max_length=2, blank=False)
     dateTime = models.DateTimeField(blank=False,default='1999-01-01')
     userId = models.ForeignKey('auth.user', on_delete=models.CASCADE)
     class Meta:
@@ -15,8 +15,10 @@ class order(models.Model):
 
 class filmscence(models.Model):
     dateTime = models.DateTimeField(primary_key=True,default='1999-01-01')
-    seat = models.IntegerField(max_length=300)
+    seat = models.CharField(max_length=300)
     filmName = models.ForeignKey('film', on_delete=models.CASCADE)
+    class Meta:
+        ordering=['dateTime']
 
 
 class film(models.Model):
@@ -30,5 +32,6 @@ class film(models.Model):
     showDate = models.DateField(blank=False,default='1999-01-01')
     deleteDate = models.DateField(blank=False,default='1999-01-01')
     filmSum = models.CharField(max_length=10000,default=' ')
+    filmScoreUser=models.CharField(max_length=10000,default=' ')#打过分的用户id
     class Meta:
         ordering=['-filmScore','showDate']

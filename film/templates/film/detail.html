@@ -30,8 +30,8 @@
                 <a href="../logout/">退出</a>
             {% endif %}
 	</nav>
-    {% if  category_list %}
-        {% for each in category_list %}
+    {% if  film_detail %}
+        {% for each in film_detail %}
 	<div id="main" ><!--video.css 11-->
 		<span id="header">{{ each.filmName }} </span>
 				<div id="inf">
@@ -89,6 +89,9 @@
 	    	 <tr>
                 <th>上映日期</th><th>上映时间</th><th>售价（元）</th><th>选座购票</th>
 	    	 </tr>
+			{% if  filmscences %}
+        {% for each in filmscences %}
+			{{ each.dateTime }}
 	    	 <tr>
 	    	 	<td>4月3日</td><td>10:20</td><td>30</td><td>  <button type="button" class="button">选座购票</button></td>
 	    	 </tr>

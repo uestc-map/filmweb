@@ -73,16 +73,15 @@ def login(request):
         return render(request, 'film/login.html')
 
 
-
 def home_page(request): #主页
     now = datetime.datetime.now().date()
     if request.method == "get":
         return render(request, 'film/home.html')
     else:
-        category = request.POST.get('category')    #如果用户点击的是电影分类，前端传参名为category，值为分类名
-        if category:
-            request.session['category_name'] = category  #写入session中
-            return redirect("film/category.html")
+        # category = request.POST.get('category')    #如果用户点击的是电影分类，前端传参名为category，值为分类名
+        # if category:
+        #     request.session['category_name'] = category  #写入session中
+        #     return redirect("film/category.html")
         filmName = request.POST.get('filmName')
         if filmName:        #如果用户点击某电影详情，前端传参名为filmName,值为电影名
             filmName.replace(' ', '')
@@ -102,95 +101,109 @@ def home_page(request): #主页
         return HttpResponse(t1.render(context))
 
 
-def category(request):    #电影分类页
-    now = datetime.datetime.now().date()
-    if request.method == "get":
-        return render(request, 'film/category.html')
-    elif request.method == 'post':
-        filmName = request.POST.get('filmName')
-        if filmName:  # 如果用户点击某电影详情
-            request.session['film_detail_name'] = filmName
-            return redirect('film/detail.html')
-    else:
-        category = request.session.get('category_name') #从session获得当前分类名
-        category_list = film.objects.filter(category__exact=category, showDate__lte=now)
-        t1 = loader.get_template('film/category.html')
-        if (request.user.is_authenticated==True):
-            user_active = 1
-        else:
-            user_active = 0
-        context = {'category_list': category_list,
-                   'user_active': user_active  # 用户是否登录
-                   }
-        return HttpResponse(t1.render(context))
+# def category(request):    #电影分类页
+#     now = datetime.datetime.now().date()
+#     if request.method == "get":
+#         return render(request, 'film/category.html')
+#     elif request.method == 'post':
+#         filmName = request.POST.get('filmName')
+#         if filmName:  # 如果用户点击某电影详情
+#             request.session['film_detail_name'] = filmName
+#             return redirect('film/detail.html')
+#     else:
+#         category = request.session.get('category_name') #从session获得当前分类名
+#         category_list = film.objects.filter(category__exact=category, showDate__lte=now)
+#         t1 = loader.get_template('film/category.html')
+#         if (request.user.is_authenticated==True):
+#             user_active = 1
+#         else:
+#             user_active = 0
+#         context = {'category_list': category_list,
+#                    'user_active': user_active  # 用户是否登录
+#                    }
+#         return HttpResponse(t1.render(context))
 
 
 def film_Detail(request):    #电影详情页
     if request.method == "get":
         return render(request, 'film/detail.html')
-    elif request.method == 'POST':
-        filmName = request.session.get('film_detail_name')
-        # dateTime = request.POST.get("dateTime")    #如果用户点击买票按钮，则将其选择的场次写入session中
-        # request.session['film_dateTime'] = dateTime
-        t1 = loader.get_template('film/detail.html')
-        if (request.user.is_authenticated == False):
-            return redirect('../login')   #如果用户未登录，则重定向到登录页
-        film_detail = film.objects.filter(filmName__exact=filmName)
-        if (request.user.is_authenticated==True):
-            user_active = 1
-        else:
-            user_active = 0
-        context = {'category_list': film_detail,
-                   'user_active': user_active  # 用户是否登录
-                   }
-        return HttpResponse(t1.render(context))
     else:
-        filmName = request.session.get('film_detail_name')#从session获得当前电影名
+        film_buy_name = request.POST.get('film_buy_name')
+        if film_buy_name:    #如果用户买票
+            dateTime = request.POST.get("dateTime")    #如果用户点击买票按钮，则将其选择的场次写入session中
+            request.session['film_buy_dateTime'] = dateTime
+            request.session['film_buy_name']=film_buy_name
+            return redirect("film/Cseats.html")
+
+        filmName = request.session.get('film_detail_name')  # 从session获得当前电影名
         filmName = filmName.replace(' ', '')
         film_detail = film.objects.filter(filmName__exact=filmName)
+        filmscences = filmscence.objects.filter(filmName__exact=filmName)
         t1 = loader.get_template('film/detail.html')
-        if (request.user.is_authenticated==True):
+        if (request.user.is_authenticated == True):
             user_active = 1
         else:
             user_active = 0
-        context = {'category_list': film_detail,
+        context = {'film_detail': film_detail,
+                   'filmscences': filmscences,    #场次信息
                    'user_active': user_active  # 用户是否登录
                    }
         return HttpResponse(t1.render(context))
+
+
 @login_required
 def film_grade(request):
+    userid = request.user.id
     filmName = request.session.get('film_detail_name')
     filmName = filmName.replace(' ', '')
     Score = float(request.POST.get("num"))
     film_c = film.objects.get(filmName=filmName)
+    filmScoreUser=film_c.filmScoreUser#取出打过分的用户的id,形式为1,2,3
+    filmScoreUser=filmScoreUser.spilt(',')     #根据‘，’对字符串进行切片
+    int_filmScoreUser=[]
+    for n in filmScoreUser:
+        int_filmScoreUser.append(int(n))#转变成数字，进行比较
+    for n in int_filmScoreUser:
+        if userid==n:
+            return redirect("/film/detail/")
+    int_filmScoreUser.append(userid) #将用户加入打分列表
+    str_filmasaoreUser=','.join(str(i) for i in int_filmScoreUser)#转成字符串格式存入数据库
     filmScore = film_c.filmScore
     filmNum = film_c.evaluateNum
     filmScore = (filmScore * filmNum + Score) / (filmNum + 1)
     filmNum += 1
     film.objects.filter(filmName=filmName).update(filmScore=filmScore)
     film.objects.filter(filmName=filmName).update(evaluateNum=filmNum)
+    film.objects.filter(filmName=filmName).update(filmScoreUser=str_filmasaoreUser)
     return redirect("/film/detail/")
 
-#
+
 # 只有登录才可进入
 @login_required
 def buy(request):#电影购票页面
-    filmeName=request.session.get('film_detail_name')   #从session中获得电影名与场次信息
-    dateTime= request.session.get('film_dateTime')
+    film_buy_name=request.session.get('film_buy_name')   #从session中获得电影名与场次信息
+    dateTime= request.session.get('film_buy_dateTime')
+    filmscences = filmscence.objects.filter(filmName__exact=film_buy_name, dateTime=dateTime)
+    seatList = filmscences.seat
+    seatList = seatList.spilt(',')
+    int_seatList = []
+    for n in seatList:
+        int_seatList.append(int(n))
+    int_seatList.sorted()
     seat=request.POST.get("seat")
     if not seat:  #页面初始化，而非返回买票信息
         t=loader.get_template('film/buy.html')
-        seatList = filmscence.objects.filter(filmName__exact=filmeName, dateTime=dateTime)
-        film_buy_detail=film.objects.filter(filmeName__exact=filmeName)
+        film_buy_detail=film.objects.filter(filmeName__exact=film_buy_name)
         context={
-            'seatList':seatList, #已售座位列表
+            'filmscences':filmscences,   #电影场次信息
+            'seatList':int_seatList, #已售座位列表,格式为数组,已排序
             'film_buy_detail':film_buy_detail  #返回电影详细信息
         }
         return HttpResponse(t.render(context))
     else:   #页面返回的是买票信息
         order_insert = order()
-        order_insert.filmName = filmeName
-        order_insert.seat = seat
+        order_insert.filmName = film_buy_name
+        order_insert.seat = seat #传回的座位信息用‘,’隔开
         order_insert.datetime = datetime
         order_insert.userId_id = User.objects.get(userId="userId")
         while True:
@@ -203,15 +216,31 @@ def buy(request):#电影购票页面
                 break
         order_insert.orderId = orderId_test
         order_insert.save()
+        seat.spilt(',')
+        for n in seat:
+            int_seatList.append(int(n))
+        str_seatList = ','.join(str(i) for i in int_seatList)  #写进场次信息表
+        filmscence.objects.filter(filmName__exact=film_buy_name, dateTime=dateTime).update(seat=str_seatList)
         return redirect('film/home')  #买票成功，返回主页
+
+
 def film_search(request):
+    now = datetime.datetime.now().date()
     if request.method == "POST":   #根据搜索项搜索表单
         selectOne = request.POST.get("selectOne")
         searchCont = request.POST.get("searchCont")
+        filmshow_more = request.get('filmshow_more')
+        film_category = request.get('film_category')#电影分类
         if selectOne == '0':
             film_search= film.objects.filter(filmName__contains=searchCont)
-        else:
+        elif selectOne=='1':
             film_search = film.objects.filter(filmDName__contains=searchCont)
+        elif filmshow_more== '1': #显示热榜更多
+            film_search = film.objects.filter(showDate__lte=now)
+        elif filmshow_more== '0': #显示即将上映更多
+            film_search = film.objects.filter(showDate__gt=now)
+        elif film_category: #电影分类
+            film_search = film.objects.filter(category__exact=film_category)
         if (request.user.is_authenticated==True):
             user_active = 1
         else:
@@ -222,56 +251,7 @@ def film_search(request):
         }
         t1 = loader.get_template('film/search.html')
         return HttpResponse(t1.render(context))
-    else:      #显示更多
-        film_search = film.objects.all()
-        context ={
-            "film_search": film_search,
-        }
-        t1 = loader.get_template('film/search.html')
-        return HttpResponse(t1.render(context))
 
-def filmlist_more(request):#点击热榜更多
-    now = datetime.datetime.now().date()
-    if request.method == "get":
-        return render(request, 'film/filmlist.html')
-    elif request.method == 'post':
-        filmName = request.POST.get('filmName')
-        if filmName:  # 如果用户点击某电影详情
-            request.session['film_detail_name'] = filmName
-            return redirect('film/detail.html')
-    else:
-        filmlist_more = film.objects.filter(showDate__lte=now) #所有已经上映的电影
-        t1 = loader.get_template('film/filmlist.html')
-        if (request.user.is_authenticated==True):
-            user_active = 1
-        else:
-            user_active = 0
-        context = {'filmlist_more': filmlist_more,
-                   'user_active': user_active  # 用户是否登录
-                   }
-        return HttpResponse(t1.render(context))
-
-
-def notshow_filmlist_more(request):#点击即将上映更多
-    now = datetime.datetime.now().date()
-    if request.method == "get":
-        return render(request, 'film/nofilmlist.html')
-    elif request.method == 'post':
-        filmName = request.POST.get('filmName')
-        if filmName:  # 如果用户点击某电影详情
-            request.session['film_detail_name'] = filmName
-            return redirect('film/detail.html')
-    else:
-        nofilmlist_more = film.objects.filter(showDate__gt=now) #所有未上映的电影
-        t1 = loader.get_template('film/nofilmlist.html')
-        if (request.user.is_authenticated==True):
-            user_active = 1
-        else:
-            user_active = 0
-        context = {'nofilmlist_more': nofilmlist_more,
-                   'user_active': user_active  # 用户是否登录
-                   }
-        return HttpResponse(t1.render(context))
 
 def autodelete():  #删除过期电影
     now = datetime.datetime.now().date()
@@ -335,3 +315,46 @@ def my(request):
 #             return render(request, 'insert.html', {'errmsg': '该场次已有电影'})
 #         return render(request, 'insert.html')
 #
+
+# def filmlist_more(request):#点击热榜更多
+#     now = datetime.datetime.now().date()
+#     if request.method == "get":
+#         return render(request, 'film/filmlist.html')
+#     elif request.method == 'post':
+#         filmName = request.POST.get('filmName')
+#         if filmName:  # 如果用户点击某电影详情
+#             request.session['film_detail_name'] = filmName
+#             return redirect('film/detail.html')
+#     else:
+#         filmlist_more = film.objects.filter(showDate__lte=now) #所有已经上映的电影
+#         t1 = loader.get_template('film/filmlist.html')
+#         if (request.user.is_authenticated==True):
+#             user_active = 1
+#         else:
+#             user_active = 0
+#         context = {'filmlist_more': filmlist_more,
+#                    'user_active': user_active  # 用户是否登录
+#                    }
+#         return HttpResponse(t1.render(context))
+#
+#
+# def notshow_filmlist_more(request):#点击即将上映更多
+#     now = datetime.datetime.now().date()
+#     if request.method == "get":
+#         return render(request, 'film/nofilmlist.html')
+#     elif request.method == 'post':
+#         filmName = request.POST.get('filmName')
+#         if filmName:  # 如果用户点击某电影详情
+#             request.session['film_detail_name'] = filmName
+#             return redirect('film/detail.html')
+#     else:
+#         nofilmlist_more = film.objects.filter(showDate__gt=now) #所有未上映的电影
+#         t1 = loader.get_template('film/nofilmlist.html')
+#         if (request.user.is_authenticated==True):
+#             user_active = 1
+#         else:
+#             user_active = 0
+#         context = {'nofilmlist_more': nofilmlist_more,
+#                    'user_active': user_active  # 用户是否登录
+#                    }
+#         return HttpResponse(t1.render(context))
