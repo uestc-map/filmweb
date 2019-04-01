@@ -125,6 +125,7 @@ def home_page(request): #主页
 
 
 def film_Detail(request):    #电影详情页
+    now = datetime.datetime.now()
     if request.method == "get":
         return render(request, 'film/detail.html')
     else:
@@ -137,7 +138,7 @@ def film_Detail(request):    #电影详情页
         filmName = request.session.get('film_detail_name')  # 从session获得当前电影名
         filmName = filmName.replace(' ', '')
         film_detail = film.objects.filter(filmName__exact=filmName)
-        filmscences = filmscence.objects.filter(filmName__exact=filmName)
+        filmscences = filmscence.objects.filter(filmName__exact=filmName,dateTime__gt=now)
         t1 = loader.get_template('film/detail.html')
         if (request.user.is_authenticated == True):
             user_active = 1
