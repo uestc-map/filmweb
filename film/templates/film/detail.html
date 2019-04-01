@@ -85,16 +85,25 @@
           	    <span class="dates_right">3月2日</span>
             </div>
 	    </div>-->
-	    <table>
+	    <table style="text-align: center">
 	    	 <tr>
-                <th>上映日期</th><th>上映时间</th><th>售价（元）</th><th>选座购票</th>
+                <th>场次时间</th><th>售价（元）</th><th>选座购票</th>
 	    	 </tr>
-			{% if  filmscences %}
-        {% for each in filmscences %}
-			{{ each.dateTime }}
+             {% if  filmscences %}
+                {% for each in filmscences %}
 	    	 <tr>
-	    	 	<td>4月3日</td><td>10:20</td><td>30</td><td>  <button type="button" class="button">选座购票</button></td>
+                    <td>
+                        {{ each.dateTime }}
+                    </td>
+                    <td>
+                        30
+                    </td>
+                    <td>
+                        <a href="../buy/{{ each.dateTime }}">选座购票</a>
+                    </td>
 	    	 </tr>
+                {% endfor %}
+            {% endif %}
 	    </table>
      </div><!--table-->
  </div><!--main-->

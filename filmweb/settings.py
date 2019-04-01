@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-
+    # 'django_admin_bootstrapped',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -91,8 +91,8 @@ DATABASES = {
      'default': {
          'ENGINE': 'django.db.backends.mysql',
          'NAME': 'filmweb',
-        'USER': 'root',
-         'PASSWORD': '2016060103',
+         'USER': 'root',
+         'PASSWORD': 'xh980421',
          'HOST': '127.0.0.1',
          'PORT': '3306',
      }

@@ -78,7 +78,7 @@
     {# 电影分类 #}
 	 <div class="catecontainer">
          <div class="head"><div class="guide">电影分类</div></div>
-          <form  action="#" method="get"  name="category">
+          <form  action="../search/" method="POST"  name="category">
                 <input type="submit" name="喜剧"  value="喜剧" id="cate">
                 <input type="submit" name="爱情" value="爱情" id="cate">
                 <input type="submit" name="动作" value="动作" id="cate" >
@@ -115,7 +115,7 @@
                         {% endif %}
                     {% endfor %}
                 {% endif %}
-                            <li><a href="../search/" >更多></a></li>
+                            <li><a href="../searche/0">更多></a></li>
                     </ol>
         </div>
     </div>
@@ -143,7 +143,7 @@
                         {% endif %}
                     {% endfor %}
                 {% endif %}
-                <ol id="Listitem"><li><a href="../search/" >更多></a></li></ol>
+                <ol id="Listitem"><li><a href="../searche/1" >更多></a></li></ol>
         </div>
         </div><!--即将上映完结-->
     </div><!--main 完-->
