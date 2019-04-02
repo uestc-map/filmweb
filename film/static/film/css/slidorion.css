@@ -25,10 +25,14 @@ Stylesheet for slidorion
 }
 
  .catecontainer{
-   width: 970px;
-   margin: 20px auto;
-   border: 3px solid #333;
-   text-align: center;
+	  margin: 30px auto;
+	  display: -webkit-flex; /* Safari */
+	 display:flex;
+     width: 970px;
+	 height: 50px;
+     border:1px solid #0f0f0f;
+     flex-wrap:nowrap;
+	  justify-content: flex-start
  }
 #cate{
 	display: inline-block;
@@ -53,18 +57,18 @@ Stylesheet for slidorion
 
 /*Grid=177,290  10个*/
 #filmContainer{
-    background: #fff;
+    background: #333333;
 	width: 1078px;
-	height: 550px;
+	height: 530px;
 	position: relative;
 	margin: 0 auto;
 	display: grid;
-	border-top: 5px solid #fff;
-	border-left: 3px solid #fff;
-	 grid-template-columns:[first]174px [y1]174px [y2]174px  [y3]174px [y4]174px[y5] 174px[end];
-	 grid-template-rows: [x-start]270px[x1] 270px[x-end];
-	 grid-column-gap: 5px;
-	 grid-row-gap: 5px;
+	border-top: 5px solid #333333;
+	border-left: 3px solid #333333;
+	 grid-template-columns:[first]170px [y1]170px [y2]170px  [y3]170px [y4]170px[y5] 170px[end];
+	 grid-template-rows: [x-start]260px[x1] 260px[x-end];
+	 grid-column-gap: 10px;
+	 grid-row-gap: 10px;
 	 align-items: stretch;
 	 /*justify-items:stretch;*/
 
@@ -74,7 +78,7 @@ Stylesheet for slidorion
 	grid-column-end: y1;
      grid-row-start: x-start;
      grid-row-end:x1;
-     background-color:black;
+	 background:url(" ../img/冰雪奇缘.jpg");
 	/*justify:stretch;*/
 }
 
@@ -83,28 +87,28 @@ Stylesheet for slidorion
 	grid-column-end: y2;
      grid-row-start: x-start;
      grid-row-end:x1;
-     background-color:black;
+      background:url("../img/加勒比.jpg");
 }
 #item-13{
 	grid-column-start:y2;
 	grid-column-end: y3;
      grid-row-start: x-start;
      grid-row-end:x1;
-     background-color:black;
+     background:url("../img/死.jpg");
 }
 #item-14{
 	grid-column-start:y3;
 	grid-column-end: y4;
      grid-row-start: x-start;
      grid-row-end:x1;
-     background-color:black;
+      background:url("../img/机器人.jpg")
 }
 #item-15{
 	grid-column-start:y4;
 	grid-column-end: y5;
      grid-row-start: x-start;
      grid-row-end:x1;
-     background-color:black;
+       background:url("../img/异形.jpg");
 }
 
 #item-16{
@@ -120,42 +124,42 @@ Stylesheet for slidorion
 	grid-column-end: y1;
      grid-row-start: x1;
      grid-row-end:x-end;
-     background-color:black;
+     background:url("../img/龙猫.jpg");
 }
 #item-22{
 	grid-column-start:y1;
 	grid-column-end: y2;
      grid-row-start: x1;
      grid-row-end:x-end;
-     background-color:black;
+      background:url("../img/神奇.jpg");
 }
 #item-23{
 	grid-column-start:y2;
 	grid-column-end: y3;
      grid-row-start: x1;
      grid-row-end:x-end;
-     background-color:black;
+      background:url("../img/杀手.jpg");
 }
 #item-24{
 	grid-column-start:y3;
 	grid-column-end: y4;
      grid-row-start: x1;
      grid-row-end:x-end;
-     background-color:black;
+     background:url("../img/妇联.jpg");
 }
 #item-25{
 	grid-column-start:y4;
 	grid-column-end: y5;
      grid-row-start: x1;
      grid-row-end:x-end;
-     background-color:black;
+      background:url("../img/风.jpg");
 }
 #item-26{
 	grid-column-start:y5;
 	grid-column-end: end;
      grid-row-start: x1;
      grid-row-end:x-end;
-     background-color:black;
+      background:url("../img/1.jpg");
 }
 
 /*个人中心*/
@@ -262,18 +266,31 @@ Stylesheet for slidorion
 }
 
 #ZContainer{
+	display: flex;
+	flex-wrap:wrap;
     background-color: #fff;
 	width: 620px;
 	height: 520px;
 	border:0px solid #fff;
 	position: relative;
-	padding-left: 60px;
+	padding-left: 10px;
 	 float: left;
-	 display: grid;
-	 grid-template-columns:[m0]165px [m1]40px [m2]165px  [m3]40px [m4]165px[m5] ;
-	 grid-template-rows: [o]230px[n1] 45px[n2] 230px[p];
-	 align-items: stretch;
+	 /*display: grid;*/
+	 /*grid-template-columns:[m0]165px [m1]40px [m2]165px  [m3]40px [m4]165px[m5] ;*/
+	 /*grid-template-rows: [o]230px[n1] 45px[n2] 230px[p];*/
+	 /*align-items: stretch;*/
 	 /*justify-items:stretch;*/
+}
+
+#itm{
+	width: 165px;
+	height: 230px;
+	background-color: black;
+	margin:10px 20px;
+}
+#itm > img{
+	width: 164px;
+	height: 230px;
 }
 #item-1{
 	grid-column-start:m0;

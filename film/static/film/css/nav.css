@@ -136,47 +136,58 @@ nav{
        background-color: #333333;
     }
   #scbox{
-    display: inline-block;
+      display: -webkit-box;
+      display: inline-flex;
+    /*display: inline-block;*/
     position: relative;
     vertical-align:middle;
     margin-left:61%;
    /* float: middle;*/
-    width: 325px;
-    height: 36px;
-    margin-top: 10px;
+    width: 335px;
+    height: 40px;
+    margin-top: -5px;
     background-color:#fff;
-    border: 2px solid #333;
+    border: 2px solid  #256EEE;
+       border-radius: 15px;
     }
     #select1{
-    display:inline-block;
-    position: relative;
-    vertical-align:middle;
-    float: left;
-    width: 56px;
-    height: 36px;
+    /*display:inline-block;*/
+    /*position: relative;*/
+    /*vertical-align:middle;*/
+    /*float: left;*/
+    width: 55px;
+    height: 37px;
     font-family: "微软雅黑";
     font-size: 11px;
+        border: none;
+        border-radius: 15px 0px 0px 15px;
     }
 
     #input1{
-    display: inline-block;
-    position: relative;
-    vertical-align:middle;
-    width: 229px;
-    height: 34px;
-    border-bottom: 2px solid #333;
+    /*display: inline-block;*/
+    /*position: relative;*/
+    /*vertical-align:middle;*/
+    width: 235px;
+    height: 36px;
     background-color: #fff;
     }
 
     #input2{
-    display: inline-block;
-    position: relative;
-    float: right;
-    width: 36px;
-    height: 36px;
-    background-color:#256EEE;
+    /*display: inline-block;*/
+    /*position: relative;*/
+    /*float: right;*/
+    width: 43px;
+    height: 38px;
+        border: none;
+        background-color:#256EEE;
+    color: #fff;
+    border-radius:0px 15px 15px 0px;
+     -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
     }
-
+     #input2:hover{
+    background-color: green;
+    }
 
 /*select
   .sc{

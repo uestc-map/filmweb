@@ -77,14 +77,14 @@
 
     {# 电影分类 #}
 	 <div class="catecontainer">
-         <div class="head"><div class="guide">电影分类</div></div>
+
           <form  action="../search/" method="POST"  name="category">
-                <input type="submit" name="喜剧"  value="喜剧" id="cate">
-                <input type="submit" name="爱情" value="爱情" id="cate">
-                <input type="submit" name="动作" value="动作" id="cate" >
-                <input type="submit" name="恐怖" value="恐怖" id="cate">
-                <input type="submit" name="科幻"  value="科幻" id="cate">
-                <input type="submit" name="动画"  value="动画" id="cate">
+                <input type="submit" name="喜剧"  value="喜剧" id="input2">
+                <input type="submit" name="爱情" value="爱情" id="input2">
+                <input type="submit" name="动作" value="动作" id="input2" >
+                <input type="submit" name="恐怖" value="恐怖" id="input2">
+                <input type="submit" name="科幻"  value="科幻" id="input2">
+                <input type="submit" name="动画"  value="动画" id="input2">
           </form>
 	</div><!--分类完-->
 {##}
@@ -96,10 +96,10 @@
         <div id="ZContainer">
             {% if film_list %}
                 {% for each in film_list %}
-                    {% if forloop.counter <= 3 %}
-                        <div id="item" ><img src="../../media/{{ each.image }} " width="200" height="100" /></div>
-                        {% else %}
-                         <div id="item1" ><img src="../../media/{{ each.image }} " width="200" height="100" /></div>
+                    {% if forloop.counter <= 6 %}
+                        <div id="itm"><img src="../../media/{{ each.image }}"></div>
+{#                        {% else %}#}
+{#                         <div id="item1" ><img src="../../media/{{ each.image }} " width="200" height="100" /></div>#}
                     {% endif %}
                 {% endfor %}
             {% endif %}
@@ -126,24 +126,42 @@
     <div class="container">
 		<div class="head"><div class="guide">即将上映</div></div>
         <div id="ZContainer">
+               {% if noshow_filmlist %}
+                {% for each in noshow_filmlist %}
+                    {% if forloop.counter <= 6 %}
+                        <div id="itm" ><img src="../../media/{{ each.image }} " /></div>
+{#                        {% else %}#}
+{#                         <div id="item1" ><img src="../../media/{{ each.image }} " width="200" height="100" /></div>#}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+{#             <div id="itm"><img src=""></div><!--itm无需换行，放电影图片-->#}
+{#             <div id="itm"></div>#}
+{#             <div id="itm"></div>#}
+{#             <div id="itm"></div>#}
+{#             <div id="itm"></div>#}
+{#             <div id="itm"></div>#}
 {#            <!--即将上映电影图片 6个-->#}
-    	    <div id="item-1"></div>
+    	   <!-- <div id="item-1"></div>
     	    <div id="item-2"></div>
     	    <div id="item-3"></div>
     	    <div id="item-4"></div>
             <div id="item-5"></div>
-    	    <div id="item-6"></div>
+    	    <div id="item-6"></div>-->
         </div>
         <div id="rightBan">
         	 <div class="Listhead">即将上映 </div>
                 {%  if noshow_filmlist %}
+                    <ol id="Listitem">
                     {% for each in noshow_filmlist %}
                         {%if forloop.counter <= 2 %}
-                            <ol id="Listitem"><li>{{ each.filmName }}</li> </ol>
+                            <li>{{ each.filmName }}</li>
                         {% endif %}
                     {% endfor %}
                 {% endif %}
-                <ol id="Listitem"><li><a href="../searche/1" >更多></a></li></ol>
+                  <li><a href="../searche/1" >更多></a></li>
+                   </ol>
         </div>
         </div><!--即将上映完结-->
     </div><!--main 完-->

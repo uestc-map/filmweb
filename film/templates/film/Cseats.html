@@ -28,15 +28,15 @@
 		}
 		/*可选*/
 		li.choiceable-seat{
-			background: url(img/choiceable.png) no-repeat 55px;
+			background: url({%static  'film/img/choiceable.png' %}) no-repeat 55px;
 		}
 		/*已售*/
 		li.sold-seat{
-			background: url(img/sold.png) no-repeat 55px;
+			background: url({% static 'film/img/sold.png' %})no-repeat 55px;
 		}
 		/*已选*/
 		li.choiced-seat{
-			background: url(img/choiced.png) no-repeat 55px 0;
+			background: url({% static 'film/img/choiced.png'%}) no-repeat 55px 0;
 		}
 
 
@@ -44,7 +44,7 @@
 		.screen{
 			padding-top: 50px;
 			font-size: 18px;
-			background: url(img/screen.png) no-repeat 20px 0;
+			background: url({%  static 'film/img/screen.png' %}) no-repeat 20px 0;
 		}
 		/*座位*/
 		.seat-row{
@@ -60,15 +60,15 @@
 		}
 		/*未选*/
 		.seat-row span.seat-empty{
-			background: url(img/choiceable.png);
+			background: url({%  static 'film/img/choiceable.png' %});
 		}
 		/*已选*/
 		.seat-row span.seat-choiced{
-			background: url(img/choiced.png) !important;
+			background: url({%  static 'film/img/choiced.png' %}) !important;
 		}
 		/*已售*/
 		.seat-row span.seat-sold{
-			background: url(img/sold.png);
+			background: url({% static 'film/img/sold.png' %});
 		}
 		/*过道不显示位子*/
 		.none{
@@ -110,7 +110,7 @@
 			text-align: center;
 			margin:0 12px 10px 0;
 			color:#f03d37;
-			background: url(img/ticket-bg.png);
+			background: url({% static 'film/img/ticket-bg.png' %});
 		}
 		/*总票价*/
 		.ticket-price{
