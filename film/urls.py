@@ -15,7 +15,8 @@ urlpatterns = [
     # url(r"^film/home/$", views.home_page),
     # url(r"^film/detail/$", views.film_Detail),
     # url(r"^film/logout/$", views.log_out),
-    # url(r"^film/my/$", views.my),
+    # url(r"^film/my/$", views.m
+                  # y),
     # url(r"^film/grade/$",views.film_grade),
     path("register/", views.register_User, name="register"),
     path("login/", views.login, name="login"),

@@ -189,19 +189,9 @@ def buy(request,dateTime):
             int_seatList.append(int(n))
         int_seatList.sort()
         return HttpResponse(int_seatList)
-
-
         # return render(request, "film/Cseats.html")
     else:
-        filmName = request.session.get('film_detail_name')
-        dateTime = datetime.datetime.strptime(dateTime, "%Y年%m月%d日 %H:%M")
-        filmscences = filmscence.objects.get(dateTime=dateTime, filmName=filmName)
-        seatList = filmscences.seat
-        seatList = seatList.split(',')
-        int_seatList = []
-        for n in seatList:
-            int_seatList.append(int(n))
-        int_seatList.sort()
+        pass
         return render(request, "film/Cseats.html")
 
 

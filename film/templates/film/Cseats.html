@@ -197,9 +197,6 @@
 								<span class="seat-empty" data-col="7"></span>
 								<span class="seat-empty" data-col="8"></span>
 								<span class="seat-empty" data-col="9"></span>
-								<span class="seat-empty" data-col="10"></span>
-								<span class="seat-empty" data-col="11"></span>
-								<span class="seat-empty" data-col="12"></span>
 								<!--<span class="seat-empty" data-col="13"></span>-->
 							</div>
 						</div>
@@ -219,9 +216,6 @@
 								<span class="seat-empty" data-col="7"></span>
 								<span class="seat-empty" data-col="8"></span>
 								<span class="seat-empty" data-col="9"></span>
-								<span class="seat-empty" data-col="10"></span>
-								<span class="seat-empty" data-col="11"></span>
-								<span class="seat-empty" data-col="12"></span>
 
 							</div>
 						</div>
@@ -241,9 +235,6 @@
 								<span class="seat-empty" data-col="7"></span>
 								<span class="seat-empty" data-col="8"></span>
 								<span class="seat-empty" data-col="9"></span>
-								<span class="seat-empty" data-col="10"></span>
-								<span class="seat-empty" data-col="11"></span>
-								<span class="seat-empty" data-col="12"></span>
 
 							</div>
 						</div>
@@ -263,9 +254,7 @@
 								<span class="seat-empty" data-col="7"></span>
 								<span class="seat-empty" data-col="8"></span>
 								<span class="seat-empty" data-col="9"></span>
-								<span class="seat-empty" data-col="10"></span>
-								<span class="seat-empty" data-col="11"></span>
-								<span class="seat-empty" data-col="12"></span>
+
 							<!--	<span class="seat-empty" data-col="13"></span>
 								<span class="seat-empty" data-col="14"></span>-->
 							</div>
@@ -308,9 +297,6 @@
 								<span class="seat-empty" data-col="7"></span>
 								<span class="seat-empty" data-col="8"></span>
 								<span class="seat-empty" data-col="9"></span>
-								<span class="seat-empty" data-col="10"></span>
-								<span class="seat-empty" data-col="11"></span>
-								<span class="seat-empty" data-col="12"></span>
 							</div>
 						</div>
 						<!-- 第六排 -->
@@ -329,9 +315,6 @@
 								<span class="seat-empty" data-col="7"></span>
 								<span class="seat-empty" data-col="8"></span>
 								<span class="seat-empty" data-col="9"></span>
-								<span class="seat-empty" data-col="10"></span>
-								<span class="seat-empty" data-col="11"></span>
-								<span class="seat-empty" data-col="12"></span>
 
 							</div>
 						</div>
@@ -351,9 +334,6 @@
 								<span class="seat-empty" data-col="7"></span>
 								<span class="seat-empty" data-col="8"></span>
 								<span class="seat-empty" data-col="9"></span>
-								<span class="seat-empty" data-col="10"></span>
-								<span class="seat-empty" data-col="11"></span>
-								<span class="seat-empty" data-col="12"></span>
 
 							</div>
 						</div>
@@ -373,9 +353,6 @@
 								<span class="seat-empty" data-col="7"></span>
 								<span class="seat-empty" data-col="8"></span>
 								<span class="seat-empty" data-col="9"></span>
-								<span class="seat-empty" data-col="10"></span>
-								<span class="seat-empty" data-col="11"></span>
-								<span class="seat-empty" data-col="12"></span>
 							</div>
 						</div>
 						<!-- 第九排 -->
@@ -394,9 +371,6 @@
 								<span class="seat-empty" data-col="7"></span>
 								<span class="seat-empty" data-col="8"></span>
 								<span class="seat-empty" data-col="9"></span>
-								<span class="seat-empty" data-col="10"></span>
-								<span class="seat-empty" data-col="11"></span>
-								<span class="seat-empty" data-col="12"></span>
 
 							</div>
 						</div>
@@ -486,6 +460,8 @@
 	</div>
 	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
 	<script>
+        var total ="";
+        var x="";
 		// 获得位置
 		function getSeatText(seat){
 			// 第几排
@@ -496,6 +472,14 @@
 			var seat = row + "排" + col + "座";
 			return seat;
 		}
+		$(".btn btn-sure").click(function(){
+		    $.ajax({
+            type:'POST',
+            url:"",
+            data:{"seatlist":total},
+            success:window.location.href="../detail/"
+        })
+        })
         function  getstatus(seat){
 
         }
@@ -508,7 +492,7 @@
 
 		// 添加选座
 		$(".seat-row").on("click",".seat-empty",function(){
-            var total ="";
+
 			// 已选个数easing
 			var seatNum = $(".seat-choiced").length;
 			if(seatNum<3){
@@ -516,8 +500,10 @@
 				// 得到具体位置
 				var seat = getSeatText(this);
 				// 添加票
-                total =total+($(this).parents(".seat-row").attr("data-row")  +$(this).attr("data-col")+',');
-                alert(total);
+                if (seatNum !=2)
+                     x =$(this).parents(".seat-row").attr("data-row")  +$(this).attr("data-col")+',';
+                if (total == "NaN") total ="";
+                total += x;
 				$(".ticket-container").append('<span class="ticket">' + seat + '</span>');
 				// 总票数
 				var ticketNum = $(".ticket").length;
@@ -537,6 +523,9 @@
 			// 总票数
 			var ticketNum = $(".ticket").length;
 			// 移除票
+            x =$(this).parents(".seat-row").attr("data-row") +$(this).attr("data-col")+',';
+            var reg = "/"+x+"/g";
+            total = total.replace(eval(reg),'');
 			for(var i = 0;i < ticketNum;i++){
 				if($($(".ticket")[i]).text()==seat){
 					$($(".ticket")[i]).remove();
