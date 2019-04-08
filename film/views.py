@@ -12,7 +12,7 @@ from django.contrib import auth
 from django.contrib.auth.models import User
 from django.views.generic.base import View
 from django.db import models
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.template import RequestContext, loader
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import logout
@@ -138,7 +138,7 @@ def film_Detail(request):    #电影详情页
         filmName = request.session.get('film_detail_name')  # 从session获得当前电影名
         filmName = filmName.replace(' ', '')
         film_detail = film.objects.filter(filmName__exact=filmName)
-        filmscences = filmscence.objects.filter(filmName__exact=filmName,dateTime__gt=now)
+        filmscences = filmscence.objects.filter(filmName__exact=filmName, dateTime__gt=now)
         t1 = loader.get_template('film/detail.html')
         if (request.user.is_authenticated == True):
             user_active = 1
@@ -179,14 +179,29 @@ def film_grade(request):
     return redirect("/film/detail/")
 def buy(request,dateTime):
     if request.method == "POST":
-        pass
-        return render(request, "film/Cseats.html")
+        filmName = request.session.get('film_detail_name')
+        dateTime = datetime.datetime.strptime(dateTime, "%Y年%m月%d日 %H:%M")
+        filmscences = filmscence.objects.get(dateTime=dateTime, filmName=filmName)
+        seatList = filmscences.seat
+        seatList = seatList.split(',')
+        int_seatList = []
+        for n in seatList:
+            int_seatList.append(int(n))
+        int_seatList.sort()
+        return HttpResponse(int_seatList)
+
+
+        # return render(request, "film/Cseats.html")
     else:
         filmName = request.session.get('film_detail_name')
         dateTime = datetime.datetime.strptime(dateTime, "%Y年%m月%d日 %H:%M")
         filmscences = filmscence.objects.get(dateTime=dateTime, filmName=filmName)
         seatList = filmscences.seat
-        print(seatList)
+        seatList = seatList.split(',')
+        int_seatList = []
+        for n in seatList:
+            int_seatList.append(int(n))
+        int_seatList.sort()
         return render(request, "film/Cseats.html")
 
 

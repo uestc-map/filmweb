@@ -188,7 +188,7 @@
 							</div>
 							<div class="col-xs-11">
 								<span class="none"></span>
-								<span class="seat-sold" data-col="1"></span>
+								<span class="seat-empty" data-col="1"></span>
 								<span class="seat-empty" data-col="2"></span>
 								<span class="seat-empty" data-col="3"></span>
 								<span class="seat-empty" data-col="4"></span>
@@ -508,14 +508,16 @@
 
 		// 添加选座
 		$(".seat-row").on("click",".seat-empty",function(){
-
-			// 已选个数
+            var total ="";
+			// 已选个数easing
 			var seatNum = $(".seat-choiced").length;
 			if(seatNum<3){
 				$(this).attr("class","seat-choiced");
 				// 得到具体位置
 				var seat = getSeatText(this);
 				// 添加票
+                total =total+($(this).parents(".seat-row").attr("data-row")  +$(this).attr("data-col")+',');
+                alert(total);
 				$(".ticket-container").append('<span class="ticket">' + seat + '</span>');
 				// 总票数
 				var ticketNum = $(".ticket").length;
@@ -526,7 +528,6 @@
 			}else{
 				alert("一次最多选3张票");
 			}
-
 		})
 		// 删除选座
 		$(".seat-row").on("click",".seat-choiced",function(){
@@ -547,6 +548,25 @@
 			// 总价
 			$(".price").text(newTicketNum * unitPrice);
 		})
+        $("document").ready(function(){
+            $.ajax({
+                type:"POST",
+                url:"",
+                dateType:"json",
+                success(result){
+                    for(var i=0;i<result.length;i++){
+                        var row,col;
+                        row = Math.floor(result[i]/10)+1;
+                        col = Math.round(result[i]%10);
+                        $(".seat-row[data-row='"+row+"'] span[data-col='"+col+"']").attr("class","seat-sold");
+                        }
+                },
+                error(){
+                    alert('error')
+                }
+
+            })
+        })
 	</script>
 </body>
 </html>
