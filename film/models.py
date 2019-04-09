@@ -7,7 +7,7 @@ from django.conf import settings
 class order(models.Model):
     orderId = models.IntegerField(max_length=20, primary_key=True, blank=False)
     filmName = models.CharField(max_length=20, blank=False)
-    seat = models.CharField(max_length=2, blank=False)
+    seat = models.CharField(max_length=10, blank=False)
     dateTime = models.DateTimeField(blank=False,default=timezone.now)
     userId = models.ForeignKey('auth.user', on_delete=models.CASCADE)
     class Meta:
