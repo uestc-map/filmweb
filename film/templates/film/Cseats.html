@@ -472,18 +472,21 @@
 			var seat = row + "排" + col + "座";
 			return seat;
 		}
-		$(".btn btn-sure").click(function(){
+		$(".btn-sure").click(function(){
+		    alert(total);
 		    $.ajax({
-            type:'POST',
-            url:"",
-            data:{"seatlist":total},
-            success:window.location.href="../detail/"
+                type:'POST',
+                url:"",
+                data:{"seatlist":total},
+                success:window.location.href="../detail/",
+                error:alert('error')
+
         })
         })
+        //向后台提交选座信息，几排几座
         function  getstatus(seat){
 
         }
-         //向后台提交选座信息，几排几座
 
 
          //根据数据库内容 ，改变座位可选状态视图  seat-empty-->seat-sold
@@ -500,8 +503,7 @@
 				// 得到具体位置
 				var seat = getSeatText(this);
 				// 添加票
-                if (seatNum !=2)
-                     x =$(this).parents(".seat-row").attr("data-row")  +$(this).attr("data-col")+',';
+                x =','+ $(this).parents(".seat-row").attr("data-row")  +$(this).attr("data-col");
                 if (total == "NaN") total ="";
                 total += x;
 				$(".ticket-container").append('<span class="ticket">' + seat + '</span>');
@@ -523,7 +525,7 @@
 			// 总票数
 			var ticketNum = $(".ticket").length;
 			// 移除票
-            x =$(this).parents(".seat-row").attr("data-row") +$(this).attr("data-col")+',';
+            x = ','+ $(this).parents(".seat-row").attr("data-row") +$(this).attr("data-col");
             var reg = "/"+x+"/g";
             total = total.replace(eval(reg),'');
 			for(var i = 0;i < ticketNum;i++){
@@ -543,10 +545,10 @@
                 url:"",
                 dateType:"json",
                 success(result){
-                    for(var i=0;i<result.length;i++){
+                    for(var i=0;i<result.length;i=i+2){
                         var row,col;
-                        row = Math.floor(result[i]/10)+1;
-                        col = Math.round(result[i]%10);
+                        row = result[i];
+                        col = result[i+1];
                         $(".seat-row[data-row='"+row+"'] span[data-col='"+col+"']").attr("class","seat-sold");
                         }
                 },

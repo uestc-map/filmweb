@@ -180,8 +180,8 @@ def film_grade(request):
 def buy(request,dateTime):
     if request.method == "POST":
         filmName = request.session.get('film_detail_name')
-        dateTime = datetime.datetime.strptime(dateTime, "%Y年%m月%d日 %H:%M")
-        filmscences = filmscence.objects.get(dateTime=dateTime, filmName=filmName)
+        dateTime = datetime.datetime.strptime(dateTime, "%Y年%m月%d日 %H:%M") #转化时间格式
+        filmscences = filmscence.objects.get(dateTime=dateTime, filmName=filmName) #寻找相应电影
         seatList = filmscences.seat
         seatList = seatList.split(',')
         int_seatList = []
@@ -189,8 +189,8 @@ def buy(request,dateTime):
             int_seatList.append(int(n))
         int_seatList.sort()
         return HttpResponse(int_seatList)
-        # return render(request, "film/Cseats.html")
     else:
+        #页面进入刷新
         pass
         return render(request, "film/Cseats.html")
 
