@@ -182,7 +182,7 @@ def film_grade(request):
 @login_required
 def buy(request,dateTime):
     if request.method == "POST":
-        seat=request.POST.get("seatlist")
+        seat = request.POST.get("seatlist")
         filmName = request.session.get('film_detail_name')
         dateTime = datetime.datetime.strptime(dateTime, "%Y年%m月%d日 %H:%M") #转化时间格式
         filmscences = filmscence.objects.get(dateTime=dateTime, filmName=filmName) #寻找相应电影
@@ -194,12 +194,12 @@ def buy(request,dateTime):
         if seat:
             str_seatList = str_seatList+seat
             filmscence.objects.filter(filmName__exact=filmName, dateTime=dateTime).update(seat=str_seatList)
-
             order_insert = order()
             order_insert.filmName = filmName
-            seat=seat[1:]
+            seat= seat[1:]
             order_insert.seat = seat  # 传回的座位信息用‘,’隔开
-            order_insert.datetime = datetime
+            order_insert.datetime = dateTime
+            print(dateTime)
             order_insert.userId_id = request.user.id
             while True:
                 orderId_test = random.randint(0, 999999999)  # 随机生成订单号并检测是否重复

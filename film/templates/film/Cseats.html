@@ -473,14 +473,11 @@
 			return seat;
 		}
 		$(".btn-sure").click(function(){
-		    alert(total);
 		    $.ajax({
                 type:'POST',
                 url:"",
                 data:{"seatlist":total},
                 success:window.location.href="../detail/",
-                error:alert('error')
-
         })
         })
         //向后台提交选座信息，几排几座
@@ -553,7 +550,7 @@
                         }
                 },
                 error(){
-                    alert('error')
+                    alert('1')
                 }
 
             })
