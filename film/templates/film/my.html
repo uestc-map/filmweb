@@ -50,64 +50,63 @@
 		    	<center><h3>我的订单</h3></center>
 
            <div class="Accordion">
+               {% if orders %}
+                {% for each in orders %}
               <div class="Accordion-box">
-                 <label for="headingOne" class="panel">功夫熊猫 订单编号</label>
-                 <input type="radio" id="headingOne" name="Collapsible" checked="checked" >
+                 <label for="heading{{ forloop.counter  }}" class="panel">{{ each.filmName }} 订单编号 {{ each.orderId }}</label>
+                 <input type="radio" id="heading{{ forloop.counter  }}" name="Collapsible" checked="checked" >
 
                   <div class="Accordion-box__content">
         	         <div class="inf_cont">
 				         <span class="inf_type">时间场次:</span>
-				         <span class="inf_right">2019-11-1&&11：20 </span>
+				         <span class="inf_right">{{ each.dateTime }}</span>
 			        </div>
 			         <div class="inf_cont">
 				         <span class="inf_type">座位:</span>
-				         <span class="inf_right">7排3座</span>
+				         <span class="inf_right">{{ each.seat }}</span>
 			        </div>
-			        <div class="inf_cont">
-				      <span class="inf_type">取票编号:</span>
-				     <span class="inf_right">7排3座</span>
-		        	</div>
                   </div>
-
-              <div class="Accordion-box">
-                  <label for="headingTwo" class="panel">之乎者也</label>
-                  <input type="radio" id="headingTwo" name="Collapsible" value="">
-                  <div class="Accordion-box__content">
-                    	<div class="inf_cont">
-			               	<span class="inf_type">时间场次:</span>
-		            		<span class="inf_right">2019-11-1&&11：20 </span>
-			            </div>
-			           <div class="inf_cont">
-			             	<span class="inf_type">座位:</span>
-		             		<span class="inf_right">7排3座</span>
-		              	</div>
-		               	<div class="inf_cont">
-		             		<span class="inf_type">取票编号:</span>
-		               		<span class="inf_right">7排3座</span>
-		             	</div>
-                  </div>
-               </div>
-
-               <div class="Accordion-box">
-                   <label for="headingThree" class="panel">
-                       折叠框头部--电影名
-                   </label>
-                     <input type="radio" id="headingThree" name="Collapsible">
-                    <div class="Accordion-box__content">
-                        <div class="inf_cont">
-		            		<span class="inf_type">时间场次:</span>
-			             	<span class="inf_right">2019-11-1&&11：20 </span>
-		             	</div>
-                        <div class="inf_cont">
-				            <span class="inf_type">座位:</span>
-				             <span class="inf_right">7排3座</span>
-			            </div>
-			             <div class="inf_cont">
-			              	<span class="inf_type">取票编号:</span>
-			             	<span class="inf_right">7排3座</span>
-		               	</div>
-	    	         </div>
-                </div>
+                {% endfor %}
+{##}        {% endif %}
+{#              <div class="Accordion-box">#}
+{#                  <label for="headingTwo" class="panel">之乎者也</label>#}
+{#                  <input type="radio" id="headingTwo" name="Collapsible" value="">#}
+{#                  <div class="Accordion-box__content">#}
+{#                    	<div class="inf_cont">#}
+{#			               	<span class="inf_type">时间场次:</span>#}
+{#		            		<span class="inf_right">2019-11-1&&11：20 </span>#}
+{#			            </div>#}
+{#			           <div class="inf_cont">#}
+{#			             	<span class="inf_type">座位:</span>#}
+{#		             		<span class="inf_right">7排3座</span>#}
+{#		              	</div>#}
+{#		               	<div class="inf_cont">#}
+{#		             		<span class="inf_type">取票编号:</span>#}
+{#		               		<span class="inf_right">7排3座</span>#}
+{#		             	</div>#}
+{#                  </div>#}
+{#               </div>#}
+{##}
+{#               <div class="Accordion-box">#}
+{#                   <label for="headingThree" class="panel">#}
+{#                       折叠框头部--电影名#}
+{#                   </label>#}
+{#                     <input type="radio" id="headingThree" name="Collapsible">#}
+{#                    <div class="Accordion-box__content">#}
+{#                        <div class="inf_cont">#}
+{#		            		<span class="inf_type">时间场次:</span>#}
+{#			             	<span class="inf_right">2019-11-1&&11：20 </span>#}
+{#		             	</div>#}
+{#                        <div class="inf_cont">#}
+{#				            <span class="inf_type">座位:</span>#}
+{#				             <span class="inf_right">7排3座</span>#}
+{#			            </div>#}
+{#			             <div class="inf_cont">#}
+{#			              	<span class="inf_type">取票编号:</span>#}
+{#			             	<span class="inf_right">7排3座</span>#}
+{#		               	</div>#}
+{#	    	         </div>#}
+{#                </div>#}
             </div>
            </div>
         </div>

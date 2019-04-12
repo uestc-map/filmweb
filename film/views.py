@@ -196,10 +196,11 @@ def buy(request,dateTime):
             filmscence.objects.filter(filmName__exact=filmName, dateTime=dateTime).update(seat=str_seatList)
             order_insert = order()
             order_insert.filmName = filmName
-            seat= seat[1:]
+            seat = seat[1:]
             order_insert.seat = seat  # 传回的座位信息用‘,’隔开
             order_insert.dateTime = dateTime
             order_insert.userId_id = request.user.id
+            print(request.user.id)
             while True:
                 orderId_test = random.randint(0, 999999999)  # 随机生成订单号并检测是否重复
                 try:
@@ -325,17 +326,18 @@ def my(request):
         return render(request, 'film/my.html')
     else:
         filmName = request.POST.get('filmName')
-        if filmName:  # 如果用户点击某电影详情，前端传参名为filmName,值为电影名
-            filmName.replace(' ', '')
-            request.session['film_detail_name'] = filmName  # 写入session中
-            return redirect('/film/detail/')
-        username = request.user.username
-        email = request.user.email
+        # if filmName:  # 如果用户点击某电影详情，前端传参名为filmName,值为电影名
+        #     filmName.replace(' ', '')
+        #     request.session['film_detail_name'] = filmName  # 写入session中
+        #     return redirect('/film/detail/')
+        # username = request.user.username
+        # email = request.user.email
         userid = request.user.id
+        print(userid)
         orders = order.objects.filter(userId_id=userid)
+        print(orders)
         t1 = loader.get_template('film/my.html')
-        context = {'username': username,
-                   'email': email,
+        context = {
                    'orders': orders  # 用户是否登录
                    }
         return HttpResponse(t1.render(context))
