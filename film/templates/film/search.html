@@ -15,8 +15,13 @@
 			<!--<img id="logo" src="  " alt="">-->
 			<li> <a href="../home/" name="a1">首页</a></li>
 		</ul>
-		<a href="../register/" id="signup">注册</a>
-		<a href="../logIn/" id="signin">登录</a>
+		{% if user_active == 0 %}
+              <a href="../login/" id="signin">登录</a><span> /</span>
+              <a href="../register/" id="signup">注册</a>
+            {% else %}
+                <a href="../my/" id="my"></a>
+                <a href="../logout/">退出</a>
+            {% endif %}
 		<!--<div class="sc">
 			<input type="text" class="search" placeholder="Search for video">
 			<li class="searchIcon" ></li>

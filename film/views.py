@@ -17,7 +17,7 @@ from django.template import RequestContext, loader
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-
+import string
 
 def register_User(request):
     if request.method== "POST":
@@ -82,11 +82,11 @@ def home_page(request): #主页
         # if category:
         #     request.session['category_name'] = category  #写入session中
         #     return redirect("film/category.html")
-        filmName = request.POST.get('filmName')
-        if filmName:        #如果用户点击某电影详情，前端传参名为filmName,值为电影名
-            filmName.replace(' ', '')
-            request.session['film_detail_name'] = filmName #写入session中
-            return redirect('/film/detail/')
+        # filmName = request.POST.get('filmName')
+        # if filmName:        #如果用户点击某电影详情，前端传参名为filmName,值为电影名
+        #     filmName.replace(' ', '')
+        #     request.session['film_detail_name'] = filmName #写入session中
+        #     # return redirect('/film/detail/')
         filmlist = film.objects.filter(showDate__lte=now)   #正在热映电影排行榜
         notshow_filmlist = film.objects.filter(showDate__gt=now) #即将上映榜单
         t1 = loader.get_template('film/home.html')
@@ -124,7 +124,7 @@ def home_page(request): #主页
 #         return HttpResponse(t1.render(context))
 
 
-def film_Detail(request):    #电影详情页
+def film_Detail(request,filmName):    #电影详情页
     now = datetime.datetime.now()
     if request.method == "get":
         return render(request, 'film/detail.html')
@@ -135,8 +135,9 @@ def film_Detail(request):    #电影详情页
         #     request.session['film_buy_dateTime'] = dateTime
         #     request.session['film_buy_name']=film_buy_name
         #     return redirect("film/Cseats.html")
-        filmName = request.session.get('film_detail_name')  # 从session获得当前电影名
-        filmName = filmName.replace(' ', '')
+        request.session['film_detail_name'] = filmName   # 从session获得当前电影名
+        if filmName.find(' ')>=0:
+            filmName = filmName.replace(' ', '')
         film_detail = film.objects.filter(filmName__exact=filmName)
         filmscences = filmscence.objects.filter(filmName__exact=filmName, dateTime__gt=now)
         t1 = loader.get_template('film/detail.html')

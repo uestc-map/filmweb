@@ -116,8 +116,22 @@
 		</address>
 	</div>
 </div>
+<script>
+$("document").ready(function(){
+            $.ajax({
+                type:"POST",
+                url:"",
+                dateType:"json",
+                success(result){
 
+                },
+                error(){
+                    alert('1')
+                }
 
+            })
+        })
+	</script>
     <!--
 <script>
 		var oWc = document.getElementById("wechat");
