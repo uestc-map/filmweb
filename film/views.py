@@ -136,7 +136,7 @@ def film_Detail(request,filmName):    #电影详情页
         #     request.session['film_buy_name']=film_buy_name
         #     return redirect("film/Cseats.html")
         request.session['film_detail_name'] = filmName   # 从session获得当前电影名
-        if filmName.find(' ')>=0:
+        if filmName.find(' ') >= 0:
             filmName = filmName.replace(' ', '')
         film_detail = film.objects.filter(filmName__exact=filmName)
         filmscences = filmscence.objects.filter(filmName__exact=filmName, dateTime__gt=now)
@@ -294,7 +294,7 @@ def film_search(request): #电影搜索
         return HttpResponse(t1.render(context))
 
 
-def film_searche (request,flag):#更多电影
+def film_searche (request, flag):#更多电影
     now = datetime.datetime.now().date()
     if flag == 0:
         film_searche = film.objects.filter(showDate__lte=now)
@@ -306,6 +306,18 @@ def film_searche (request,flag):#更多电影
         user_active = 0
     context = {
         'film_search': film_searche,
+        'user_active': user_active,
+    }
+    t1 = loader.get_template('film/search.html')
+    return HttpResponse(t1.render(context))
+def film_searchtype (request , type):
+    film_search = film.objects.filter(category=type);
+    if (request.user.is_authenticated == True):
+        user_active = 1
+    else:
+        user_active = 0
+    context = {
+        'film_search': film_search,
         'user_active': user_active,
     }
     t1 = loader.get_template('film/search.html')

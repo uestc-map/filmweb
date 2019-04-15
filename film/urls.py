@@ -12,11 +12,11 @@ urlpatterns = [
     # url(r"^film/search/$", views.film_search),
     path("search/", views.film_search),
     path("searche/<int:flag>", views.film_searche),
+    path("searchtype/<str:type>", views.film_searchtype),
     # url(r"^film/home/$", views.home_page),
     # url(r"^film/detail/$", views.film_Detail),
     # url(r"^film/logout/$", views.log_out),
-    # url(r"^film/my/$", views.m
-                  # y),
+    # url(r"^film/my/$", views.my),
     # url(r"^film/grade/$",views.film_grade),
     path("my/", views.my),
     path("register/", views.register_User, name="register"),
