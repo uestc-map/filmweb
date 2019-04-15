@@ -3,33 +3,41 @@
   margin: 0;
 }
 body,html{
-  font-family: "微软雅黑";
+     width:100%;
+     /*background-color:#282f1b;*/
+     font-family: "微软雅黑";
 }
    #main{
         width: 1080px;/*910*/
         margin: 0 auto;
         padding-top: 0px;
-        background-color: green;/*----*/
+        background-color: #313a21;/*----*/
       }
     #slidorion{
       position: absolute;
       margin: 100px auto;
       background-color: red;/*-----*/
     }
-
+#mymain{/*MY 页*/
+    width: 1080px;
+    height: 750px;
+     margin: 0 auto;
+    padding-top: 60px;
+    background-color: green;
+  }
 
 .morecontainer{
   margin: 30px auto;
   width: 910px;
   height: 1620px;
   box-shadow:0 5px 15px black;
-  
  }
  .container {
+  margin: 30px auto;
   width: 970px;
   height: 580px;
-     margin: 30px auto;
   box-shadow:0 5px 15px black;
+  background: #282f1b;
  }
  .cont_main{
   width: 100%;

@@ -25,31 +25,31 @@ Stylesheet for slidorion
 }
 
  .catecontainer{
-	  margin: 30px auto;
-	  display: -webkit-flex; /* Safari */
-	 display:flex;
-     width: 970px;
-	 height: 50px;
-     border:1px solid #0f0f0f;
-     flex-wrap:nowrap;
-	  justify-content: flex-start
+	width: 970px;
+   margin: 20px auto;
+   border:none;
+   text-align: center;
+   background: #282f1b;
  }
-#cate{
+.catecontainer a{
 	display: inline-block;
 	width: 70px;
-	height: 40px;
-	background-color: gray;
-	margin-top: -60px;
+	height: 36px;
+	margin-top: -70px;
 	margin-left: 15px;
 	margin-right: 15px;
 	margin-bottom: 25px;
+	padding-top: 10px;
+	background-color:gray;
+	color: white;
+    text-align: center;
 	font-family: "微软雅黑";
 	font-size: 16px;
 	font-color:#333;
 	 -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
 }
-#cate:hover{
+.catecontainer a:hover{
     background-color: #4CAF50; /* Green */
     color: white;
 
@@ -57,21 +57,20 @@ Stylesheet for slidorion
 
 /*Grid=177,290  10个*/
 #filmContainer{
-    background: #333333;
+    background: #282f1b;
 	width: 1078px;
 	height: 530px;
 	position: relative;
 	margin: 0 auto;
 	display: grid;
-	border-top: 5px solid #333333;
-	border-left: 3px solid #333333;
+	border-top: 5px solid  #282f1b;
+	border-left: 3px solid  #282f1b;
 	 grid-template-columns:[first]170px [y1]170px [y2]170px  [y3]170px [y4]170px[y5] 170px[end];
 	 grid-template-rows: [x-start]260px[x1] 260px[x-end];
 	 grid-column-gap: 10px;
 	 grid-row-gap: 10px;
 	 align-items: stretch;
 	 /*justify-items:stretch;*/
-
 }
 #item-11{
 	grid-column-start:first;
@@ -116,7 +115,7 @@ Stylesheet for slidorion
 	grid-column-end: end;
      grid-row-start: x-start;
      grid-row-end:x1;
-     background-color:black;
+     background:url("../img/蝙蝠.jpg");
 }
 
 #item-21{
@@ -268,13 +267,14 @@ Stylesheet for slidorion
 #ZContainer{
 	display: flex;
 	flex-wrap:wrap;
-    background-color: #fff;
+    background-color:#313a21;
 	width: 620px;
 	height: 520px;
 	border:0px solid #fff;
 	position: relative;
 	padding-left: 10px;
 	 float: left;
+	 /*justify-content:space-between;*/
 	 /*display: grid;*/
 	 /*grid-template-columns:[m0]165px [m1]40px [m2]165px  [m3]40px [m4]165px[m5] ;*/
 	 /*grid-template-rows: [o]230px[n1] 45px[n2] 230px[p];*/
@@ -288,79 +288,82 @@ Stylesheet for slidorion
 	background-color: black;
 	margin:10px 20px;
 }
-#itm > img{
+#itm a:hover {background-color:#FF704D;}
+#itm img{
 	width: 164px;
 	height: 230px;
 }
-#item-1{
-	grid-column-start:m0;
-	grid-column-end: m1;
-     grid-row-start: o;
-     grid-row-end:n1;
-     background-color:black;
-}
+/*#item-1{*/
+	/*grid-column-start:m0;*/
+	/*grid-column-end: m1;*/
+     /*grid-row-start: o;*/
+     /*grid-row-end:n1;*/
+     /*background-color:black;*/
+/*}*/
 
-#item-2{
-	grid-column-start:m2;
-	grid-column-end: m3;
-     grid-row-start:o;
-     grid-row-end:n1;
-     background-color:black;
-}
-#item-3{
-	grid-column-start:m4;
-	grid-column-end: m5;
-     grid-row-start:o;
-     grid-row-end:n1;
-     background-color:black;
-}
-#item-4{
-	grid-column-start:m0;
-	grid-column-end: m1;
-     grid-row-start:n2;
-     grid-row-end:p;
-     background-color:black;
-}
+/*#item-2{*/
+	/*grid-column-start:m2;*/
+	/*grid-column-end: m3;*/
+     /*grid-row-start:o;*/
+     /*grid-row-end:n1;*/
+     /*background-color:black;*/
+/*}*/
+/*#item-3{*/
+	/*grid-column-start:m4;*/
+	/*grid-column-end: m5;*/
+     /*grid-row-start:o;*/
+     /*grid-row-end:n1;*/
+     /*background-color:black;*/
+/*}*/
+/*#item-4{*/
+	/*grid-column-start:m0;*/
+	/*grid-column-end: m1;*/
+     /*grid-row-start:n2;*/
+     /*grid-row-end:p;*/
+     /*background-color:black;*/
+/*}*/
 
-#item-5{
-	grid-column-start:m2;
-	grid-column-end: m3;
-     grid-row-start:n2;
-     grid-row-end:p;
-     background-color:black;
-}
-#item-6{
-	grid-column-start:m4;
-	grid-column-end: m5;
-     grid-row-start:n2;
-     grid-row-end:p;
-     background-color:black;
-}
+/*#item-5{*/
+	/*grid-column-start:m2;*/
+	/*grid-column-end: m3;*/
+     /*grid-row-start:n2;*/
+     /*grid-row-end:p;*/
+     /*background-color:black;*/
+/*}*/
+/*#item-6{*/
+	/*grid-column-start:m4;*/
+	/*grid-column-end: m5;*/
+     /*grid-row-start:n2;*/
+     /*grid-row-end:p;*/
+     /*background-color:black;*/
+/*}*/
 
 
 #leftBan{
 	width: 280px;			/* 正在热门榜单 */
+	height: 480px;
 	padding-top:30px;
 	float: right;
-	border:1px solid green;
-	background-color: #fff;
+	border:1px solid  #43502d;
+	background-color: #313a21;
 }
 #rightBan{
 	width: 280px;
+	height: 480px;
 	padding-top:30px; 			/* 即将上演*/
 	float: right;
-	border:1px solid green;
-	background-color: #fff;
+	border:1px solid #43502d;
+	background-color:#313a21;
 }
 .Listhead{
-	width: 100%;
-	height: 35px;
-	margin:0px 5px;
-	font-size: 22px;
+	width: 280px;
+	height: 40px;
+	margin-top: 0px;
+	border-bottom: 1px solid #43502d;
 	text-align: center;
-	font-family: "微软雅黑";
-	font-weight: bold;
-	border-bottom: 1px solid gray;
+	font-size: 22px;
+	font-weight:bold;
+
 }
 #Listitem ol{
 	width: 100%;

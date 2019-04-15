@@ -12,13 +12,12 @@
 {#<link rel="stylesheet"  href="{% static 'film/css/text.css' %}">#}
 <link rel="stylesheet" href="{% static 'film/css/nav.css' %}" />
 <link rel="stylesheet" href="{% static 'film/css/video.css' %}"/>
-<link rel="stylesheet" href="{% static 'film/css/section.css' %}"/>
-<link rel="stylesheet" href="http://demo.htmleaf.com/1605/201605301540/starability-minified/starability-all.min.css"/>
+
 
 <body>
 	<nav >
 		<ul>
-			<a href="../detail/" class="site-name" ><span class="site-name-font">电影<span style="color: black;">详情</span></span></a>
+			<a href="#" class="site-name" ><span class="site-name-font">电影<span style="color:blue;">详情</span></span></a>
 			<!--<img id="logo" src="img/logo.jpg" alt="">-->
 			<li> <a href="../home/" name="a1">首页</a></li>
 		</ul>
@@ -32,7 +31,7 @@
 	</nav>
     {% if  film_detail %}
         {% for each in film_detail %}
-	<div id="main" ><!--video.css 11-->
+<div id="main">
 		<span id="header">{{ each.filmName }} </span>
 				<div id="inf">
 					<div id="inf_left">
@@ -71,10 +70,10 @@
 				</div><!--inf_right-->
 		   </div><!--inf-->
 
-            <div id="de">
-				<h3><span>剧情简介</span><h3>
-				<p>{{ each.filmSum }}</p>
-            </div>
+{#            <div id="de">#}
+{#				<h3><span>剧情简介</span><h3>#}
+{#				<p>{{ each.filmSum }}</p>#}
+{#            </div>#}
         {% endfor %}
     {% endif %}
 
@@ -106,7 +105,7 @@
             {% endif %}
 	    </table>
      </div><!--table-->
- </div><!--main-->
+    </div><!--main-->
 
 
 	<div class="footer">
