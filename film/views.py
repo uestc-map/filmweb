@@ -201,7 +201,6 @@ def buy(request,dateTime):
             order_insert.seat = seat  # 传回的座位信息用‘,’隔开
             order_insert.dateTime = dateTime
             order_insert.userId_id = request.user.id
-            print(request.user.id)
             while True:
                 orderId_test = random.randint(0, 999999999)  # 随机生成订单号并检测是否重复
                 try:
