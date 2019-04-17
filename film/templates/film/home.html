@@ -34,7 +34,7 @@
 {#    导航条#}
 	<nav>
 		<ul>
-			<a href="#" class="site-name" ><span class="site-name-font">肥宅<span style="color: blue;">电影</span></span></a>
+			<a href="#" class="site-name" ><span class="site-name-font">肥宅<span style="color:#1296db;">电影</span></span></a>
 			<!--<img id="logo" src="slide_1.png" alt="">-->
 			<li> <a href="#" name="a1">首页</a></li>
 		</ul>
@@ -42,7 +42,7 @@
               <a href="../login/" id="signin">登录</a><span> /</span>
               <a href="../register/" id="signup">注册</a>
             {% else %}
-                <a href="../logout/" id="out">退出</a>
+                <a href="../logout/" id="out"></a>
                 <a href="../my/" id="my"></a>
             {% endif %}
         <form action="../search/" method="POST">
@@ -127,7 +127,7 @@
                         {% endif %}
                     {% endfor %}
                 {% endif %}
-                            <li><a href="../searche/0">更多></a></li>
+                            <li><a href="../searche/0">&nbsp;&nbsp;&nbsp;更多>></a></li>
                     </ol>
         </div>
     </div>

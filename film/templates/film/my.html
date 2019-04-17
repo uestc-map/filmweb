@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{%  static 'film/css/video.css' %}">
      <link rel="stylesheet" href="{%  static 'film/css/footer.css' %}">
     <link rel="stylesheet" href="{%  static 'film/css/paging.css' %}">
+    <link rel="stylesheet" href="{%  static 'film/css/section.css' %}">
 	<!-- <link rel="stylesheet" href="css/section.css"> -->
 	<script src="{%  static 'film/js/jquery.min.js' %}"></script>
 	<script src="{%  static 'film/js/jquery.easing.js' %}"></script>
@@ -33,13 +34,14 @@
 {#    导航条#}
 	<nav>
 		<ul>
-			<a href="../home/" class="site-name" ><span class="site-name-font">肥宅<span style="color: black;">电影</span></span></a>
+			<a href="../home/" class="site-name" ><span class="site-name-font">肥宅<span style="color: blue;">电影</span></span></a>
 			<!--<img id="logo" src="slide_1.png" alt="">-->
 			<li> <a href="../home/" name="a1">首页</a></li>
 		</ul>
     </nav>
 {#    主菜单#}
-<div class="mymain"><!--section-->
+<div id="mymain"><!--section-->
+    <div id="ch">个人中心</div>
 	    <div class="myset">
 	    	<div class="myleft">
 	    		<div class="mytou">
@@ -52,14 +54,14 @@
 	    	</div>
             <div class="pagger-box pagger" id="box"></div>
             <div class="myright">
-		    	<center><h3>我的订单</h3></center>
+                <center><h3>我的订单</h3></center></br>
                 <div id="page">
                     {% if orders %}
                     {% for each in orders %}
                     <ul>
                         <li>
-
-{#                    <div class="Accordion-box">#}
+                     <div class="Accordion">
+                    <div class="Accordion-box">
                         <label for="heading{{ forloop.counter  }}" class="panel">{{ each.filmName }} 订单编号 {{ each.orderId }}</label>
                         <input type="radio" id="heading{{ forloop.counter  }}" name="Collapsible" checked="checked" >
 
@@ -71,6 +73,8 @@
                                  <span class="inf_type">座位:</span>
                                  <span class="inf_right">{{ each.seat }}</span>
                              </div>
+                        </div>
+                         </div>
                         </li>
                     </ul>
                     {% endfor %}
@@ -81,7 +85,7 @@
 {#            导航条#}
 
             </div>
-  </div>
+        </div>
 </div>
 
 <div class="footer">

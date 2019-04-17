@@ -47,8 +47,8 @@ nav{
 		nav a:hover{
 			text-decoration: none;
 			/*background:white;*/
-            background:#43502d;
-			color:#2C67CE; 
+            background:#403756;
+			color:#403756;
 			transition:  color .10s linear;
 		}
         nav ul  .site-name-font{
@@ -125,11 +125,12 @@ nav{
         float: right;
     	width: 50px;
     	height: 40px;
-    	line-height: 35px;
+    	line-height: 50px;
     	color: #fff;
     	border-radius: 5px;
-    	background-color: gray;
-    	font-family: "微软雅黑";
+    	/*background-color: gray;*/
+        background: url("../img/tuichu.png");
+      font-family: "微软雅黑";
         margin-top: 10px;
     }
     #out:hover{
@@ -145,7 +146,7 @@ nav{
         color: #333;
         border-radius: 5px;
         /*background: #EE25BB;*/
-        background:url(../img/my.jpg);
+        background:url(../img/my.png);
         background-size:40px 40px;
         background-repeat: no-repeat;
         font-family: "微软雅黑";
@@ -168,7 +169,7 @@ nav{
     height: 40px;
     margin-top: 8px;
     background-color:#fff;
-    border: 2px solid  #256EEE;
+    border: 2px solid gray;
        border-radius: 15px;
     }
     #select1{
@@ -190,24 +191,25 @@ nav{
     /*vertical-align:middle;*/
     width: 235px;
     height: 34px;
-    background-color: #fff;
+    border: none;
     }
 
     #input2{
     /*display: inline-block;*/
     /*position: relative;*/
     /*float: right;*/
-    width: 43px;
-    height: 37px;
+    width: 45px;
+    height: 39px;
     border: none;
-    background-color:#256EEE;
-    color: #fff;
+    color: #ffffff;
+    background-color:gray;
+    /*color: #fff;*/
     border-radius:0px 15px 15px 0px;
      -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     }
      #input2:hover{
-    background-color: green;
+    background-color:#1296db;
     }
 
 /*select

@@ -20,10 +20,10 @@ body,html{
     }
 #mymain{/*MY 页*/
     width: 1080px;
-    height: 750px;
+    height: 850px;
      margin: 0 auto;
-    padding-top: 60px;
-    background-color: green;
+    padding-top: 20px;
+    background-color:#313a21;
   }
 
 .morecontainer{
@@ -49,10 +49,11 @@ body,html{
   width: 910px;
   height:250px;
   margin: 20px auto;
-  background-color: #fff;
-  border-bottom: 1px dashed #333;
+  background-color:#d0e0d3;
+  border: 1px dashed #5b8962;
 }
 .filmbox img{
+    border: 1px dashed #5b8962;
   width:178px;
   height: 250px;
   float:left;

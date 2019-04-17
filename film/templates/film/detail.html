@@ -17,7 +17,7 @@
 <body>
 	<nav >
 		<ul>
-			<a href="#" class="site-name" ><span class="site-name-font">电影<span style="color:blue;">详情</span></span></a>
+			<a href="#" class="site-name" ><span class="site-name-font">电影<span style="color:#1296db;">详情</span></span></a>
 			<!--<img id="logo" src="img/logo.jpg" alt="">-->
 			<li> <a href="../home/" name="a1">首页</a></li>
 		</ul>
@@ -25,17 +25,18 @@
               <a href="../login/" id="signin">登录</a><span> /</span>
               <a href="../register/" id="signup">注册</a>
             {% else %}
-                <a href="../my/" id="my"></a>
-                <a href="../logout/">退出</a>
+
+               <a href="../logout/" id="out">退出</a>
+               <a href="../my/" id="my"></a>
             {% endif %}
 	</nav>
     {% if  film_detail %}
         {% for each in film_detail %}
 <div id="main">
-		<span id="header">{{ each.filmName }} </span>
+		<a id="header">{{ each.filmName }} </a>
 				<div id="inf">
 					<div id="inf_left">
-                        <img src="../media/{{ each.image }}" width="400" height="370" />
+                        <img src="../media/{{ each.image }}"  />
                      </div>
                     <div id="inf_right">
                     	<h3><center>电影详情</center></h3></br>
