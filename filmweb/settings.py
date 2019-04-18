@@ -92,8 +92,8 @@ DATABASES = {
          'ENGINE': 'django.db.backends.mysql',
          'NAME': 'filmweb',
          'USER': 'root',
-         'PASSWORD': 'xh980421',
-         'HOST': '127.0.0.1',
+         'PASSWORD': '2016060103',
+         'HOST': '192.168.31.157',
          'PORT': '3306',
      }
  }

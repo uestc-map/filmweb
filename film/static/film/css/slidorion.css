@@ -9,7 +9,7 @@ Stylesheet for slidorion
      height: 750px;
      margin: 0 auto;
     padding-top: 60px;
-    background-color: green;
+    /*background-color: green;*/
 
   }
 .baner{
@@ -170,9 +170,9 @@ Stylesheet for slidorion
 	margin: 40px auto;
 	padding: 10px;
 	background: #cbcbcb;
-	border: 2px solid #bbb;
-	-webkit-box-shadow: 10px 10px #bbb;
-	-moz-box-shadow: 10px 10px #bbb;
+	border: 2px solid  #282f1b;
+	-webkit-box-shadow: 10px 10px #282f1b;
+	-moz-box-shadow: 10px 10px #282f1b;
 }
 
 .myleft{
@@ -194,10 +194,10 @@ Stylesheet for slidorion
 	width: 300px;
 	height: 300px;
 	background-color: white;
-	border: 3px solid #bbb;
+	border: 3px dashed #bbbbbb;
 }
 .mytou img{
-	    margin:10px 50px;
+	    margin:20px 50px 10px 50px;
         width: 200px;
         height:200px;
         border-radius: 50%;
@@ -206,8 +206,9 @@ Stylesheet for slidorion
 	text-align: center;
 	font-family: "微软雅黑";
     font-size: 20px;
-	padding: 30px;
+	padding: 20px;
 	font-weight: bold;
+	border-top: 2px solid gray;
 }
 .myname-i{
 	clear: both;
@@ -238,32 +239,32 @@ Stylesheet for slidorion
 }
 
 
-#photo {
-	width: 1764px;
-	animation: switch 5s ease-out infinite;
-}
+/*#photo {*/
+	/*width: 1764px;*/
+	/*animation: switch 5s ease-out infinite;*/
+/*}*/
 
 
 
-#photo > img {
-	float: left;
-	width: 588px;
-	height: 460px;
-}
+/*#photo > img {*/
+	/*float: left;*/
+	/*width: 588px;*/
+	/*height: 460px;*/
+/*}*/
 
 
-@keyframes switch {
-	0%, 25% {
-		margin-left: 0;
-	}
-	35%, 60% {
-		margin-left: -588px;
-	}
-	70%, 100% {
-		margin-left: -1176px;
-	}
+/*@keyframes switch {*/
+	/*0%, 25% {*/
+		/*margin-left: 0;*/
+	/*}*/
+	/*35%, 60% {*/
+		/*margin-left: -588px;*/
+	/*}*/
+	/*70%, 100% {*/
+		/*margin-left: -1176px;*/
+	/*}*/
 
-}
+/*}*/
 
 #ZContainer{
 	display: flex;
@@ -289,7 +290,12 @@ Stylesheet for slidorion
 	background-color: black;
 	margin:10px 20px;
 }
-#itm a:hover {background-color:#FF704D;}
+/*#itm a{*/
+	    /*text-decoration : none;*/
+        /*}*/
+/*#itm a:hover{*/
+	/*text-decoration : none;*/
+	/*color:#FF704D;}*/
 #itm img{
 	width: 164px;
 	height: 230px;
@@ -360,26 +366,33 @@ Stylesheet for slidorion
 	width: 280px;
 	height: 40px;
 	margin-top: 0px;
-	border-bottom: 1px solid #43502d;
+	border-bottom: 1px solid gray;
 	text-align: center;
-	font-size: 22px;
+	/*background: url("../img/bangdan.png") no-repeat;;*/
+	font-size: 24px;
 	font-weight:bold;
+	color:lightskyblue;
 
 }
 #Listitem ol{
-	width: 100%;
+	width:100%;
 	list-style-type: decimal;
 }
 #Listitem li{
-	border-bottom: 1px solid gray;
-	margin:5px 5px;
-	height: 35px;
-	font-size: 22px;
+	width: 88%;
+	float:right;
+	border-bottom: 1px solid #43502d;
+	margin:10px 8px 0px 0px ;
+	height: 36px;
+	color:lightskyblue;
+	font-size: 20px;
 	text-align: center;
 	font-family: "微软雅黑";
 	font-weight: bold;
     list-style-type: decimal;
 }
+#Listitem li a{text-decoration: none;
+               color:lightskyblue;}
 #rightBan.conts{
 	width: 280px;
 	height: 510px;
@@ -511,7 +524,7 @@ Stylesheet for slidorion
         }
 #ch{
 	margin-left:45%;
-	font-size: 32px;
+	font-size: 30px;
 	font-weight: bold;
 	color: #1D63EA;
 }
