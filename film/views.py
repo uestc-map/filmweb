@@ -177,7 +177,7 @@ def film_grade(request):
     film.objects.filter(filmName=filmName).update(filmScore=filmScore)
     film.objects.filter(filmName=filmName).update(evaluateNum=filmNum)
     film.objects.filter(filmName=filmName).update(filmScoreUser=str_filmasaoreUser)
-    return redirect("/film/detail/")
+    return redirect("/film/detail/"+filmName+"")
 
 
 @login_required
@@ -345,9 +345,7 @@ def my(request):
         # username = request.user.username
         # email = request.user.email
         userid = request.user.id
-        print(userid)
         orders = order.objects.filter(userId_id=userid)
-        print(orders)
         t1 = loader.get_template('film/my.html')
         context = {
                    'orders': orders  # 用户是否登录
