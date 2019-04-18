@@ -45,7 +45,7 @@
 	    <div class="myset">
 	    	<div class="myleft">
 	    		<div class="mytou">
-	    		    <img src="img/character.jpg" alt="Norway">
+	    		    <img src="{% static 'film//img/character.jpg' %}" alt="Norway">
 	    		    <div class="myname">
 	    		     <!-- <span class="myname-i">昵称：</span>-->
 	    		      <span  class="myname-n">皮卡丘</span>
@@ -63,7 +63,7 @@
                      <div class="Accordion">
                     <div class="Accordion-box">
                         <label for="heading{{ forloop.counter  }}" class="panel">{{ each.filmName }} 订单编号 {{ each.orderId }}</label>
-                        <input type="radio" id="heading{{ forloop.counter  }}" name="Collapsible" checked="checked" >
+                        <input type="text" id="heading{{ forloop.counter  }}" name="Collapsible"  >
 
                              <div class="inf_cont">
                                  <span class="inf_type">时间场次:</span>

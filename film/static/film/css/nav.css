@@ -25,6 +25,7 @@ nav{
             line-height: 60px;
 		}
 		nav ul li {
+            top: 0;
             display: inline-block;
 			float: left;
 			list-style: none;
@@ -34,10 +35,10 @@ nav{
 		nav a{
 			display: inline-block;
 			width: 80px;
-			height: 35px;
-			color: gray;
-			line-height: 35px;
-			margin: 5px 10px;
+			height: 60px;
+			color:#1296db;
+			line-height: 60px;
+			margin: 0 auto;
 			text-align: center;
 			text-decoration:none;
 			font-weight: bold;
@@ -48,7 +49,7 @@ nav{
 			text-decoration: none;
 			/*background:white;*/
             background:#403756;
-			color:#403756;
+			/*color:#403756;*/
 			transition:  color .10s linear;
 		}
         nav ul  .site-name-font{
@@ -163,9 +164,9 @@ nav{
     /*display: inline-block;*/
     position: relative;
     vertical-align:middle;
-    margin-left:61%;
+    margin-left:60%;
    /* float: middle;*/
-    width: 335px;
+    width: 340px;
     height: 40px;
     margin-top: 8px;
     background-color:#fff;
@@ -177,9 +178,9 @@ nav{
     /*position: relative;*/
     /*vertical-align:middle;*/
     /*float: left;*/
-    width: 56px;
-    height: 37px;
-    font-family: "微软雅黑";
+    width: 60px;
+    height: 39px;
+    /*font-family: "微软雅黑";*/
     font-size: 11px;
     border: none;
     border-radius: 15px 0px 0px 15px;

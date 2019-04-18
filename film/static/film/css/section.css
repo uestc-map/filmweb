@@ -29,7 +29,7 @@ body,html{
 .morecontainer{
   margin: 30px auto;
   width: 910px;
-  height: 1620px;
+  height: 1610px;
   box-shadow:0 5px 15px black;
  }
  .container {
@@ -93,9 +93,6 @@ body,html{
   float: right;
   text-indent: 10px;
 }
-
-
-
 
 
 
