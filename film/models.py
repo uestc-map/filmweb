@@ -17,6 +17,7 @@ class filmscence(models.Model):
     dateTime = models.DateTimeField(primary_key=True,default=timezone.now)
     seat = models.CharField(max_length=300,default='0')
     filmName = models.ForeignKey('film', on_delete=models.CASCADE)
+    price= models.IntegerField(max_length=20,  blank=False)
     class Meta:
         ordering=['dateTime']
 

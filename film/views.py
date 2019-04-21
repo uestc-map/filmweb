@@ -48,8 +48,10 @@ def register_User(request):
         if not (re.match(r'([0-9]+(\W+|\_+|[A-Za-z]+))+|([A-Za-z]+(\W+|\_+|\d+))+|((\W+|\_+)+(\d+|\w+))+',password)) or (pass_len<6):
             return render(request, 'film/register.html', {'errmsg': '密码长度小于6位！'})
 
-        user = User.objects.create_user(username=userName,password=password,email=userEmail)
+        user = User.objects.create_user(username=userName,password=password,email=userEmail,first_name=0)
         user.save()
+        # user_profile = UserProfile(user=user)
+        # user_profile.save()
         return redirect("/film/login/")
     elif request.method == "GET":
         return render(request, 'film/register.html')
@@ -58,7 +60,6 @@ def register_User(request):
 def login(request):
     if request.method == "POST":
         userName_login= request.POST.get("userName",None)
-        userename_login= request.POST.get("userName",None)
         password_login=request.POST.get("password",None)
         if not all([userName_login,password_login]):
             return render(request, "film/login.html", {"errmsg": "账号信息不全"})
@@ -213,16 +214,22 @@ def buy(request,dateTime):
             orderId_test=orderId_test
             order_insert.orderId = orderId_test
             order_insert.save()
-
             return redirect('film/detail')  # 买票成功，返回主页
         else:
-            int_seatList.sort()
-            return HttpResponse(int_seatList)
+            print(filmscences.price,'sssssssssssssss')
+
+            context = {
+                'int_seatList': int_seatList.sort(),
+                'filmscences':filmscences
+            }
+            t1 = loader.get_template('film/Cseats.html')
+
+
+            return HttpResponse(t1.render(context))
     else:
         #页面进入刷新
         pass
         return render(request, "film/Cseats.html")
-
 
 
 # 只有登录才可进入
@@ -337,22 +344,33 @@ def my(request):
     if request.method == "get":
         return render(request, 'film/my.html')
     else:
-        filmName = request.POST.get('filmName')
-        # if filmName:  # 如果用户点击某电影详情，前端传参名为filmName,值为电影名
-        #     filmName.replace(' ', '')
-        #     request.session['film_detail_name'] = filmName  # 写入session中
-        #     return redirect('/film/detail/')
-        # username = request.user.username
-        # email = request.user.email
+        charge = request.POST.get('charge')
         userid = request.user.id
-        print(userid)
         orders = order.objects.filter(userId_id=userid)
-        print(orders)
-        t1 = loader.get_template('film/my.html')
-        context = {
-                   'orders': orders  # 用户是否登录
-                   }
-        return HttpResponse(t1.render(context))
+        userm = User.objects.get(pk=userid)
+        if charge:
+            if len(str(charge))==10:
+
+                money=userm.first_name
+                money=int(money)+100
+                User.objects.filter(pk=userid).update(first_name=money)
+                context = {'orders': orders,  # 用户是否登录
+                           'errmsg': '成功充值100元',
+                           'user':userm
+                           }
+                return render(request, 'film/my.html',context)
+            else:
+                context = {'orders': orders, # 用户是否登录
+                           'errmsg': '充值卡号错误',
+                           'user': userm
+                           }
+                return render(request, 'film/my.html', context)
+        else:
+            t1 = loader.get_template('film/my.html')
+            context = {'orders': orders , # 用户是否登录
+                       'user': userm
+             }
+            return HttpResponse(t1.render(context))
 
 # def insert_film(request):
 #     if request.method== "POST":
