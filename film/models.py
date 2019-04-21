@@ -34,5 +34,6 @@ class film(models.Model):
     deleteDate = models.DateField(blank=False,default='1999-01-01')
     filmSum = models.CharField(max_length=1000,default='0')
     filmScoreUser=models.CharField(max_length=1000,default='0')#打过分的用户id
+    total=models.IntegerField(max_length=20,default=0)  #电影票房
     class Meta:
         ordering=['-filmScore','showDate']

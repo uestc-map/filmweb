@@ -214,9 +214,18 @@ def buy(request,dateTime):
             orderId_test=orderId_test
             order_insert.orderId = orderId_test
             order_insert.save()
+
+            seat=seat.split(',')
+            num=0
+            for n in seat:
+                num=num+1
+            money=num*filmscences.price
+            filmt=film.objects.get(pk=filmName)
+            money=money+filmt.total
+            film.objects.filter(pk=filmName).update(total=money)
             return redirect('film/detail')  # 买票成功，返回主页
         else:
-            print(filmscences.price,'sssssssssssssss')
+
 
             context = {
                 'int_seatList': int_seatList.sort(),
