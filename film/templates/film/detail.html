@@ -26,7 +26,7 @@
               <a href="../register/" id="signup">注册</a>
             {% else %}
 
-               <a href="../logout/" id="out">退出</a>
+               <a href="../logout/" id="out"></a>
                <a href="../my/" id="my"></a>
             {% endif %}
 	</nav>
@@ -59,6 +59,10 @@
 						<div class="inf_cont">
 							<span class="inf_type">上映日期:</span>
 							<span class="inf_right"> {{ each.showDate }}</span>
+						</div>
+						<div class="inf_cont">
+							<span class="inf_type">总票房:</span>
+							<span class="inf_right"> {{ each.total }}元</span>
 						</div>
 
                      <div class="score">
@@ -96,7 +100,7 @@
                         {{ each.dateTime }}
                     </td>
                     <td>
-                        30
+                        {{ each.price}}
                     </td>
                     <td>
                         <a href="../buy/{{ each.dateTime }}">选座购票</a>

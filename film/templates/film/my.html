@@ -21,16 +21,6 @@
 
     <script type="text/javascript" src="{% static 'film/js/paging.js' %}" > </script>
 <body>
-
-{% if errmsg %}
-        <li>
-            {% for err in errmsg %}
-             <p style="color: red;">
-                {{err}}
-             </p>
-              {% endfor %}
-        </li>
-{% endif %}
 {#    导航条#}
 	<nav>
 		<ul>
@@ -40,19 +30,40 @@
 		</ul>
     </nav>
 {#    主菜单#}
+{% if errmsg %}
+        <li>
+
+            {% for err in errmsg %}
+             <p style="color: red;">
+                {{err}}
+             </p>
+              {% endfor %}
+        </li>
+{% endif %}
 <div id="mymain"><!--section-->
     <div id="ch">个人中心</div>
 	    <div class="myset">
 	    	<div class="myleft">
 	    		<div class="mytou">
-	    		    <img src="img/character.jpg" alt="Norway">
+	    		    <img src="{% static 'film//img/character.jpg' %}" alt="Norway">
 	    		    <div class="myname">
 	    		     <!-- <span class="myname-i">昵称：</span>-->
-	    		      <span  class="myname-n">皮卡丘</span>
+	    		      <span  class="myname-n">{{ user.username }}</span>
+                        <span  class="myname-n">余额 {{ user.first_name }}</span>
 	    		   </div>
 	    		</div>
 	    	</div>
             <div class="pagger-box pagger" id="box"></div>
+            <form action="" method="post">
+        {% csrf_token %}
+
+            <div id="pw">
+                <span id="span2">	</span>
+                <input type="text" class="input" name="charge" id="charge" maxlength="20" >
+                <li class="cha" id="del2"></li>
+            </div>
+            <input type="submit" value="充值"  id="a1" >
+    </form>
             <div class="myright">
                 <center><h3>我的订单</h3></center></br>
                 <div id="page">
@@ -63,7 +74,7 @@
                      <div class="Accordion">
                     <div class="Accordion-box">
                         <label for="heading{{ forloop.counter  }}" class="panel">{{ each.filmName }} 订单编号 {{ each.orderId }}</label>
-                        <input type="radio" id="heading{{ forloop.counter  }}" name="Collapsible" checked="checked" >
+                        <input type="text" id="heading{{ forloop.counter  }}" name="Collapsible"  >
 
                              <div class="inf_cont">
                                  <span class="inf_type">时间场次:</span>

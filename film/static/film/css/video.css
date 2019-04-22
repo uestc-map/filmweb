@@ -102,16 +102,21 @@ body, html{
 	height: 370px;
 	margin-left: 100px;
 	color:white;
-	background-color:black;
+	background-color:#282f1b;
 }
 #inf_left{
 	float: left;
-	width: 350px;
+	width: 290px;
 	height:370px;
+}
+#inf_left img{
+	margin: 10px auto;
+	width: 270px;
+	height: 350px;
 }
 #inf_right{
 	float: right;
-	width: 500px;
+	width: 620px;
 	height: 370px;
 	border-left:1px solid gray;
 }
@@ -154,7 +159,7 @@ body, html{
     margin-left: 100px;
 	margin-top: 40px;
 	margin-bottom: 20px;
-	padding-bottom: 300px;
+	padding-bottom: 320px;
 	color: white;
     background-color:#282f1b;
 }
@@ -196,11 +201,29 @@ text-align:center;
 vertical-align: center;
 }
 
+td a{
+	margin:0 auto;
+	width: 110px;
+	height: 35px;
+	border-radius: 15px;
+    background-color: red;
+    color: white;
+    border:none;
+    text-align: center;
+	text-decoration: none;
+     -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+td a:hover{
+   background-color: lightskyblue;
+   color: white;
+}
+
 .button{
 	margin:0 auto;
 	width: 85px;
-	height: 25px;
-	border-radius: 15px;
+	height: 35px;
+	border-radius: 10px;
     background-color: red;
     color: white;
     border:none;

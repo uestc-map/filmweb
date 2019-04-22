@@ -92,8 +92,8 @@ DATABASES = {
          'ENGINE': 'django.db.backends.mysql',
          'NAME': 'filmweb',
          'USER': 'root',
-         'PASSWORD': 'xh980421',
-         'HOST': '127.0.0.1',
+         'PASSWORD': '2016060103',
+         'HOST': '192.168.31.157',
          'PORT': '3306',
      }
  }
@@ -140,3 +140,4 @@ USE_TZ = False
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 LOGIN_URL = '/film/login/'
+# AUTH_USER_MODULE = 'filweb.UserProfile'
