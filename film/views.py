@@ -45,7 +45,7 @@ def register_User(request):
 
 
         pass_len=len(str(password))
-        if not (re.match(r'([0-9]+(\W+|\_+|[A-Za-z]+))+|([A-Za-z]+(\W+|\_+|\d+))+|((\W+|\_+)+(\d+|\w+))+',password)) or (pass_len<6):
+        if not (re.match(r'([0-9]+(\W+|\_+|[A-Za-z]+))+|([A-Za-z]+(\W+|\_+|\d+))+|((\W+|\_+)+(\d+|\w+))+', password)) or (pass_len<6):
             return render(request, 'film/register.html', {'errmsg': '密码长度小于6位！'})
 
         user = User.objects.create_user(username=userName,password=password,email=userEmail,first_name=0)
@@ -125,7 +125,7 @@ def home_page(request): #主页
 #         return HttpResponse(t1.render(context))
 
 
-def film_Detail(request,filmName):    #电影详情页
+def film_Detail(request,filmName):    # 电影详情页
     now = datetime.datetime.now()
     if request.method == "get":
         return render(request, 'film/detail.html')
@@ -178,11 +178,11 @@ def film_grade(request):
     film.objects.filter(filmName=filmName).update(filmScore=filmScore)
     film.objects.filter(filmName=filmName).update(evaluateNum=filmNum)
     film.objects.filter(filmName=filmName).update(filmScoreUser=str_filmasaoreUser)
-    return redirect("/film/detail/")
+    return redirect("/film/detail/"+filmName+"")
 
 
 @login_required
-def buy(request,dateTime):
+def buy(request, dateTime):
     if request.method == "POST":
         seat = request.POST.get("seatlist")
         filmName = request.session.get('film_detail_name')
@@ -215,8 +215,8 @@ def buy(request,dateTime):
             order_insert.orderId = orderId_test
             order_insert.save()
 
-            seat=seat.split(',')
-            num=0
+            seat = seat.split(',')
+            num= 0
             for n in seat:
                 num=num+1
             money=num*filmscences.price
@@ -225,20 +225,29 @@ def buy(request,dateTime):
             film.objects.filter(pk=filmName).update(total=money)
             return redirect('film/detail')  # 买票成功，返回主页
         else:
-
-
-            context = {
-                'int_seatList': int_seatList.sort(),
-                'filmscences':filmscences
-            }
-            t1 = loader.get_template('film/Cseats.html')
-
-
+            int_seatList.sort()
+            return HttpResponse(int_seatList)
+            t1 = loader.get_template('film/buy.html/')
             return HttpResponse(t1.render(context))
     else:
         #页面进入刷新
         pass
-        return render(request, "film/Cseats.html")
+        filmName = request.session.get('film_detail_name')
+        dateTime = datetime.datetime.strptime(dateTime, "%Y年%m月%d日 %H:%M")  # 转化时间格式
+        filmscences = filmscence.objects.get(dateTime=dateTime, filmName=filmName)
+        price = filmscences.price
+        type = film.objects.get(filmName=filmName).category
+        image = film.objects.get(filmName=filmName).image
+        context = {
+            'filmName': filmName,
+            'dataTime': dateTime,
+            'price': price,
+            'type': type,
+            'image':image
+        }
+        t1 = loader.get_template('film/Cseats.html/')
+        return HttpResponse(t1.render(context))
+
 
 
 # 只有登录才可进入
@@ -325,6 +334,8 @@ def film_searche (request, flag):#更多电影
     }
     t1 = loader.get_template('film/search.html')
     return HttpResponse(t1.render(context))
+
+
 def film_searchtype (request , type):
     film_search = film.objects.filter(category=type);
     if (request.user.is_authenticated == True):
@@ -338,9 +349,12 @@ def film_searchtype (request , type):
     t1 = loader.get_template('film/search.html')
     return HttpResponse(t1.render(context))
 
+
 def autodelete():  #删除过期电影
     now = datetime.datetime.now().date()
     models.film.objects.filter(deleteDate__lt=now).delete()
+
+
 def log_out(request):
     logout(request)
     return redirect('../login')
