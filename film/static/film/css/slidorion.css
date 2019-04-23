@@ -192,12 +192,12 @@ Stylesheet for slidorion
 .mytou{
 	margin:100px 60px;
 	width: 300px;
-	height: 300px;
+	height: 400px;
 	background-color: white;
 	border: 3px dashed #bbbbbb;
 }
 .mytou img{
-	    margin:20px 50px 10px 50px;
+	    margin:20px 50px 0px 50px;
         width: 200px;
         height:200px;
         border-radius: 50%;
@@ -206,9 +206,9 @@ Stylesheet for slidorion
 	text-align: center;
 	font-family: "微软雅黑";
     font-size: 20px;
-	padding: 20px;
+	padding-top:0px;
 	font-weight: bold;
-	border-top: 2px solid gray;
+	/*border-top: 1px dashed #bbbbbb;*/
 }
 .myname-i{
 	clear: both;
@@ -216,7 +216,14 @@ Stylesheet for slidorion
 }
 
 .myname-n{
+	text-align: center;
+	padding-top: 15px;
+	width: 300px;
+	height: 40px;
+	border-bottom: 1px dashed #bbbbbb;
 }
+
+
 .myitem{
     overflow:hidden;
     background-color:#FFCCCC;

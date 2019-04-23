@@ -48,22 +48,22 @@
 	    		    <img src="{% static 'film//img/character.jpg' %}" alt="Norway">
 	    		    <div class="myname">
 	    		     <!-- <span class="myname-i">昵称：</span>-->
-	    		      <span  class="myname-n">{{ user.username }}</span>
-                        <span  class="myname-n">余额 {{ user.first_name }}</span>
+                        <div  class="myname-n">{{ user.username }}</div>
+                        <div  class="myname-n"><span style="color: grey">余额:</span>{{ user.first_name }}</div>
 	    		   </div>
+                    <form id="jiaoqian" action="" method="post">
+              {% csrf_token %}
+                    <div class="myname-n">
+                     <input type="text" class="charge" name="charge" id="charge" placeholder="使用银行卡充值，输入银行卡号：" maxlength="20" >
+                      <input type="submit"  value="充值"  id="sub_btn" >
+                    </div>
+                   </form>
 	    		</div>
+
 	    	</div>
             <div class="pagger-box pagger" id="box"></div>
-            <form action="" method="post">
-        {% csrf_token %}
 
-            <div id="pw">
-                <span id="span2">	</span>
-                <input type="text" class="input" name="charge" id="charge" maxlength="20" >
-                <li class="cha" id="del2"></li>
-            </div>
-            <input type="submit" value="充值"  id="a1" >
-    </form>
+
             <div class="myright">
                 <center><h3>我的订单</h3></center></br>
                 <div id="page">
@@ -106,7 +106,9 @@
 		</address>
 	</div>
 
+
 </body>
+
 </html>
 <script type="text/javascript">
 //Page
@@ -155,4 +157,5 @@
         strE2=nowPage+1+"/"+PagesLen+"页"+" 共"+j+"条"
         document.getElementById("innerpage").innerHTML=strS+strC+strE+strE2
     }
+     {{script}}('{{wrong}}')
 </script>
