@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-
+import xadmin
 urlpatterns = [
     path('film/', include('film.urls')),
     path('admin/', admin.site.urls),
+    path(r'xadmin/',xadmin.site.urls)
 ]

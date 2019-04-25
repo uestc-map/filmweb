@@ -168,7 +168,7 @@ def film_grade(request):
         int_filmScoreUser.append(int(n))#转变成数字，进行比较
     for n in int_filmScoreUser:
         if userid == n:
-            return redirect("/film/home/")
+            return redirect("/film/detail/"+filmName+"")
     int_filmScoreUser.append(userid) #将用户加入打分列表
     str_filmasaoreUser=','.join(str(i) for i in int_filmScoreUser)#转成字符串格式存入数据库
     filmScore = film_c.filmScore
@@ -178,6 +178,7 @@ def film_grade(request):
     film.objects.filter(filmName=filmName).update(filmScore=filmScore)
     film.objects.filter(filmName=filmName).update(evaluateNum=filmNum)
     film.objects.filter(filmName=filmName).update(filmScoreUser=str_filmasaoreUser)
+    print(filmName,'aaaaa')
     return redirect("/film/detail/"+filmName+"")
 
 
@@ -227,7 +228,7 @@ def buy(request, dateTime):
         else:
             int_seatList.sort()
             return HttpResponse(int_seatList)
-            t1 = loader.get_template('film/buy.html/')
+            t1 = loader.get_template('film/Cseats.html/')
             return HttpResponse(t1.render(context))
     else:
         #页面进入刷新
