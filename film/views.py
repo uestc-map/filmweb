@@ -178,7 +178,6 @@ def film_grade(request):
     film.objects.filter(filmName=filmName).update(filmScore=filmScore)
     film.objects.filter(filmName=filmName).update(evaluateNum=filmNum)
     film.objects.filter(filmName=filmName).update(filmScoreUser=str_filmasaoreUser)
-    print(filmName,'aaaaa')
     return redirect("/film/detail/"+filmName+"")
 
 
@@ -189,20 +188,39 @@ def buy(request, dateTime):
         filmName = request.session.get('film_detail_name')
         dateTime = datetime.datetime.strptime(dateTime, "%Y年%m月%d日 %H:%M") #转化时间格式
         filmscences = filmscence.objects.get(dateTime=dateTime, filmName=filmName) #寻找相应电影
+        remain_p=filmscences.remain
         str_seatList = filmscences.seat
         seatList = str_seatList.split(',')
         int_seatList = []
         for n in seatList:
             int_seatList.append(int(n))
         if seat:
-            str_seatList = str_seatList+seat
-            filmscence.objects.filter(filmName__exact=filmName, dateTime=dateTime).update(seat=str_seatList)
-            order_insert = order()
-            order_insert.filmName = filmName
+            str_seatList = str_seatList + seat
             seat = seat[1:]
-            order_insert.seat = seat  # 传回的座位信息用‘,’隔开
-            order_insert.dateTime = dateTime
-            order_insert.userName_id = request.user.username
+            seat = seat.split(',')
+            num = 0
+            int_seat=[]
+            for n in seat:
+                num = num + 1
+                int_seat.append(int(n))
+            money = num * filmscences.price
+            user_buy = UserProfile.objects.get(pk=request.user.id)
+            user_money = user_buy.money - money
+            if user_money<=0:
+                return HttpResponse(0)
+            UserProfile.objects.filter(pk=request.user.id).update(money=user_money)
+
+            remains=filmscences.remain-1
+            if filmscence.objects.filter(dateTime=dateTime,remain=remain_p).update(seat=str_seatList)==False:
+                return HttpResponse(2)
+#进程加锁，成功解决并发问题
+            filmscence.objects.filter(dateTime=dateTime).update(remain=remains)
+
+            order_insert = order()
+            order_insert.filmName = film.objects.get(pk=filmName)
+            order_insert.seat = int_seat  # 传回的座位信息用‘,’隔开
+            order_insert.dateTime = filmscences
+            order_insert.userName_id = request.user.id
             while True:
                 orderId_test = random.randint(0, 999999999)  # 随机生成订单号并检测是否重复
                 try:
@@ -215,21 +233,13 @@ def buy(request, dateTime):
             orderId_test=orderId_test
             order_insert.orderId = orderId_test
             order_insert.save()
-
-            seat = seat.split(',')
-            num= 0
-            for n in seat:
-                num=num+1
-            money=num*filmscences.price
             filmt=film.objects.get(pk=filmName)
             money=money+filmt.total
             film.objects.filter(pk=filmName).update(total=money)
-            return redirect('film/detail')  # 买票成功，返回主页
+            return HttpResponse(1)  # 买票成功，返回主页
         else:
             int_seatList.sort()
             return HttpResponse(int_seatList)
-            t1 = loader.get_template('film/Cseats.html/')
-            return HttpResponse(t1.render(context))
     else:
         #页面进入刷新
         pass
@@ -246,55 +256,10 @@ def buy(request, dateTime):
             'type': type,
             'image':image
         }
-        t1 = loader.get_template('film/Cseats.html/')
+        t1 = loader.get_template('film/Cseats.html')
         return HttpResponse(t1.render(context))
 
 
-
-# 只有登录才可进入
-# @login_required
-# def buy(request):#电影购票页面
-#     film_buy_name=request.session.get('film_buy_name')   #从session中获得电影名与场次信息
-#     dateTime= request.session.get('film_buy_dateTime')
-#     filmscences = filmscence.objects.filter(filmName__exact=film_buy_name, dateTime=dateTime)
-#     seatList = filmscences.seat
-#     seatList = seatList.spilt(',')
-#     int_seatList = []
-#     for n in seatList:
-#         int_seatList.append(int(n))
-#     int_seatList.sorted()
-#     seat = request.POST.get("seat")
-#     if not seat:  #页面初始化，而非返回买票信息
-#         t =loader.get_template('film/buy.html')
-#         film_buy_detail = film.objects.filter(filmeName__exact=film_buy_name)
-#         context = {
-#             'filmscences':filmscences,   #电影场次信息
-#             'seatList':int_seatList, #已售座位列表,格式为数组,已排序
-#             'film_buy_detail':film_buy_detail  #返回电影详细信息
-#         }
-#         return HttpResponse(t.render(context))
-#     else:   #页面返回的是买票信息
-#         order_insert = order()
-#         order_insert.filmName = film_buy_name
-#         order_insert.seat = seat #传回的座位信息用‘,’隔开
-#         order_insert.datetime = datetime
-#         order_insert.userId_id = User.objects.get(userId="userId")
-#         while True:
-#             orderId_test = random(0, 1000000000)   #随机生成订单号并检测是否重复
-#             try:
-#                 orderId_exist = order.objects.get(orderId=orderId_test)
-#             except Exception as e:
-#                 orderId_exist = None
-#             if not orderId_exist:
-#                 break
-#         order_insert.orderId = orderId_test
-#         order_insert.save()
-#         seat.spilt(',')
-#         for n in seat:
-#             int_seatList.append(int(n))
-#         str_seatList = ','.join(str(i) for i in int_seatList)  #写进场次信息表
-#         filmscence.objects.filter(filmName__exact=film_buy_name, dateTime=dateTime).update(seat=str_seatList)
-#         return redirect('film/home')  #买票成功，返回主页
 def film_search(request): #电影搜索
     now = datetime.datetime.now().date()
     if request.method == "POST":   #根据搜索项搜索表单

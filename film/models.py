@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
+from django.http import HttpResponse
 
 class UserProfile(AbstractUser):
     money = models.IntegerField(max_length=20, default=0,blank=False, verbose_name='余额')
@@ -29,10 +30,22 @@ class filmscence(models.Model):
     seat = models.CharField(max_length=300,default='0',verbose_name='已售座位列表')
     filmName = models.ForeignKey('film', on_delete=models.CASCADE,verbose_name='电影名')
     price= models.IntegerField(max_length=20,  blank=False,default=30,verbose_name='票价')
+    remain=models.IntegerField(max_length=20,default='99',verbose_name='剩余座位')
     class Meta:
         ordering=['dateTime']
         verbose_name = "场次"
         verbose_name_plural = verbose_name
+
+    # def post(self,requst):
+    #     dateTime=requst.Get.get('dateTime')
+    #     remain_p=int(requst.Get.get('remain_p'))
+    #     filmsc=filmscence.objects.get(pk=dateTime)
+    #     remain_origin=filmsc.remain
+    #     if remain_origin < remain_p:
+    #         return HttpResponse(content="商品库存不足", status=400)
+
+
+
 
 
 class film(models.Model):

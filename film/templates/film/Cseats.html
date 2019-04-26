@@ -457,7 +457,22 @@
                 type:'POST',
                 url:"",
                 data:{"seatlist":total},
-                success:window.location.href="../my/",
+                success(result){
+                    if (result=='0') {
+                        alert('余额不足，请前往个人页面充值。')
+                        window.location.href="../my/"
+                    }
+                    else if(result=='1'){
+                        alert('购票成功。')
+                        window.location.href="../my/"
+                    }
+                    else{
+                        alert('购票失败，座位已被占用，请重试。')
+                        window.location.href="../detail/"+filmName+''
+                    }
+
+                }
+                {#success:,#}
 
         })
         })
