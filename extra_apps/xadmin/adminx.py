@@ -9,7 +9,9 @@ from django.utils.translation import ugettext_lazy as _, ugettext
 class UserSettingsAdmin(object):
     model_icon = 'fa fa-cog'
     hidden_menu = True
-
+    list_display = ['userName', 'userEmail', 'is_staff', 'money']
+    search_fields = ['userName', 'userEmail']
+    list_filter = ['is_staff']
 xadmin.site.register(UserSettings, UserSettingsAdmin)
 
 class LogAdmin(object):
@@ -24,7 +26,6 @@ class LogAdmin(object):
     link.short_description = ""
     link.allow_tags = True
     link.is_column = False
-
     list_display = ('action_time', 'user', 'ip_addr', '__str__', 'link')
     list_filter = ['user', 'action_time']
     search_fields = ['ip_addr', 'message']

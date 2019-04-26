@@ -1,5 +1,5 @@
 from __future__ import unicode_literals
-from .models import order, film, filmscence
+from .models import order, film, filmscence,UserProfile
 from django.shortcuts import render
 import random
 import re
@@ -30,14 +30,14 @@ def register_User(request):
             return render(request, 'film/register.html', {'errmsg': '邮箱不符合规范'})
 
         try:
-            user_email = User.objects.get(email__exact=userEmail)
+            user_email = UserProfile.objects.get(email__exact=userEmail)
         except Exception as e:
             user_email = None
         if user_email:
             return render(request, 'film/register.html',{'errmsg':'邮箱已被使用'})
 
         try:
-            user_name=User.objects.get(username__exact=userName)
+            user_name=UserProfile.objects.get(username__exact=userName)
         except Exception as e:
             user_name=None
         if user_name:
@@ -48,7 +48,7 @@ def register_User(request):
         if not (re.match(r'([0-9]+(\W+|\_+|[A-Za-z]+))+|([A-Za-z]+(\W+|\_+|\d+))+|((\W+|\_+)+(\d+|\w+))+', password)) or (pass_len<6):
             return render(request, 'film/register.html', {'errmsg': '密码长度小于6位！'})
 
-        user = User.objects.create_user(username=userName,password=password,email=userEmail,first_name=0)
+        user = UserProfile.objects.create_user(username=userName,password=password,email=userEmail,first_name=0)
         user.save()
         # user_profile = UserProfile(user=user)
         # user_profile.save()
@@ -202,7 +202,7 @@ def buy(request, dateTime):
             seat = seat[1:]
             order_insert.seat = seat  # 传回的座位信息用‘,’隔开
             order_insert.dateTime = dateTime
-            order_insert.userId_id = request.user.id
+            order_insert.userName_id = request.user.username
             while True:
                 orderId_test = random.randint(0, 999999999)  # 随机生成订单号并检测是否重复
                 try:
@@ -370,14 +370,13 @@ def my(request):
     else:
         charge = request.POST.get('charge')
         userid = request.user.id
-        orders = order.objects.filter(userId_id=userid)
-        userm = User.objects.get(pk=userid)
+        orders = order.objects.filter(userName_id=userid)
+        userm = UserProfile.objects.get(pk=userid)
         if charge:
             if len(str(charge))==10:
-
-                money=userm.first_name
+                money=userm.money
                 money=int(money)+100
-                User.objects.filter(pk=userid).update(first_name=money)
+                UserProfile.objects.filter(pk=userid).update(money=money)
                 context = {'orders': orders,  # 用户是否登录
                            'errmsg': '成功充值100元',
                            'user':userm

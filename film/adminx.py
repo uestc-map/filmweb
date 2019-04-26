@@ -1,8 +1,8 @@
 import xadmin
-from .models import film,filmscence,order
+from .models import film,filmscence,order,UserProfile
 from xadmin import  views
 class filmAdmin(object):
-    list_display = ['filmName', 'filmDName', 'filmAName', 'filmScore', 'filmScore','showDate','deleteDate','total']
+    list_display = ['filmName', 'filmDName', 'filmAName', 'filmScore','showDate','deleteDate','total']
     search_fields = ['filmName', 'filmDName', 'showDate', 'deleteDate']
     list_filter = ['filmName', 'filmDName','showDate','deleteDate']
     show_detail_fields = ['filmName']
@@ -16,8 +16,8 @@ class filmscenceAdmin(object):
 xadmin.site.register(filmscence, filmscenceAdmin)
 
 class orderAdmin(object):
-    list_display = ['orderId', 'filmName', 'seat','dateTime','userId']
-    search_fields = ['orderId', 'filmName','dateTime','userId']
+    list_display = ['orderId', 'filmName', 'seat','dateTime','userName']
+    search_fields = ['orderId', 'filmName','dateTime','userName']
     list_filter = ['dateTime', 'filmName']
 xadmin.site.register(order, orderAdmin)
 
