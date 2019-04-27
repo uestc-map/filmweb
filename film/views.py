@@ -220,13 +220,14 @@ def buy(request, dateTime):
             for n in int_seat:
                 if n in int_seatList_r:
                     return HttpResponse(2)
-            filmscence.objects.filter(dateTime=dateTime, remain=remain_p).update(seat=str_seatList)
+            filmscence.objects.filter(dateTime=dateTime).update(seat=str_seatList)
             remains=films_r.remain-1
             # if filmscence.objects.filter(dateTime=dateTime,remain=remain_p).update(seat=str_seatList)==False:
             #     return HttpResponse(2)
 #进程加锁，成功解决并发问题
             filmscence.objects.filter(dateTime=dateTime).update(remain=remains)
-
+            film_m=films_r.money+money
+            filmscence.objects.filter(dateTime=dateTime).update(money=film_m)
             order_insert = order()
             order_insert.order_m=money
             print(order.order_m,'asasas')

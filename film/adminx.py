@@ -10,17 +10,24 @@ class filmAdmin(object):
     readonly_fields = ('evaluateNum','filmScoreUser')
     show_detail_fields = ['filmName']
     exclude=['filmSum','evaluateNum']
+    list_editable=['showDate','deleteDate']
 
 xadmin.site.register(film, filmAdmin)
 
+
+
 class filmscenceAdmin(object):
     model_icon='fa fa-calendar'
-    list_display=['dateTime','filmName','price','remain']
+    list_display=['dateTime','filmName','price','money']
     search_fields=['dateTime','filmName']
     list_filter = ['dateTime', 'filmName']
     show_detail_fields = ['dateTime']
     readonly_fields=['seat']
+    list_editable = ['filmName','price']
     relfield_style = 'fa-ajax'
+    # data_charts = {
+    #     "场次": {'title': u"场次", "x-field": "dateTime", "y-field": ("money"),},
+    # }
 xadmin.site.register(filmscence, filmscenceAdmin)
 
 

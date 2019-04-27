@@ -36,6 +36,7 @@ class filmscence(models.Model):
     filmName = models.ForeignKey('film', on_delete=models.CASCADE,verbose_name='电影名')
     price= models.IntegerField(max_length=20,  blank=False,default=30,verbose_name='票价')
     remain=models.IntegerField(max_length=20,default='99',verbose_name='剩余座位')
+    money=models.IntegerField(max_length=20,default='0',verbose_name='场次票房')
     class Meta:
         ordering=['-dateTime']
         verbose_name = "场次"
@@ -59,4 +60,3 @@ class film(models.Model):
         ordering=['-filmScore','showDate']
         verbose_name = "电影"
         verbose_name_plural = verbose_name
-
