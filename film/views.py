@@ -210,13 +210,26 @@ def buy(request, dateTime):
                 return HttpResponse(0)
             UserProfile.objects.filter(pk=request.user.id).update(money=user_money)
 
-            remains=filmscences.remain-1
-            if filmscence.objects.filter(dateTime=dateTime,remain=remain_p).update(seat=str_seatList)==False:
-                return HttpResponse(2)
+
+            films_r=filmscence.objects.get(pk=dateTime)
+            str_seatList_r = films_r.seat
+            seatList_r = str_seatList_r.split(',')
+            int_seatList_r = []
+            for n in seatList_r:
+                int_seatList_r.append(int(n))
+            for n in int_seat:
+                if n in int_seatList_r:
+                    return HttpResponse(2)
+            filmscence.objects.filter(dateTime=dateTime, remain=remain_p).update(seat=str_seatList)
+            remains=films_r.remain-1
+            # if filmscence.objects.filter(dateTime=dateTime,remain=remain_p).update(seat=str_seatList)==False:
+            #     return HttpResponse(2)
 #进程加锁，成功解决并发问题
             filmscence.objects.filter(dateTime=dateTime).update(remain=remains)
 
             order_insert = order()
+            order_insert.order_m=money
+            print(order.order_m,'asasas')
             order_insert.filmName = film.objects.get(pk=filmName)
             order_insert.seat = int_seat  # 传回的座位信息用‘,’隔开
             order_insert.dateTime = filmscences

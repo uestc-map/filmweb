@@ -1,24 +1,35 @@
 import xadmin
-from .models import film,filmscence,order,UserProfile
+from .models import film,filmscence,order
 from xadmin import  views
+
 class filmAdmin(object):
-    list_display = ['filmName', 'filmDName', 'filmAName', 'filmScore','showDate','deleteDate','total']
-    search_fields = ['filmName', 'filmDName', 'showDate', 'deleteDate']
-    list_filter = ['filmName', 'filmDName','showDate','deleteDate']
+    model_icon = 'fa fa-film'
+    list_display = ['filmName', 'filmDName', 'filmAName','category', 'filmScore','showDate','deleteDate','total']
+    search_fields = ['filmName', 'filmDName', 'showDate', 'category','deleteDate']
+    list_filter = ['filmName', 'filmDName','showDate','deleteDate','category']
+    readonly_fields = ('evaluateNum','filmScoreUser')
     show_detail_fields = ['filmName']
+    exclude=['filmSum','evaluateNum']
+
 xadmin.site.register(film, filmAdmin)
 
 class filmscenceAdmin(object):
-    list_display=['dateTime','filmName','price']
+    model_icon='fa fa-calendar'
+    list_display=['dateTime','filmName','price','remain']
     search_fields=['dateTime','filmName']
     list_filter = ['dateTime', 'filmName']
     show_detail_fields = ['dateTime']
+    readonly_fields=['seat']
+    relfield_style = 'fa-ajax'
 xadmin.site.register(filmscence, filmscenceAdmin)
 
+
 class orderAdmin(object):
-    list_display = ['orderId', 'filmName', 'seat','dateTime','userName']
+    model_icon = 'fa fa-money'
+    list_display = ['orderId', 'filmName', 'seat','dateTime','userName','order_time','order_m']
     search_fields = ['orderId', 'filmName','dateTime','userName']
     list_filter = ['dateTime', 'filmName']
+    readonly_fields=['orderId','filmName','seat','dateTime','userName','order_m','order_time']
 xadmin.site.register(order, orderAdmin)
 
 class BaseSettings(object):

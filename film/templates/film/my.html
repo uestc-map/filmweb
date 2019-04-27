@@ -76,13 +76,22 @@
                         <label for="heading{{ forloop.counter  }}" class="panel">{{ each.filmName.filmName }} 订单编号 {{ each.orderId }}</label>
                         <input type="text" id="heading{{ forloop.counter  }}" name="Collapsible"  >
 
+                        <a href="../detail/{{ each.filmName.filmName }}"><img src="../media/{{ each.filmName.image}}"  />
                              <div class="inf_cont">
                                  <span class="inf_type">时间场次:</span>
                                  <span class="inf_right">{{ each.dateTime.dateTime }}</span>
                              </div>
                              <div class="inf_cont">
                                  <span class="inf_type">座位:</span>
-                                 <span class="inf_right">{{ each.seat }}</span>
+                                     <span class="inf_right">{{ each.seat }}</span>
+                             </div>
+                        <div class="inf_cont">
+                                 <span class="inf_type">实付金额:</span>
+                                 <span class="inf_right">{{ each.order_m }}</span>
+                             </div>
+                        <div class="inf_cont">
+                                 <span class="inf_type">购票时间:</span>
+                                 <span class="inf_right">{{ each.order_time }}</span>
                              </div>
                         </div>
                          </div>
