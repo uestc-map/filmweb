@@ -1,5 +1,5 @@
 import xadmin
-from .models import film,filmscence,order
+from .models import film,filmscence,order,daily
 from xadmin import  views
 
 class filmAdmin(object):
@@ -14,7 +14,14 @@ class filmAdmin(object):
 
 xadmin.site.register(film, filmAdmin)
 
-
+class dailyAdmin(object):
+    list_display = ['date', 'money']
+    search_fields = ['date', 'money']
+    list_filter = ['date', 'money']
+    data_charts = {
+        "每日票房": {'title': u"票房", "x-field": "date", "y-field": ("money"),},
+    }
+xadmin.site.register(daily, dailyAdmin)
 
 class filmscenceAdmin(object):
     model_icon='fa fa-calendar'
@@ -25,9 +32,7 @@ class filmscenceAdmin(object):
     readonly_fields=['seat']
     list_editable = ['filmName','price']
     relfield_style = 'fa-ajax'
-    # data_charts = {
-    #     "场次": {'title': u"场次", "x-field": "dateTime", "y-field": ("money"),},
-    # }
+
 xadmin.site.register(filmscence, filmscenceAdmin)
 
 

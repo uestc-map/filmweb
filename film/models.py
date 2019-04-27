@@ -42,6 +42,13 @@ class filmscence(models.Model):
         verbose_name = "场次"
         verbose_name_plural = verbose_name
 
+class daily(models.Model):
+    date=models.DateField(primary_key=True,default='1999-01-01',verbose_name='日期')
+    money = models.IntegerField(max_length=20, default='0', verbose_name='票房')
+    class Meta:
+        ordering=['-date']
+        verbose_name = "每日票房"
+        verbose_name_plural = verbose_name
 
 class film(models.Model):
     filmName = models.CharField(max_length=20, primary_key=True, blank= False,verbose_name='电影名')

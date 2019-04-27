@@ -1,5 +1,5 @@
 from __future__ import unicode_literals
-from .models import order, film, filmscence,UserProfile
+from .models import order, film, filmscence,UserProfile,daily
 from django.shortcuts import render
 import random
 import re
@@ -187,8 +187,9 @@ def buy(request, dateTime):
         seat = request.POST.get("seatlist")
         filmName = request.session.get('film_detail_name')
         dateTime = datetime.datetime.strptime(dateTime, "%Y年%m月%d日 %H:%M") #转化时间格式
+        date_ex = str(dateTime)[0:10]
+        date_ex=datetime.datetime.strptime(date_ex,"%Y-%m-%d")
         filmscences = filmscence.objects.get(dateTime=dateTime, filmName=filmName) #寻找相应电影
-        remain_p=filmscences.remain
         str_seatList = filmscences.seat
         seatList = str_seatList.split(',')
         int_seatList = []
@@ -209,8 +210,6 @@ def buy(request, dateTime):
             if user_money<=0:
                 return HttpResponse(0)
             UserProfile.objects.filter(pk=request.user.id).update(money=user_money)
-
-
             films_r=filmscence.objects.get(pk=dateTime)
             str_seatList_r = films_r.seat
             seatList_r = str_seatList_r.split(',')
@@ -222,12 +221,21 @@ def buy(request, dateTime):
                     return HttpResponse(2)
             filmscence.objects.filter(dateTime=dateTime).update(seat=str_seatList)
             remains=films_r.remain-1
-            # if filmscence.objects.filter(dateTime=dateTime,remain=remain_p).update(seat=str_seatList)==False:
-            #     return HttpResponse(2)
 #进程加锁，成功解决并发问题
             filmscence.objects.filter(dateTime=dateTime).update(remain=remains)
             film_m=films_r.money+money
             filmscence.objects.filter(dateTime=dateTime).update(money=film_m)
+
+            try:
+                date_m = daily.objects.get(date=date_ex)
+                date_money = date_m.money + money
+                daily.objects.filter(date=date_ex).update(money=date_money)
+            except:
+                date_m=daily()
+                date_m.date=date_ex
+                date_m.money=money
+                date_m.save()
+
             order_insert = order()
             order_insert.order_m=money
             print(order.order_m,'asasas')
