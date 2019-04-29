@@ -60,7 +60,7 @@ class film(models.Model):
     evaluateNum = models.IntegerField(max_length=10,default=0,verbose_name='评分人次')
     showDate = models.DateField(blank=False,default='1999-01-01',verbose_name='上映时间')
     deleteDate = models.DateField(blank=False,default='1999-01-01',verbose_name='下线时间')
-    filmSum = models.CharField(max_length=1000,default='0',verbose_name='总评分')
+    # filmSum = models.CharField(max_length=1000,default='0',verbose_name='总评分')
     filmScoreUser=models.CharField(max_length=1000,default='0',verbose_name='已评分用户id')#打过分的用户id
     total=models.IntegerField(max_length=20,default=0,verbose_name='票房')  #电影票房
     class Meta:
