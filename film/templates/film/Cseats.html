@@ -400,7 +400,7 @@
 				<div class="row movie-messige">
 					<div class="col-xs-12">
 
-							<p>影院：<span>XX影院</span></p>
+							<p>影院：<span>肥宅影院</span></p>
 							<p>场次：<span>{{ dataTime}}</span></p>
 							<p>票价：<span>￥</span><span class="unit-price">{{ price }}</span><span>/张</span></p>
 
@@ -468,25 +468,15 @@
                     }
                     else{
                         alert('购票失败，座位已被占用，请重试。')
-                        window.location.href="../detail/"+filmName+''
-                    {#    这里并不能成功跳转#}
+                        window.location.href="/film/detail/"+result+""
                     }
-
                 }
-                {#success:,#}
-
         })
         })
         //向后台提交选座信息，几排几座
         function  getstatus(seat){
-
         }
-
-
          //根据数据库内容 ，改变座位可选状态视图  seat-empty-->seat-sold
-
-
-
 		// 添加选座
 		$(".seat-row").on("click",".seat-empty",function(){
 
@@ -539,7 +529,6 @@
                 url:"",
                 dateType:"json",
                 success(result){
-                    alert(result)
                     for(var i=1;i<result.length;i=i+2){
                         var row,col;
                         row = result[i];

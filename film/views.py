@@ -143,7 +143,6 @@ def buy(request, dateTime):
         for n in seatList:
             int_seatList.append(int(n))
         if seat:
-            str_seatList = str_seatList + seat
             seat = seat[1:]
             seat = seat.split(',')
             num = 0
@@ -154,9 +153,8 @@ def buy(request, dateTime):
             money = num * filmscences.price
             user_buy = UserProfile.objects.get(pk=request.user.id)
             user_money = user_buy.money - money
-            if user_money<=0:
+            if user_money<0:
                 return HttpResponse(0)
-            UserProfile.objects.filter(pk=request.user.id).update(money=user_money)
             films_r=filmscence.objects.get(pk=dateTime)
             str_seatList_r = films_r.seat
             seatList_r = str_seatList_r.split(',')
@@ -165,14 +163,15 @@ def buy(request, dateTime):
                 int_seatList_r.append(int(n))
             for n in int_seat:
                 if n in int_seatList_r:
-                    return HttpResponse(2)
-            filmscence.objects.filter(dateTime=dateTime).update(seat=str_seatList)
+                    return HttpResponse(filmName)
+            str_seatList_r = str_seatList_r + seat
+            UserProfile.objects.filter(pk=request.user.id).update(money=user_money)
+            filmscence.objects.filter(dateTime=dateTime).update(seat=str_seatList_r)
             remains=films_r.remain-1
 #进程加锁，成功解决并发问题
             filmscence.objects.filter(dateTime=dateTime).update(remain=remains)
             film_m=films_r.money+money
             filmscence.objects.filter(dateTime=dateTime).update(money=film_m)
-
             try:
                 date_m = daily.objects.get(date=date_ex)
                 date_money = date_m.money + money
@@ -182,7 +181,6 @@ def buy(request, dateTime):
                 date_m.date=date_ex
                 date_m.money=money
                 date_m.save()
-
             order_insert = order()
             order_insert.order_m=money
             order_insert.filmName = film.objects.get(pk=filmName)

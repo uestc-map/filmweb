@@ -29,7 +29,7 @@ class filmscenceAdmin(object):
     search_fields=['dateTime','filmName']
     list_filter = ['dateTime', 'filmName']
     show_detail_fields = ['dateTime']
-    readonly_fields=['seat']
+    # readonly_fields=['seat']
     list_editable = ['filmName','price']
     relfield_style = 'fa-ajax'
 
