@@ -49,9 +49,9 @@
 	    		    <div class="myname">
 	    		     <!-- <span class="myname-i">昵称：</span>-->
                         <div  class="myname-n">{{ user.username }}</div>
-                        <div  class="myname-n"><span style="color: grey">余额:</span>{{ user.money }}</div>
+                        <div  class="myname-n" ><span style="color: grey">余额:</span><span id="account-balacnce">{{ user.money }}</span></div>
 	    		   </div>
-                    <form id="jiaoqian" action="" method="post">
+                    <form id="form-output"  method="post">
               {% csrf_token %}
                     <div class="myname-n">
                      <input type="text" class="charge" name="charge" id="charge" placeholder="使用银行卡充值，输入银行卡号：" maxlength="20" >
@@ -119,6 +119,27 @@
 </body>
 
 </html>
+<script>
+    $("#form-output").submit(function(){
+        card = $("#charge").val() //获取input中的银行卡信息
+        if (length(str) == 10) //银行卡为10位
+            alert("成功")
+            $.ajax({
+                type:'POST',
+                data:{"card":card},
+                url:'',
+                success:function (result){
+                    alert('传输成功') // 成功后注释
+                    $("#account-balacnce").text = result //刷新id位account-balacnce的span处的余额
+                },
+                error:function(){
+                    alert("传输失败") //成功后注释
+                }
+            })
+        else
+            alert("错误") //银行卡不为10位
+    })
+</script>
 <script type="text/javascript">
 //Page
     var obj,j;

@@ -295,28 +295,32 @@ def my(request):
     if request.method == "get":
         return render(request, 'film/my.html')
     else:
-        charge = request.POST.get('charge')
+        card = request.POST.get('card')   # 获取目前银行卡号
         userid = request.user.id
         orders = order.objects.filter(userName_id=userid)
         userm = UserProfile.objects.get(pk=userid)
-        if charge:
-            if len(str(charge))==10:
-                money=userm.money
-                money=int(money)+100
-                UserProfile.objects.filter(pk=userid).update(money=money)
-                t1 = loader.get_template('film/my.html')
-                context = {'orders': orders,  # 用户是否登录
-                           'errmsg': '成功充值100元',
-                           'user':userm
-                           }
-                return HttpResponse(t1.render(context))
-            else:
-                t1 = loader.get_template('film/my.html')
-                context = {'orders': orders, # 用户是否登录
-                           'errmsg': '充值卡号错误',
-                           'user': userm
-                           }
-                return HttpResponse(t1.render(context))
+        if card:
+            money = userm.money
+            money = int(money) + 100
+            UserProfile.objects.filter(pk=userid).update(money=money)
+            return HttpResponse(money)  # 返回当前余额
+            # if len(str(charge)) == 10:
+            #     money=userm.money
+            #     money=int(money)+100
+            #     UserProfile.objects.filter(pk=userid).update(money=money)
+            #     t1 = loader.get_template('film/my.html')
+            #     context = {'orders': orders,  # 用户是否登录
+            #                'errmsg': '成功充值100元',
+            #                'user':userm
+            #                }
+            #     return HttpResponse(t1.render(context))
+            # else:
+            #     t1 = loader.get_template('film/my.html')
+            #     context = {'orders': orders, # 用户是否登录
+            #                'errmsg': '充值卡号错误',
+            #                'user': userm
+            #                }
+            #     return HttpResponse(t1.render(context))
         else:
             t1 = loader.get_template('film/my.html')
             context = {'orders': orders , # 用户是否登录
