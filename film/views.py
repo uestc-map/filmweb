@@ -164,7 +164,8 @@ def buy(request, dateTime):
             for n in int_seat:
                 if n in int_seatList_r:
                     return HttpResponse(filmName)
-            str_seatList_r = str_seatList_r + seat
+            seatList_r = seatList_r + seat
+            str_seatList_r = ','.join(str(i) for i in seatList_r)
             UserProfile.objects.filter(pk=request.user.id).update(money=user_money)
             filmscence.objects.filter(dateTime=dateTime).update(seat=str_seatList_r)
             remains=films_r.remain-1
@@ -205,7 +206,6 @@ def buy(request, dateTime):
             return HttpResponse(1)  # 买票成功，返回主页
         else:
             int_seatList.sort()
-            print(int_seatList)
             return HttpResponse(int_seatList)
     else:
         #页面进入刷新
@@ -304,17 +304,19 @@ def my(request):
                 money=userm.money
                 money=int(money)+100
                 UserProfile.objects.filter(pk=userid).update(money=money)
+                t1 = loader.get_template('film/my.html')
                 context = {'orders': orders,  # 用户是否登录
                            'errmsg': '成功充值100元',
                            'user':userm
                            }
-                return render(request, 'film/my.html',context)
+                return HttpResponse(t1.render(context))
             else:
+                t1 = loader.get_template('film/my.html')
                 context = {'orders': orders, # 用户是否登录
                            'errmsg': '充值卡号错误',
                            'user': userm
                            }
-                return render(request, 'film/my.html', context)
+                return HttpResponse(t1.render(context))
         else:
             t1 = loader.get_template('film/my.html')
             context = {'orders': orders , # 用户是否登录

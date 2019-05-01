@@ -9,7 +9,7 @@ class filmAdmin(object):
     list_filter = ['filmName', 'filmDName','showDate','deleteDate','category']
     readonly_fields = ('evaluateNum','filmScoreUser')
     show_detail_fields = ['filmName']
-    exclude=['filmSum','evaluateNum']
+    exclude=['evaluateNum']
     list_editable=['showDate','deleteDate']
 
 xadmin.site.register(film, filmAdmin)
@@ -26,10 +26,10 @@ xadmin.site.register(daily, dailyAdmin)
 class filmscenceAdmin(object):
     model_icon='fa fa-calendar'
     list_display=['dateTime','filmName','price','money']
-    search_fields=['dateTime','filmName']
-    list_filter = ['dateTime', 'filmName']
+    search_fields=['dateTime','filmName__filmName']
+    list_filter = ['dateTime', 'filmName__filmName']
     show_detail_fields = ['dateTime']
-    # readonly_fields=['seat']
+    readonly_fields=['seat']
     list_editable = ['filmName','price']
     relfield_style = 'fa-ajax'
 
@@ -39,8 +39,8 @@ xadmin.site.register(filmscence, filmscenceAdmin)
 class orderAdmin(object):
     model_icon = 'fa fa-money'
     list_display = ['orderId', 'filmName', 'seat','dateTime','userName','order_time','order_m']
-    search_fields = ['orderId', 'filmName','dateTime','userName']
-    list_filter = ['dateTime', 'filmName']
+    search_fields = ['orderId', 'filmName__filmName','dateTime__dateTime','userName__username']
+    list_filter = ['dateTime', 'filmName__filmName']
     readonly_fields=['orderId','filmName','seat','dateTime','userName','order_m','order_time']
 xadmin.site.register(order, orderAdmin)
 

@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 # Create your models here.
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
-from django.http import HttpResponse
 
 class UserProfile(AbstractUser):
     money = models.IntegerField(max_length=20, default=0,blank=False, verbose_name='余额')
@@ -24,9 +23,9 @@ class order(models.Model):
     userName = models.ForeignKey('UserProfile', on_delete=models.CASCADE,verbose_name="用户名",default="admin")
     filmName = models.ForeignKey('film', on_delete=models.CASCADE,verbose_name="电影名")
     order_m=models.IntegerField(max_length=20,default='0',verbose_name='实付金额')
-    order_time=models.TimeField(auto_now_add=True,verbose_name='购票时间')
+    order_time=models.DateTimeField(auto_now_add=True,verbose_name='购票时间')
     class Meta:
-        ordering=['userName','-dateTime','-order_time']
+        ordering=['userName','dateTime','-order_time']
         verbose_name="订单"
         verbose_name_plural = verbose_name
 
