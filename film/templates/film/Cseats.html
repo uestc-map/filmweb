@@ -81,20 +81,29 @@
 			padding-top: 20px;
 		}
 		.side .media-body{
-			padding-top: 8px;
+			padding-top:38px;
+              border-bottom:1px dashed #ccc;
 		}
 		.media-body h4{
 			font-weight: bold;
 		}
+        .side .media-object{
+            {#display: inline-block;#}
+            height: 240px;
+            width: 185px;
+             border-bottom:1px dashed #ccc;
+        }
 		.side .movie-messige{
-			padding-top: 15px;
-			border-bottom: 1px dashed #ccc;
+			padding-top: 8px;
+			{#border-bottom: 1px dashed #ccc;#}
 		}
 		/*已选座位*/
 		.has-choice{
+
 			padding-top: 15px;
 		}
 		.seat-text{
+
 			line-height: 30px;
 		}
 		.ticket-container{
@@ -155,7 +164,7 @@
 			<li> <a href="myinf.html">个性推荐</a></li>-->
 
 		</ul>
-    <a href="../logout/" id="out">退出</a>
+    <a href="../logout/" id="out">out</a>
 	<a href="../my/" id="my"></a>
 
 
@@ -387,25 +396,31 @@
 						<div class="media">
 							<div class="media-left">
 								<a href="#">
-									<img class="media-object" src="../media/{{image }}" alt="{{ filmName }}">
+									<img class="media-object" src="../media/{{image }}" alt="{{ filmName }}"width="185" height="240">
 								</a>
 							</div>
 							<div class="media-body">
 								<h4 class="media-heading">{{ filmName }}</h4>
 								<p>类型：<span>{{ type }}</span></p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row movie-messige">
-					<div class="col-xs-12">
+{#							</div>#}
+{#                           <div class="movie-messige">#}
 
 							<p>影院：<span>肥宅影院</span></p>
 							<p>场次：<span>{{ dataTime}}</span></p>
 							<p>票价：<span>￥</span><span class="unit-price">{{ price }}</span><span>/张</span></p>
-
+                           </div>
+						</div>
 					</div>
 				</div>
+{#				<div class="row movie-messige">#}
+{#					<div class="col-xs-12">#}
+{##}
+{#							<p>影院：<span>肥宅影院</span></p>#}
+{#							<p>场次：<span>{{ dataTime}}</span></p>#}
+{#							<p>票价：<span>￥</span><span class="unit-price">{{ price }}</span><span>/张</span></p>#}
+{##}
+{#					</div>#}
+{#				</div>#}
 				<!-- 选座 -->
 				<div class="row choice-ticket">
 					<div class="col-xs-12">

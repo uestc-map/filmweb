@@ -73,10 +73,10 @@
                         <li>
                      <div class="Accordion">
                     <div class="Accordion-box">
-                        <label for="heading{{ forloop.counter  }}" class="panel">{{ each.filmName.filmName }} 订单编号 {{ each.orderId }}</label>
+                        <label for="heading{{ forloop.counter  }}" class="panel"><a href="../detail/{{ each.filmName.filmName}}">{{ each.filmName.filmName }}</a>&nbsp;&nbsp;订单编号 {{ each.orderId }}</label>
                         <input type="text" id="heading{{ forloop.counter  }}" name="Collapsible"  >
 
-                        <a href="../detail/{{ each.filmName.filmName }}"><img src="../media/{{ each.filmName.image}}"  />
+{#                        <a href="../detail/{{ each.filmName.filmName }}"><img src="../media/{{ each.filmName.image}}"  />#}
                              <div class="inf_cont">
                                  <span class="inf_type">时间场次:</span>
                                  <span class="inf_right">{{ each.dateTime.dateTime }}</span>
@@ -145,7 +145,7 @@
     var obj,j;
     var page=0;
     var nowPage=0; //当前页
-    var listNum=4; //每页显示条数
+    var listNum=3; //每页显示条数
     var PagesLen; //总页数
     var PageNum=10; //分页链接数(5个)
     onload=function(){

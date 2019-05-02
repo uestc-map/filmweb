@@ -37,14 +37,7 @@
 			<a href="#" class="site-name" ><span class="site-name-font">肥宅<span style="color:#1296db;">电影</span></span></a>
 			<!--<img id="logo" src="slide_1.png" alt="">-->
 			<li> <a href="#" name="a1">首页</a></li>
-		</ul>
-        {% if user_active == 0 %}
-              <a href="../login/" id="signin">登录</a><span> /</span>
-              <a href="../register/" id="signup">注册</a>
-            {% else %}
-                <a href="../logout/" id="out"></a>
-                <a href="../my/" id="my"></a>
-            {% endif %}
+              <al>
         <form action="../search/" method="POST">
 
           <div id="scbox">
@@ -56,6 +49,15 @@
 	        <input type="submit" name="搜索"  value="搜索" id="input2">
 		  </div>
        </form>
+        </al>
+		</ul>
+        {% if user_active == 0 %}
+              <a href="../login/" id="signin">登录</a><span> /</span>
+              <a href="../register/" id="signup">注册</a>
+            {% else %}
+                <a href="../logout/" id="out"></a>
+                <a href="../my/" id="my"></a>
+            {% endif %}
 
 	</nav>
 
@@ -106,7 +108,7 @@
                     {% if forloop.counter <= 6 %}
                         <div id="itm">
                             <a href="../detail/{{ each.filmName}}">
-                                <img src="../media/{{ each.image }}">
+                                <img src="../media/{{ each.image }}"alt="{{each.filmName}}">
                             </a>
                         </div>
 {#                        {% else %}#}
