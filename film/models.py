@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
+from django.utils.safestring import mark_safe
 
 class UserProfile(AbstractUser):
     money = models.IntegerField(max_length=20, default=0,blank=False, verbose_name='余额')
@@ -54,14 +55,14 @@ class film(models.Model):
     filmDName = models.CharField(max_length=20, blank=False,verbose_name='导演')
     filmAName = models.CharField(max_length=45,blank=False,verbose_name='演员')
     filmScore = models.FloatField(default='0',verbose_name='评分')
-    image = models.ImageField(upload_to="film/filmimage/",default='',verbose_name='海报')
+    image = models.ImageField(u'海报',upload_to="film/filmimage/",default='')
     category = models.CharField(max_length=10, blank= False, default= '动作',verbose_name='分类')
     evaluateNum = models.IntegerField(max_length=10,default=0,verbose_name='评分人次')
     showDate = models.DateField(blank=False,default='1999-01-01',verbose_name='上映时间')
     deleteDate = models.DateField(blank=False,default='1999-01-01',verbose_name='下线时间')
-    # filmSum = models.CharField(max_length=1000,default='0',verbose_name='总评分')
     filmScoreUser=models.CharField(max_length=1000,default='0',verbose_name='已评分用户id')#打过分的用户id
     total=models.IntegerField(max_length=20,default=0,verbose_name='票房')  #电影票房
+
     class Meta:
         ordering=['-filmScore','showDate']
         verbose_name = "电影"
