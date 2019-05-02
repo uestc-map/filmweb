@@ -192,10 +192,11 @@ text-align:center;
 vertical-align: center;
 }
 
+
 .button{
 	margin:0 auto;
-	width: 85px;
-	height: 25px;
+	width: 100px;
+	height: 35px;
 	border-radius: 15px;
     background-color: red;
     color: white;

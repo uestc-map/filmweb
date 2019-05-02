@@ -1,6 +1,7 @@
 body{
-		background: url("../img/peiqi.png") no-repeat ;
-		background-size: cover;
+		background: url("../img/BB.png") no-repeat ;
+		/*background-size: 100% 100%;*/
+	background-size: cover;
 		width: 100%;
 		height: 300px;
 	}
