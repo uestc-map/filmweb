@@ -300,27 +300,13 @@ def my(request):
         orders = order.objects.filter(userName_id=userid)
         userm = UserProfile.objects.get(pk=userid)
         if card:
-            money = userm.money
-            money = int(money) + 100
-            UserProfile.objects.filter(pk=userid).update(money=money)
-            return HttpResponse(money)  # 返回当前余额
-            # if len(str(charge)) == 10:
-            #     money=userm.money
-            #     money=int(money)+100
-            #     UserProfile.objects.filter(pk=userid).update(money=money)
-            #     t1 = loader.get_template('film/my.html')
-            #     context = {'orders': orders,  # 用户是否登录
-            #                'errmsg': '成功充值100元',
-            #                'user':userm
-            #                }
-            #     return HttpResponse(t1.render(context))
-            # else:
-            #     t1 = loader.get_template('film/my.html')
-            #     context = {'orders': orders, # 用户是否登录
-            #                'errmsg': '充值卡号错误',
-            #                'user': userm
-            #                }
-            #     return HttpResponse(t1.render(context))
+            if len(str(card))==10:
+                money = userm.money
+                money = int(money) + 100
+                UserProfile.objects.filter(pk=userid).update(money=money)
+                return HttpResponse(1)
+            else:
+                return HttpResponse(0)
         else:
             t1 = loader.get_template('film/my.html')
             context = {'orders': orders , # 用户是否登录
