@@ -132,11 +132,11 @@ def film_grade(request):
 def buy(request, dateTime):
     if request.method == "POST":
         seat = request.POST.get("seatlist")
-        filmName = request.session.get('film_detail_name')
         dateTime = datetime.datetime.strptime(dateTime, "%Y年%m月%d日 %H:%M") #转化时间格式
         date_ex = str(dateTime)[0:10]
         date_ex=datetime.datetime.strptime(date_ex,"%Y-%m-%d")
-        filmscences = filmscence.objects.get(dateTime=dateTime, filmName=filmName) #寻找相应电影
+        filmscences = filmscence.objects.get(dateTime=dateTime) #寻找相应电影
+        filmName=filmscences.filmName.filmName
         str_seatList = filmscences.seat
         seatList = str_seatList.split(',')
         int_seatList = []
@@ -210,9 +210,9 @@ def buy(request, dateTime):
     else:
         #页面进入刷新
         pass
-        filmName = request.session.get('film_detail_name')
         dateTime = datetime.datetime.strptime(dateTime, "%Y年%m月%d日 %H:%M")  # 转化时间格式
-        filmscences = filmscence.objects.get(dateTime=dateTime, filmName=filmName)
+        filmscences = filmscence.objects.get(dateTime=dateTime)
+        filmName = filmscences.filmName.filmName
         price = filmscences.price
         type = film.objects.get(filmName=filmName).category
         image = film.objects.get(filmName=filmName).image
@@ -309,7 +309,7 @@ def my(request):
                 return HttpResponse(0)
         else:
             t1 = loader.get_template('film/my.html')
-            context = {'orders': orders , # 用户是否登录
+            context = {'orders': orders ,
                        'user': userm
              }
             return HttpResponse(t1.render(context))
