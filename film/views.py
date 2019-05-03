@@ -309,6 +309,17 @@ def my(request):
                 return HttpResponse(0)
         else:
             t1 = loader.get_template('film/my.html')
+            for n in orders:
+                flag = 1
+                n.seats=""
+                for m in n.seat:
+                    if(m>='1' and m<='9'):
+                        if(flag==1):
+                            flag=0
+                            n.seats=n.seats+m+"行"
+                        else:
+                            flag=1
+                            n.seats=n.seats+m+"座        "
             context = {'orders': orders ,
                        'user': userm
              }
