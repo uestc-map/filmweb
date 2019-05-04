@@ -18,7 +18,7 @@ def register_User(request):
         userName=request.POST.get("userName",None)
         password=request.POST.get("password",None)
         if not all([ userEmail,userName,password]):
-            return render(request, 'film/register.html')
+            return render(request, 'film/register.html', {'errmsg': '账号信息不全'})
         if not re.match(r'^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$', userEmail):
             return render(request, 'film/register.html', {'errmsg': '邮箱不符合规范'})
         try:
