@@ -42,8 +42,8 @@
 
           <div id="scbox">
 			<select name="selectOne"  id="select1">
-				<option value="0">电影名	</option>
-				<option value="1">导演名</option>
+				<option value="0">电影</option>
+				<option value="1">导演</option>
 			</select>
 			<input type="text"  name="searchCont" id="input1" placeholder="输入搜索内容" >
 	        <input type="submit" name="搜索"  value="搜索" id="input2">
@@ -85,8 +85,10 @@
                 <a href="../searchtype/爱情">爱情</a>
                 <a href="../searchtype/动作">动作</a>
                 <a href="../searchtype/恐怖">恐怖</a>
-                <a href="../searchtype/动作">动作</a>
-                <a href="../searchtype/动作">动作</a>
+                <a href="../searchtype/剧情">剧情</a>
+                <a href="../searchtype/科幻">科幻</a>
+                <a href="../searchtype/动画">动画</a>
+                <a href="../searchtype/纪录片">纪录片</a>
 {#          <form  action="../search/" method="POST"  name="category">#}
 {#                <input type="submit" name="喜剧"  value="喜剧" id="input2">#}
 {#                <input type="submit" name="爱情" value="爱情" id="input2">#}
@@ -117,13 +119,13 @@
                 {% endfor %}
             {% endif %}
         </div>
-        {# 正在热映榜单 5个 #}
+        {# 正在热映榜单 6个 #}
         <div id="leftBan">
             <div class="Listhead"><font>正在上映榜</font></div>
                 {%  if film_list %}
                     <ol id="Listitem">
                     {% for each in film_list %}
-                        {%if forloop.counter <= 4 %}
+                        {%if forloop.counter <= 8 %}
                             <!--<li>{{ each.filmName }}</li>-->
                             <li><a href="../detail/{{ each.filmName }}">{{ each.filmName }}</a></li>
                         {% endif %}
@@ -173,7 +175,7 @@
                 {%  if noshow_filmlist %}
                     <ol id="Listitem">
                     {% for each in noshow_filmlist %}
-                        {%if forloop.counter <= 2 %}
+                        {%if forloop.counter <= 8 %}
                             <li><a href="../detail/{{ each.filmName }}">{{ each.filmName }}</a></li>
                             <!--<li>{{ each.filmName }}</li>-->
                         {% endif %}
